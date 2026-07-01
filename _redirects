@@ -1,0 +1,2 @@
+# www → non-www redirect
+https://www.hotcallmarketing.com/* https://hotcallmarketing.com/:splat 301
