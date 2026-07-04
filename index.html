@@ -21,13 +21,13 @@
 /* ─── RESET ─── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-img{display:block;max-width:100%}
+img,svg{display:block;max-width:100%}
 ul{list-style:none}
 a{text-decoration:none;color:inherit}
 button{cursor:pointer;border:none;background:none;font-family:inherit}
 input{font-family:inherit}
 
-/* ─── TOKENS ─── */
+/* ─── TOKENS (unchanged brand palette) ─── */
 :root{
   --navy:#0B1F3A;
   --navy-deep:#071629;
@@ -62,6 +62,11 @@ input{font-family:inherit}
 }
 
 body{font-family:var(--font);color:var(--body);background:var(--white);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+
+/* ─── ICON SYSTEM ─── */
+.icon{width:1em;height:1em;display:inline-block;flex-shrink:0;vertical-align:-0.125em}
+.ic-stroke{fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.ic-fill{fill:currentColor;stroke:none}
 
 /* ─── LAYOUT ─── */
 .wrap{max-width:var(--max);margin:0 auto;padding:0 5%}
@@ -119,29 +124,39 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--red-bg);color:#991B1B;font-size:0.74rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:26px;border:1px solid var(--red-border)}
 .hero-badge .pulse-dot{width:6px;height:6px;background:var(--red);border-radius:50%;animation:blink 2s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.7)}}
-.hero-h1{font-size:clamp(2.25rem,4.2vw,3.4rem);font-weight:900;color:var(--h-color);line-height:1.09;letter-spacing:-0.03em;margin-bottom:22px}
+.hero-h1{font-size:clamp(2.5rem,4.6vw,3.75rem);font-weight:900;color:var(--h-color);line-height:1.06;letter-spacing:-0.03em;margin-bottom:22px}
 .hero-h1 em{font-style:normal;background:linear-gradient(130deg,var(--red) 0%,#FF4444 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .hero-p{font-size:1.0625rem;color:var(--muted);line-height:1.78;max-width:490px;margin-bottom:34px}
 .hero-actions{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-bottom:24px}
 .hero-cta{animation:ctapulse 3s ease-in-out infinite}
 @keyframes ctapulse{0%,100%{box-shadow:var(--shadow-red)}50%{box-shadow:0 4px 28px rgba(217,30,24,0.45)}}
 .hero-cta:hover{animation:none}
-.hero-secondary-link{font-size:0.875rem;font-weight:600;color:var(--muted);border-bottom:1px solid var(--border);padding-bottom:2px;transition:color 0.15s,border-color 0.15s}
+.hero-secondary-link{display:inline-flex;align-items:center;gap:6px;font-size:0.875rem;font-weight:600;color:var(--muted);border-bottom:1px solid var(--border);padding-bottom:2px;transition:color 0.15s,border-color 0.15s}
 .hero-secondary-link:hover{color:var(--red);border-color:var(--red)}
 .hero-trust{display:flex;align-items:center;gap:0;flex-wrap:wrap;font-size:0.78rem;color:var(--muted)}
-.hero-trust span{padding:0 12px 0 0;display:flex;align-items:center;gap:5px}
+.hero-trust span{padding:0 12px 0 0;display:flex;align-items:center;gap:6px}
 .hero-trust span:first-child{padding-left:0}
-.hero-trust .trust-check{color:var(--green);font-weight:700}
+.hero-trust .trust-check{color:var(--green)}
 
-/* ─── HERO MOCKUP ─── */
-.hero-visual{position:relative;height:450px}
-.hero-visual::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:380px;height:380px;background:radial-gradient(circle,rgba(217,30,24,0.06) 0%,transparent 65%);pointer-events:none}
-.mock-card{background:#fff;border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow-lg);padding:20px 22px}
-.mock-main{position:absolute;top:0;left:0;right:56px;z-index:1}
-.mock-rank{position:absolute;bottom:56px;right:0;width:216px;z-index:3}
-.mock-leads{position:absolute;bottom:0;left:8px;width:172px;z-index:2}
-.mock-ai{position:absolute;top:-18px;right:18px;z-index:4;background:var(--navy);color:#fff;border-radius:999px;padding:7px 16px;font-size:0.7rem;font-weight:700;display:flex;align-items:center;gap:8px;box-shadow:0 4px 14px rgba(11,31,58,0.3);letter-spacing:0.04em}
-.mock-ai .ai-dot{width:7px;height:7px;background:var(--red);border-radius:50%;animation:blink 2.2s ease-in-out infinite}
+/* ─── HERO CINEMATIC VISUAL ─── */
+.hero-visual{position:relative;height:460px;perspective:1000px}
+.hero-cinema{position:absolute;inset:0;border-radius:24px;overflow:hidden;background:radial-gradient(120% 130% at 20% 0%,#16305a 0%,var(--navy) 46%,var(--navy-deep) 100%);box-shadow:0 24px 60px -12px rgba(7,22,41,0.45)}
+.hero-cinema-grain{position:absolute;inset:0;opacity:0.5;background-image:radial-gradient(rgba(255,255,255,0.05) 1px,transparent 1px);background-size:3px 3px;mix-blend-mode:overlay;pointer-events:none}
+.hero-cinema-lines{position:absolute;inset:0;width:100%;height:100%}
+.cine-path{fill:none;stroke-width:1.4;stroke-linecap:round}
+.cine-path.p1{stroke:rgba(217,30,24,0.85);stroke-dasharray:6 10;animation:flow 5s linear infinite}
+.cine-path.p2{stroke:rgba(255,255,255,0.18);stroke-dasharray:3 9;animation:flow 8s linear infinite}
+.cine-path.p3{stroke:rgba(255,255,255,0.10);stroke-dasharray:2 12;animation:flow 11s linear infinite reverse}
+@keyframes flow{to{stroke-dashoffset:-160}}
+.cine-node{fill:#FF6B5E;filter:drop-shadow(0 0 6px rgba(217,30,24,0.8))}
+.hero-cinema-glow{position:absolute;top:-20%;right:-10%;width:70%;height:70%;background:radial-gradient(circle,rgba(217,30,24,0.20) 0%,transparent 70%);pointer-events:none}
+.hero-stage{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
+.mock-card{background:rgba(255,255,255,0.97);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.6);border-radius:var(--r);box-shadow:0 16px 40px rgba(0,0,0,0.35);padding:20px 22px}
+.mock-main{position:absolute;top:24px;left:24px;right:80px;z-index:1}
+.mock-rank{position:absolute;bottom:72px;right:20px;width:214px;z-index:3}
+.mock-leads{position:absolute;bottom:24px;left:28px;width:170px;z-index:2}
+.mock-ai{position:absolute;top:-14px;right:36px;z-index:4;background:var(--red);color:#fff;border-radius:999px;padding:7px 16px;font-size:0.7rem;font-weight:700;display:flex;align-items:center;gap:8px;box-shadow:0 4px 14px rgba(217,30,24,0.45);letter-spacing:0.04em}
+.mock-ai .ai-dot{width:7px;height:7px;background:#fff;border-radius:50%;animation:blink 2.2s ease-in-out infinite}
 .mock-label{font-size:0.66rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
 .mock-trend{color:var(--green);font-weight:700;font-size:0.76rem;background:var(--green-bg);padding:2px 8px;border-radius:4px}
 .bar-chart{display:flex;align-items:flex-end;gap:5px;height:68px;margin-top:4px}
@@ -155,50 +170,49 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 .rank-pos{width:20px;height:20px;background:var(--navy);color:#fff;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:800;flex-shrink:0}
 .rank-kw{color:var(--h-color);font-weight:500;flex:1;font-size:0.7rem}
 .rank-arr{color:var(--green);font-weight:700;font-size:0.68rem}
-.leads-icon{font-size:1.75rem;line-height:1;margin:4px 0}
+.leads-icon{font-size:1.6rem;color:var(--red);line-height:1;margin:4px 0}
 .leads-sub{display:flex;align-items:center;gap:5px;font-size:0.66rem;color:var(--muted);margin-top:5px}
 .live-dot{width:6px;height:6px;background:var(--red);border-radius:50%}
 
-/* ─── CAPABILITY CHIPS ─── */
-#caps{background:var(--section);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.caps-inner{padding:28px 0;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
-.cap-chip{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--border);border-radius:999px;padding:9px 18px;font-size:0.825rem;font-weight:600;color:var(--body);box-shadow:0 1px 4px rgba(0,0,0,0.04);transition:all 0.18s}
-.cap-chip:hover{border-color:var(--red-border);color:var(--red);box-shadow:0 2px 10px var(--red-glow)}
-.cap-chip .cap-ico{font-size:1rem}
-
-/* ─── INDUSTRIES MARQUEE ─── */
-#industries{background:var(--white);padding:36px 0 44px;overflow:hidden}
-.ind-label{text-align:center;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:24px}
+/* ─── PROOF (industries + trust chips, merged) ─── */
+#proof{background:var(--section);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:44px 0 40px}
+.proof-label{text-align:center;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:22px}
 .marquee-wrap{overflow:hidden;position:relative}
 .marquee-wrap::before,.marquee-wrap::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
-.marquee-wrap::before{left:0;background:linear-gradient(to right,var(--white),transparent)}
-.marquee-wrap::after{right:0;background:linear-gradient(to left,var(--white),transparent)}
-.marquee-track{display:flex;gap:12px;animation:marquee 30s linear infinite;width:max-content}
+.marquee-wrap::before{left:0;background:linear-gradient(to right,var(--section),transparent)}
+.marquee-wrap::after{right:0;background:linear-gradient(to left,var(--section),transparent)}
+.marquee-track{display:flex;gap:12px;animation:marquee 32s linear infinite;width:max-content}
 @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 .marquee-wrap:hover .marquee-track{animation-play-state:paused}
-.ind-chip{display:inline-flex;align-items:center;gap:8px;background:var(--section);border:1px solid var(--border);border-radius:999px;padding:9px 18px;font-size:0.84rem;font-weight:600;color:var(--body);white-space:nowrap;transition:all 0.18s;cursor:default}
+.ind-chip{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--border);border-radius:999px;padding:9px 18px;font-size:0.84rem;font-weight:600;color:var(--body);white-space:nowrap;transition:all 0.18s;cursor:default}
+.ind-chip .icon{color:var(--red)}
 .ind-chip:hover{border-color:var(--red-border);color:var(--red);transform:translateY(-1px)}
+.caps-inner{padding:26px 0 0;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;border-top:1px solid var(--border);margin-top:30px}
+.cap-chip{display:inline-flex;align-items:center;gap:7px;font-size:0.8rem;font-weight:600;color:var(--muted)}
+.cap-chip .icon{color:var(--red);width:15px;height:15px}
 
 /* ─── SELF-AUDIT ─── */
-#audit{background:var(--section);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+#audit{background:var(--white)}
 .audit-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:40px}
 .audit-card{background:#fff;border:2px solid var(--border);border-radius:var(--r);padding:24px 14px;text-align:center;cursor:pointer;transition:border-color 0.2s,transform 0.2s;user-select:none}
 .audit-card:hover{transform:translateY(-3px)}
-.audit-icon{font-size:1.6rem;margin-bottom:10px}
+.audit-icon{width:28px;height:28px;margin:0 auto 12px;color:var(--muted)}
 .audit-name{font-size:0.8125rem;font-weight:700;color:var(--h-color);margin-bottom:14px;line-height:1.3}
 .audit-badge{width:32px;height:32px;border-radius:50%;background:var(--section);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto;font-weight:800;font-size:0.95rem;color:var(--muted);transition:all 0.2s}
 .audit-card[data-state="yes"]{border-color:var(--green)}
-.audit-card[data-state="yes"] .audit-badge{background:var(--green-bg);border-color:var(--green);color:var(--green)}
+.audit-card[data-state="yes"] .audit-icon,.audit-card[data-state="yes"] .audit-badge{color:var(--green)}
+.audit-card[data-state="yes"] .audit-badge{background:var(--green-bg);border-color:var(--green)}
 .audit-card[data-state="no"]{border-color:var(--red-border)}
-.audit-card[data-state="no"] .audit-badge{background:var(--red-bg);border-color:var(--red);color:var(--red)}
-.audit-result{background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:40px;text-align:center;box-shadow:var(--shadow-lg);max-width:600px;margin:0 auto}
+.audit-card[data-state="no"] .audit-icon,.audit-card[data-state="no"] .audit-badge{color:var(--red)}
+.audit-card[data-state="no"] .audit-badge{background:var(--red-bg);border-color:var(--red)}
+.audit-result{background:var(--section);border:1px solid var(--border);border-radius:var(--r-lg);padding:40px;text-align:center;box-shadow:var(--shadow-lg);max-width:600px;margin:0 auto}
 .audit-score{font-size:2.75rem;font-weight:900;color:var(--h-color);margin-bottom:8px;letter-spacing:-0.02em}
 .audit-msg{font-size:0.9375rem;color:var(--muted);margin-bottom:24px;min-height:24px}
 .audit-bar-track{width:100%;max-width:400px;margin:0 auto 28px;height:8px;background:var(--border);border-radius:99px;overflow:hidden}
 .audit-bar-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--red),var(--green));border-radius:99px;transition:width 0.45s ease}
 
 /* ─── SOLUTIONS BENTO ─── */
-#solutions{background:var(--white)}
+#solutions{background:var(--section)}
 .bento{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto auto;gap:20px}
 .sb{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:30px 28px;position:relative;overflow:hidden;transition:box-shadow 0.22s,transform 0.22s,border-color 0.22s}
 .sb::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform 0.28s ease;border-radius:3px 3px 0 0}
@@ -208,8 +222,10 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 .sb.featured .sb-body{flex:1}
 .sb.wide{grid-column:1/-1;display:flex;align-items:center;gap:36px}
 .sb.wide .sb-text{flex:1}
-.sb-ico{font-size:1.4rem;width:48px;height:48px;background:var(--section);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:20px}
-.sb-wide-ico{font-size:2.4rem;flex-shrink:0;width:60px;height:60px;background:var(--red-bg);border-radius:12px;display:flex;align-items:center;justify-content:center}
+.sb-ico{width:48px;height:48px;background:var(--section);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;color:var(--red)}
+.sb-ico .icon{width:22px;height:22px}
+.sb-wide-ico{flex-shrink:0;width:60px;height:60px;background:var(--red-bg);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--red)}
+.sb-wide-ico .icon{width:28px;height:28px}
 .sb-name{font-size:1.05rem;font-weight:700;color:var(--h-color);margin-bottom:8px}
 .sb-desc{font-size:0.865rem;color:var(--muted);line-height:1.68}
 .sb-tag{display:inline-block;font-size:0.67rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--red);background:var(--red-bg);border-radius:4px;padding:3px 8px;margin-bottom:14px}
@@ -226,8 +242,8 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 .solutions-note strong{color:var(--h-color)}
 
 /* ─── ROI CALCULATOR ─── */
-#calculator{background:var(--section);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.calc-card{background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--shadow-lg);padding:44px;max-width:600px;margin:0 auto}
+#calculator{background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.calc-card{background:var(--section);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--shadow-lg);padding:44px;max-width:600px;margin:0 auto}
 .calc-row{margin-bottom:30px}
 .calc-row-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;font-size:0.9rem;font-weight:600;color:var(--h-color)}
 .calc-val{color:var(--red);font-weight:800;font-size:1rem}
@@ -241,10 +257,10 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 .calc-disclaimer{font-size:0.76rem;color:var(--muted);text-align:center;margin-bottom:22px;line-height:1.6}
 
 /* ─── SHIFT / TRANSFORMATION ─── */
-#transformation{background:var(--white)}
+#transformation{background:var(--section)}
 .shift-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 .shift-col{border-radius:var(--r-lg);padding:36px 32px}
-.shift-col.old{background:var(--section);border:1px solid var(--border)}
+.shift-col.old{background:var(--white);border:1px solid var(--border)}
 .shift-col.new{background:var(--navy);color:#fff}
 .shift-tag{font-size:0.72rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:22px;display:block}
 .shift-col.old .shift-tag{color:var(--muted)}
@@ -252,24 +268,26 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 .shift-row{display:flex;align-items:center;gap:12px;padding:12px 0;font-size:0.9375rem;font-weight:500;border-bottom:1px solid rgba(0,0,0,0.06)}
 .shift-col.new .shift-row{border-bottom-color:rgba(255,255,255,0.1)}
 .shift-row:last-child{border-bottom:none}
-.shift-x{color:#B91C1C;font-weight:800;flex-shrink:0;width:20px}
-.shift-check{color:var(--green);font-weight:800;flex-shrink:0;width:20px}
+.shift-x{color:#B91C1C;flex-shrink:0;width:18px;height:18px}
+.shift-check{color:var(--green);flex-shrink:0;width:18px;height:18px}
 
 /* ─── PROCESS ─── */
-#process{background:var(--section)}
+#process{background:var(--white)}
 .steps-row{display:grid;grid-template-columns:repeat(3,1fr);gap:36px 28px}
-.step{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:28px 26px;transition:border-color 0.2s,transform 0.2s}
+.step{background:var(--section);border:1px solid var(--border);border-radius:var(--r);padding:28px 26px;transition:border-color 0.2s,transform 0.2s}
 .step:hover{border-color:var(--red-border);transform:translateY(-3px)}
 .step-circle{width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.95rem;font-weight:800;margin-bottom:18px}
 .step-h{font-size:1rem;font-weight:700;color:var(--h-color);margin-bottom:8px}
 .step-p{font-size:0.8425rem;color:var(--muted);line-height:1.68}
 
 /* ─── PORTFOLIO / CASE STUDIES ─── */
-#case-studies{background:var(--white)}
+#case-studies{background:var(--section)}
 .port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .port-card{background:#fff;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:all 0.22s;position:relative}
 .port-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px);border-color:var(--red-border)}
-.port-img{height:168px;display:flex;align-items:center;justify-content:center;font-size:2.75rem;position:relative;overflow:hidden}
+.port-img{height:168px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;color:rgba(255,255,255,0.9)}
+.port-img .icon{width:34px;height:34px}
+.concept-badge{position:absolute;top:12px;left:12px;background:rgba(7,22,41,0.75);backdrop-filter:blur(4px);color:#fff;font-size:0.62rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:5px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.25)}
 .port-overlay{position:absolute;bottom:-72px;left:0;right:0;padding:16px 20px;background:linear-gradient(to top,rgba(7,22,41,0.97) 0%,transparent 100%);color:#fff;transition:bottom 0.28s ease;display:flex;align-items:center;justify-content:space-between;gap:8px}
 .port-card:hover .port-overlay{bottom:0}
 .port-overlay span{font-size:0.8rem;font-weight:600}
@@ -286,20 +304,17 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 .bg-m{background:linear-gradient(140deg,#0a0a2e 50%,#1a1a50)}
 .bg-g{background:linear-gradient(140deg,#374151 50%,#4b5563)}
 
-/* ─── STORY ─── */
-#story{background:var(--section)}
-.story-body{font-size:1.0625rem;color:var(--body);line-height:1.85}
-.story-body p{margin-bottom:20px}
-.story-body p:last-child{margin-bottom:0}
-
-/* ─── COMMITMENT ─── */
-#commitment{background:var(--navy);position:relative;overflow:hidden}
-.comm-bloom{position:absolute;top:-150px;right:-150px;width:500px;height:500px;background:radial-gradient(circle,rgba(217,30,24,0.12) 0%,transparent 65%);pointer-events:none}
-.comm-bloom-2{position:absolute;bottom:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(11,31,58,0.5) 0%,transparent 65%);pointer-events:none}
+/* ─── WHY (story + commitment merged) ─── */
+#why{background:var(--navy);position:relative;overflow:hidden}
+.why-bloom{position:absolute;top:-150px;right:-150px;width:500px;height:500px;background:radial-gradient(circle,rgba(217,30,24,0.12) 0%,transparent 65%);pointer-events:none}
+.why-bloom-2{position:absolute;bottom:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(11,31,58,0.5) 0%,transparent 65%);pointer-events:none}
+.why-intro{max-width:720px;margin:0 auto 56px;text-align:center;position:relative;z-index:1}
+.why-intro p{font-size:1.0625rem;color:rgba(255,255,255,0.62);line-height:1.85;margin-bottom:16px}
+.why-intro p:last-child{margin-bottom:0}
 .promise-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;position:relative;z-index:1}
 .promise-card{background:rgba(255,255,255,0.05);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.1);border-radius:var(--r);padding:32px 28px;transition:all 0.25s}
 .promise-card:hover{background:rgba(217,30,24,0.1);border-color:rgba(217,30,24,0.35)}
-.promise-ico{font-size:1.75rem;margin-bottom:18px}
+.promise-ico{width:26px;height:26px;color:#FF8A8A;margin-bottom:18px}
 .promise-h{font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:10px}
 .promise-p{font-size:0.875rem;color:rgba(255,255,255,0.52);line-height:1.74}
 .promise-divider{border-top:1px solid rgba(255,255,255,0.08);margin-top:56px;padding-top:48px;text-align:center;position:relative;z-index:1}
@@ -342,6 +357,26 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 .scarcity{display:inline-flex;align-items:center;gap:7px;background:var(--amber-bg);color:#78350F;font-size:0.74rem;font-weight:700;padding:6px 14px;border-radius:7px;border:1px solid rgba(245,158,11,0.22);margin-bottom:30px}
 .s-dot{width:6px;height:6px;background:var(--amber);border-radius:50%;animation:blink 2s ease-in-out infinite}
 
+/* ─── GROWTH AUDIT FORM ─── */
+.cta-form{max-width:580px;margin:8px auto 0;text-align:left;background:rgba(255,255,255,0.06);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.14);border-radius:var(--r-lg);padding:32px;position:relative;z-index:2}
+.cta-form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cta-form-group{margin-bottom:18px}
+.cta-form-group:last-of-type{margin-bottom:0}
+.cta-form-label{display:block;font-size:0.8rem;font-weight:600;color:rgba(255,255,255,0.7);margin-bottom:7px}
+.cta-form-optional{font-weight:400;color:rgba(255,255,255,0.35)}
+.cta-form-input{width:100%;background:rgba(255,255,255,0.96);border:1.5px solid rgba(255,255,255,0.15);border-radius:var(--r-sm);padding:11px 14px;font-size:0.9375rem;color:var(--h-color);font-family:var(--font)}
+.cta-form-input:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 3px rgba(217,30,24,0.25)}
+.cta-form-textarea{resize:vertical;min-height:80px;font-family:var(--font)}
+.cta-form-counter{display:block;text-align:right;font-size:0.72rem;color:rgba(255,255,255,0.35);margin-top:5px}
+.cta-form-counter.limit{color:#FCA5A5}
+.cta-form-submit{width:100%;margin-top:18px}
+.cta-form-submit:disabled{opacity:0.55;cursor:not-allowed;transform:none;animation:none}
+.cta-form-status{margin-top:14px;font-size:0.875rem;text-align:center;line-height:1.6}
+.cta-form-status.success{color:#6EE7B7}
+.cta-form-status.error{color:#FCA5A5}
+.cta-form-honey{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+@media(max-width:640px){.cta-form-row{grid-template-columns:1fr}.cta-form{padding:24px}}
+
 /* ─── FOOTER ─── */
 footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);padding:60px 0 32px}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:52px}
@@ -357,6 +392,7 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);p
 .footer-copy{font-size:0.78rem;color:rgba(255,255,255,0.26)}
 .footer-socials{display:flex;gap:10px}
 .footer-socials a{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;font-size:0.88rem;color:rgba(255,255,255,0.38);transition:all 0.18s;border:1px solid rgba(255,255,255,0.08)}
+.footer-socials a .icon{width:16px;height:16px}
 .footer-socials a:hover{background:var(--red);color:#fff;border-color:var(--red)}
 
 /* ─── MOBILE STICKY ─── */
@@ -380,7 +416,7 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);p
 @media(max-width:768px){
   .hero-inner{grid-template-columns:1fr}
   .hero-visual{display:none}
-  .nav-links,.nav-right .btn-ghost{display:none}
+  .nav-links,.nav-right{display:none}
   .hamburger{display:flex}
   .bento{grid-template-columns:1fr}
   .sb.featured,.sb.wide{grid-row:auto;grid-column:auto;flex-direction:column;align-items:flex-start;gap:16px}
@@ -403,6 +439,43 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);p
 </style>
 </head>
 <body>
+
+<!-- ── ICON SPRITE (no emoji — consistent line-icon system) ── -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<symbol id="i-droplet" viewBox="0 0 24 24"><path class="ic-stroke" d="M12 3c-3 4-6 7.7-6 11.2A6 6 0 0 0 18 14.2C18 10.7 15 7 12 3z"/></symbol>
+<symbol id="i-hvac" viewBox="0 0 24 24"><g class="ic-stroke"><line x1="12" y1="4" x2="12" y2="20"/><line x1="12" y1="4" x2="12" y2="20" transform="rotate(60 12 12)"/><line x1="12" y1="4" x2="12" y2="20" transform="rotate(120 12 12)"/></g></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><path class="ic-stroke" d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></symbol>
+<symbol id="i-roof" viewBox="0 0 24 24"><g class="ic-stroke"><polyline points="4,11 12,4 20,11"/><path d="M6 10.5V20h12v-9.5"/></g></symbol>
+<symbol id="i-roller" viewBox="0 0 24 24"><g class="ic-stroke"><rect x="4" y="4" width="16" height="6" rx="1.5"/><line x1="8" y1="10" x2="8" y2="16"/><rect x="6" y="16" width="4" height="4" rx="1"/></g></symbol>
+<symbol id="i-tree" viewBox="0 0 24 24"><g class="ic-stroke"><circle cx="12" cy="8" r="5"/><line x1="12" y1="13" x2="12" y2="21"/></g></symbol>
+<symbol id="i-spray" viewBox="0 0 24 24"><g class="ic-stroke"><line x1="14" y1="4" x2="20" y2="10"/><line x1="10" y1="6" x2="15" y2="11"/><line x1="7" y1="10" x2="11" y2="14"/><path d="M6 14c-2 2-3 5-3 7 2 0 5-1 7-3z"/></g></symbol>
+<symbol id="i-garage" viewBox="0 0 24 24"><g class="ic-stroke"><rect x="4" y="5" width="16" height="15" rx="1.5"/><line x1="4" y1="10" x2="20" y2="10"/><line x1="4" y1="14" x2="20" y2="14"/></g></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path class="ic-stroke" d="M12 3l7 3v6c0 5-3.2 8-7 9-3.8-1-7-4-7-9V6z"/></symbol>
+<symbol id="i-pest" viewBox="0 0 24 24"><g class="ic-stroke"><circle cx="12" cy="12" r="8"/><line x1="6.3" y1="17.7" x2="17.7" y2="6.3"/></g></symbol>
+<symbol id="i-waves" viewBox="0 0 24 24"><g class="ic-stroke"><path d="M2 9c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M2 15c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></g></symbol>
+<symbol id="i-hardhat" viewBox="0 0 24 24"><g class="ic-stroke"><path d="M4 16a8 8 0 0 1 16 0"/><rect x="2" y="16" width="20" height="2.5" rx="1"/><line x1="12" y1="8" x2="12" y2="11"/></g></symbol>
+<symbol id="i-puzzle" viewBox="0 0 24 24"><g class="ic-stroke"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="16" cy="7.5" r="2"/></g></symbol>
+<symbol id="i-cpu" viewBox="0 0 24 24"><g class="ic-stroke"><rect x="7" y="7" width="10" height="10" rx="2"/><rect x="10" y="10" width="4" height="4"/><line x1="9" y1="2" x2="9" y2="6"/><line x1="15" y1="2" x2="15" y2="6"/><line x1="9" y1="18" x2="9" y2="22"/><line x1="15" y1="18" x2="15" y2="22"/><line x1="2" y1="9" x2="6" y2="9"/><line x1="2" y1="15" x2="6" y2="15"/><line x1="18" y1="9" x2="22" y2="9"/><line x1="18" y1="15" x2="22" y2="15"/></g></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><g class="ic-stroke"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></g></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><g class="ic-stroke"><path d="M12 21s7-6.7 7-12a7 7 0 0 0-14 0c0 5.3 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></g></symbol>
+<symbol id="i-handshake" viewBox="0 0 24 24"><g class="ic-stroke"><line x1="2" y1="12" x2="9" y2="12"/><polyline points="7,8.5 9,12 7,15.5"/><line x1="22" y1="12" x2="15" y2="12"/><polyline points="17,8.5 15,12 17,15.5"/></g></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><g class="ic-stroke"><circle cx="12" cy="12" r="9"/><polyline points="8,12.5 11,15.5 16,9"/></g></symbol>
+<symbol id="i-trend" viewBox="0 0 24 24"><g class="ic-stroke"><polyline points="3,17 9,11 13,15 21,6"/><polyline points="14,6 21,6 21,13"/></g></symbol>
+<symbol id="i-spark" viewBox="0 0 24 24"><path class="ic-stroke" d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/></symbol>
+<symbol id="i-film" viewBox="0 0 24 24"><g class="ic-stroke"><circle cx="12" cy="12" r="9"/><polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/></g></symbol>
+<symbol id="i-mobile" viewBox="0 0 24 24"><g class="ic-stroke"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="10.5" y1="18" x2="13.5" y2="18"/></g></symbol>
+<symbol id="i-rocket" viewBox="0 0 24 24"><g class="ic-stroke"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5,12 12,5 19,12"/></g></symbol>
+<symbol id="i-pen" viewBox="0 0 24 24"><g class="ic-stroke"><path d="M12 20h9"/><path d="M16.5 3.5 20.5 7.5 8 20H4v-4Z"/></g></symbol>
+<symbol id="i-clipboard" viewBox="0 0 24 24"><g class="ic-stroke"><rect x="6" y="4" width="12" height="17" rx="2"/><rect x="9" y="2" width="6" height="3" rx="1"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="13" y2="15"/></g></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><g class="ic-stroke"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,6.5 12,13.5 22,6.5"/></g></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path class="ic-stroke" d="M6.6 3h3l1.4 5-2.3 1.5a12 12 0 0 0 5.8 5.8L16 13l5 1.4v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.2 2 2 0 0 1 6.6 3z"/></symbol>
+<symbol id="i-fb" viewBox="0 0 24 24"><path class="ic-fill" d="M13.5 21v-7h2.3l.4-3h-2.7V9.2c0-.9.2-1.5 1.5-1.5H16V5c-.4-.1-1.3-.2-2.4-.2-2.4 0-4 1.5-4 4.2V11H7v3h2.6v7z"/></symbol>
+<symbol id="i-ig" viewBox="0 0 24 24"><g class="ic-stroke"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></g></symbol>
+<symbol id="i-li" viewBox="0 0 24 24"><g class="ic-stroke"><rect x="2" y="2" width="20" height="20" rx="2"/><circle cx="6.3" cy="8" r="1.3" fill="currentColor" stroke="none"/><line x1="6.3" y1="11" x2="6.3" y2="18"/><line x1="11" y1="18" x2="11" y2="11"/><path d="M11 14c0-2 1.8-3 3.5-3s3 1 3 3v4"/></g></symbol>
+<symbol id="i-yt" viewBox="0 0 24 24"><g class="ic-stroke"><rect x="2" y="5" width="20" height="14" rx="4"/><polygon points="10,9 16,12 10,15" fill="currentColor" stroke="none"/></g></symbol>
+</defs>
+</svg>
 
 <!-- ── NAV ── -->
 <nav id="nav">
@@ -446,103 +519,113 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);p
     <div class="reveal">
       <div class="hero-badge">
         <span class="pulse-dot"></span>
-        Marketing Infrastructure · Built for Home Services
+        For Home Service Businesses · $10K–$20M/yr
       </div>
-      <h1 class="hero-h1">The Marketing Infrastructure That <em>Grows Your Business</em>.</h1>
-      <p class="hero-p">One connected system for your website, Google visibility, AI-powered content, and lead follow-up — built for plumbers, HVAC companies, electricians, roofers, and contractors who want more booked jobs, not more busywork.</p>
+      <h1 class="hero-h1">Your Next Customer Is Looking Right Now. <em>Will They Find You First?</em></h1>
+      <p class="hero-p">Every day, people search for businesses like yours. We build the websites, Google presence, advertising, and automation that help them find you first, trust you faster, and choose you with confidence.</p>
       <div class="hero-actions">
         <a href="#cta-final" class="btn btn-primary hero-cta">Get Your Free Growth Audit →</a>
         <a href="#solutions" class="hero-secondary-link">See how it works ↓</a>
       </div>
       <div class="hero-trust">
-        <span><span class="trust-check">✓</span> No contracts</span>
-        <span><span class="trust-check">✓</span> Free audit, zero pressure</span>
-        <span><span class="trust-check">✓</span> You own everything we build</span>
+        <span><svg class="icon trust-check"><use href="#i-check"/></svg> No contracts</span>
+        <span><svg class="icon trust-check"><use href="#i-check"/></svg> Free audit, zero pressure</span>
+        <span><svg class="icon trust-check"><use href="#i-check"/></svg> You own everything we build</span>
       </div>
     </div>
 
     <div class="hero-visual reveal rd2" aria-hidden="true">
-      <div class="mock-ai"><span class="ai-dot"></span>GROWTH ENGINE · ACTIVE</div>
-
-      <div class="mock-card mock-main">
-        <div class="mock-label">Organic Traffic <span class="mock-trend">↑ Growing</span></div>
-        <div class="bar-chart">
-          <div class="bar prev" style="height:26%"></div>
-          <div class="bar prev" style="height:38%"></div>
-          <div class="bar prev" style="height:32%"></div>
-          <div class="bar prev" style="height:50%"></div>
-          <div class="bar prev" style="height:58%"></div>
-          <div class="bar active" style="height:78%"></div>
-          <div class="bar active" style="height:100%"></div>
+      <div class="hero-stage" id="heroStage">
+        <div class="hero-cinema">
+          <svg class="hero-cinema-lines" viewBox="0 0 480 460" preserveAspectRatio="none">
+            <path class="cine-path p3" d="M-20,380 C120,340 180,420 300,360 S460,300 500,320"/>
+            <path class="cine-path p2" d="M-20,60 C100,110 160,40 260,90 S420,150 500,110"/>
+            <path class="cine-path p1" d="M-20,220 C110,160 190,260 300,190 S440,120 500,160"/>
+            <circle class="cine-node" cx="300" cy="190" r="3.5"/>
+            <circle class="cine-node" cx="120" cy="240" r="2.5" opacity="0.7"/>
+          </svg>
+          <div class="hero-cinema-glow" aria-hidden="true"></div>
+          <div class="hero-cinema-grain" aria-hidden="true"></div>
         </div>
-        <div class="bar-labels">
-          <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span>
+
+        <div class="mock-ai"><span class="ai-dot"></span>GROWTH ENGINE · ACTIVE</div>
+
+        <div class="mock-card mock-main">
+          <div class="mock-label">Organic Traffic <span class="mock-trend">↑ Growing</span></div>
+          <div class="bar-chart">
+            <div class="bar prev" style="height:26%"></div>
+            <div class="bar prev" style="height:38%"></div>
+            <div class="bar prev" style="height:32%"></div>
+            <div class="bar prev" style="height:50%"></div>
+            <div class="bar prev" style="height:58%"></div>
+            <div class="bar active" style="height:78%"></div>
+            <div class="bar active" style="height:100%"></div>
+          </div>
+          <div class="bar-labels">
+            <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span>
+          </div>
         </div>
-      </div>
 
-      <div class="mock-card mock-rank">
-        <div class="mock-label">Google Rankings</div>
-        <div class="rank-row"><div class="rank-pos" style="background:var(--red)">1</div><div class="rank-kw">HVAC repair near me</div><div class="rank-arr">↑4</div></div>
-        <div class="rank-row"><div class="rank-pos">2</div><div class="rank-kw">plumber near me</div><div class="rank-arr">↑3</div></div>
-        <div class="rank-row"><div class="rank-pos" style="background:#374151">3</div><div class="rank-kw">electrician Coral Springs</div><div class="rank-arr">↑6</div></div>
-      </div>
+        <div class="mock-card mock-rank">
+          <div class="mock-label">Google Rankings</div>
+          <div class="rank-row"><div class="rank-pos" style="background:var(--red)">1</div><div class="rank-kw">HVAC repair near me</div><div class="rank-arr">↑4</div></div>
+          <div class="rank-row"><div class="rank-pos">2</div><div class="rank-kw">plumber near me</div><div class="rank-arr">↑3</div></div>
+          <div class="rank-row"><div class="rank-pos" style="background:#374151">3</div><div class="rank-kw">electrician Coral Springs</div><div class="rank-arr">↑6</div></div>
+        </div>
 
-      <div class="mock-card mock-leads">
-        <div class="mock-label">Qualified Leads</div>
-        <div class="leads-icon">📞</div>
-        <div class="leads-sub"><span class="live-dot"></span>Tracked daily</div>
+        <div class="mock-card mock-leads">
+          <div class="mock-label">Qualified Leads</div>
+          <svg class="icon leads-icon"><use href="#i-mail"/></svg>
+          <div class="leads-sub"><span class="live-dot"></span>Tracked daily</div>
+        </div>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- ── INDUSTRIES MARQUEE ── -->
-<section id="industries">
-  <div class="ind-label">Built Specifically For</div>
-  <div class="marquee-wrap">
-    <div class="marquee-track">
-      <div class="ind-chip">🔧 Plumbing</div>
-      <div class="ind-chip">❄️ HVAC &amp; AC</div>
-      <div class="ind-chip">⚡ Electrical</div>
-      <div class="ind-chip">🏠 Roofing</div>
-      <div class="ind-chip">🎨 Painting</div>
-      <div class="ind-chip">🌿 Landscaping</div>
-      <div class="ind-chip">💦 Pressure Washing</div>
-      <div class="ind-chip">🚪 Garage Doors</div>
-      <div class="ind-chip">💧 Restoration</div>
-      <div class="ind-chip">🐛 Pest Control</div>
-      <div class="ind-chip">🏊 Pool Companies</div>
-      <div class="ind-chip">🏗️ General Contractors</div>
-      <div class="ind-chip">🔧 Plumbing</div>
-      <div class="ind-chip">❄️ HVAC &amp; AC</div>
-      <div class="ind-chip">⚡ Electrical</div>
-      <div class="ind-chip">🏠 Roofing</div>
-      <div class="ind-chip">🎨 Painting</div>
-      <div class="ind-chip">🌿 Landscaping</div>
-      <div class="ind-chip">💦 Pressure Washing</div>
-      <div class="ind-chip">🚪 Garage Doors</div>
-      <div class="ind-chip">💧 Restoration</div>
-      <div class="ind-chip">🐛 Pest Control</div>
-      <div class="ind-chip">🏊 Pool Companies</div>
-      <div class="ind-chip">🏗️ General Contractors</div>
-    </div>
-  </div>
-</section>
-
-<!-- ── CAPABILITY CHIPS ── -->
-<div id="caps">
+<!-- ── PROOF: INDUSTRIES + TRUST CHIPS ── -->
+<section id="proof">
   <div class="wrap">
+    <div class="proof-label">Built Specifically For</div>
+    <div class="marquee-wrap">
+      <div class="marquee-track">
+        <div class="ind-chip"><svg class="icon"><use href="#i-droplet"/></svg>Plumbing</div>
+        <div class="ind-chip"><svg class="icon"><use href="#i-hvac"/></svg>HVAC &amp; AC</div>
+        <div class="ind-chip"><svg class="icon"><use href="#i-bolt"/></svg>Electrical</div>
+        <div class="ind-chip"><svg class="icon"><use href="#i-roof"/></svg>Roofing</div>
+        <div class="ind-chip"><svg class="icon"><use href="#i-roller"/></svg>Painting</div>
+        <div class="ind-chip"><svg class="icon"><use href="#i-tree"/></svg>Landscaping</div>
+        <div class="ind-chip"><svg class="icon"><use href="#i-spray"/></svg>Pressure Washing</div>
+        <div class="ind-chip"><svg class="icon"><use href="#i-garage"/></svg>Garage Doors</div>
+        <div class="ind-chip"><svg class="icon"><use href="#i-shield"/></svg>Restoration</div>
+        <div class="ind-chip"><svg class="icon"><use href="#i-pest"/></svg>Pest Control</div>
+        <div class="ind-chip"><svg class="icon"><use href="#i-waves"/></svg>Pool Companies</div>
+        <div class="ind-chip"><svg class="icon"><use href="#i-hardhat"/></svg>General Contractors</div>
+        <div class="ind-chip"><svg class="icon"><use href="#i-droplet"/></svg>Plumbing</div>
+        <div class="ind-chip"><svg class="icon"><use href="#i-hvac"/></svg>HVAC &amp; AC</div>
+        <div class="ind-chip"><svg class="icon"><use href="#i-bolt"/></svg>Electrical</div>
+        <div class="ind-chip"><svg class="icon"><use href="#i-roof"/></svg>Roofing</div>
+        <div class="ind-chip"><svg class="icon"><use href="#i-roller"/></svg>Painting</div>
+        <div class="ind-chip"><svg class="icon"><use href="#i-tree"/></svg>Landscaping</div>
+        <div class="ind-chip"><svg class="icon"><use href="#i-spray"/></svg>Pressure Washing</div>
+        <div class="ind-chip"><svg class="icon"><use href="#i-garage"/></svg>Garage Doors</div>
+        <div class="ind-chip"><svg class="icon"><use href="#i-shield"/></svg>Restoration</div>
+        <div class="ind-chip"><svg class="icon"><use href="#i-pest"/></svg>Pest Control</div>
+        <div class="ind-chip"><svg class="icon"><use href="#i-waves"/></svg>Pool Companies</div>
+        <div class="ind-chip"><svg class="icon"><use href="#i-hardhat"/></svg>General Contractors</div>
+      </div>
+    </div>
     <div class="caps-inner">
-      <div class="cap-chip"><span class="cap-ico">🧩</span>One Connected System</div>
-      <div class="cap-chip"><span class="cap-ico">🤖</span>AI-Powered Efficiency</div>
-      <div class="cap-chip"><span class="cap-ico">🎯</span>Home Services Only</div>
-      <div class="cap-chip"><span class="cap-ico">📍</span>South Florida Specialists</div>
-      <div class="cap-chip"><span class="cap-ico">🤝</span>No Long-Term Contracts</div>
-      <div class="cap-chip"><span class="cap-ico">✅</span>You Own Everything</div>
+      <div class="cap-chip"><svg class="icon"><use href="#i-puzzle"/></svg>One Connected System</div>
+      <div class="cap-chip"><svg class="icon"><use href="#i-cpu"/></svg>AI-Powered Efficiency</div>
+      <div class="cap-chip"><svg class="icon"><use href="#i-target"/></svg>Home Services Only</div>
+      <div class="cap-chip"><svg class="icon"><use href="#i-pin"/></svg>South Florida Specialists</div>
+      <div class="cap-chip"><svg class="icon"><use href="#i-handshake"/></svg>No Long-Term Contracts</div>
+      <div class="cap-chip"><svg class="icon"><use href="#i-check"/></svg>You Own Everything</div>
     </div>
   </div>
-</div>
+</section>
 
 <!-- ── SELF-AUDIT ── -->
 <section id="audit" class="sec">
@@ -554,32 +637,32 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);p
     </div>
     <div class="audit-grid reveal rd1" id="auditGrid">
       <div class="audit-card" data-state="neutral" tabindex="0" role="button" aria-pressed="false">
-        <div class="audit-icon" aria-hidden="true">🌐</div>
+        <svg class="icon audit-icon"><use href="#i-mobile"/></svg>
         <div class="audit-name">Website</div>
         <div class="audit-badge">?</div>
       </div>
       <div class="audit-card" data-state="neutral" tabindex="0" role="button" aria-pressed="false">
-        <div class="audit-icon" aria-hidden="true">🔍</div>
+        <svg class="icon audit-icon"><use href="#i-target"/></svg>
         <div class="audit-name">Google Visibility</div>
         <div class="audit-badge">?</div>
       </div>
       <div class="audit-card" data-state="neutral" tabindex="0" role="button" aria-pressed="false">
-        <div class="audit-icon" aria-hidden="true">⭐</div>
+        <svg class="icon audit-icon"><use href="#i-spark"/></svg>
         <div class="audit-name">Review System</div>
         <div class="audit-badge">?</div>
       </div>
       <div class="audit-card" data-state="neutral" tabindex="0" role="button" aria-pressed="false">
-        <div class="audit-icon" aria-hidden="true">📥</div>
+        <svg class="icon audit-icon"><use href="#i-mail"/></svg>
         <div class="audit-name">Lead Capture</div>
         <div class="audit-badge">?</div>
       </div>
       <div class="audit-card" data-state="neutral" tabindex="0" role="button" aria-pressed="false">
-        <div class="audit-icon" aria-hidden="true">⚡</div>
+        <svg class="icon audit-icon"><use href="#i-bolt"/></svg>
         <div class="audit-name">Fast Follow-Up</div>
         <div class="audit-badge">?</div>
       </div>
       <div class="audit-card" data-state="neutral" tabindex="0" role="button" aria-pressed="false">
-        <div class="audit-icon" aria-hidden="true">🤖</div>
+        <svg class="icon audit-icon"><use href="#i-cpu"/></svg>
         <div class="audit-name">Automation</div>
         <div class="audit-badge">?</div>
       </div>
@@ -593,20 +676,20 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);p
   </div>
 </section>
 
-<!-- ── SOLUTIONS (INFRASTRUCTURE) ── -->
+<!-- ── SOLUTIONS ── -->
 <section id="solutions" class="sec">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="sec-label">How It Works</span>
       <h2 class="sec-title">One Growth System.<br>Six Connected Parts.</h2>
-      <p class="sec-sub">We don't sell a menu of services. We build the HCM Growth Engine — a connected system where your website, Google visibility, content, and follow-up all work together instead of operating in silos.</p>
+      <p class="sec-sub">We don't sell a menu of services. We build one connected growth engine — your website, Google visibility, content, and follow-up all working together instead of six disconnected vendors and invoices.</p>
     </div>
     <div class="bento">
       <article class="sb featured reveal">
         <div class="sb-tag">Most Impactful</div>
-        <div class="sb-ico" aria-hidden="true">📈</div>
+        <div class="sb-ico"><svg class="icon"><use href="#i-trend"/></svg></div>
         <div class="sb-body">
-          <h3 class="sb-name">Search Infrastructure</h3>
+          <h3 class="sb-name">Get Found First</h3>
           <p class="sb-desc">If you're not showing up when homeowners search for your service, you don't exist to them. We build the technical SEO, content, and local signals that get you found — and keep you there.</p>
         </div>
         <div class="sb-mini-rank">
@@ -619,35 +702,35 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);p
       </article>
 
       <article class="sb reveal rd1">
-        <div class="sb-ico" aria-hidden="true">🎯</div>
-        <h3 class="sb-name">Lead Infrastructure</h3>
+        <div class="sb-ico"><svg class="icon"><use href="#i-target"/></svg></div>
+        <h3 class="sb-name">Turn Clicks Into Calls</h3>
         <p class="sb-desc">Every day without the right campaign is a day your competitor gets the call instead of you. We build and manage Google Ads engineered to convert search intent into booked jobs — not just clicks.</p>
         <a href="#calculator" class="sb-micro">Calculate what it's costing you →</a>
       </article>
 
       <article class="sb reveal rd2">
-        <div class="sb-ico" aria-hidden="true">✨</div>
-        <h3 class="sb-name">AI Content Infrastructure</h3>
+        <div class="sb-ico"><svg class="icon"><use href="#i-spark"/></svg></div>
+        <h3 class="sb-name">Stay Visible, Automatically</h3>
         <p class="sb-desc">Staying visible takes constant content — and most owners don't have ten hours a week for it. Our AI-powered content engine keeps your blog, Google Business Profile, and email active without eating into your week.</p>
       </article>
 
       <article class="sb reveal rd3">
-        <div class="sb-ico" aria-hidden="true">🎬</div>
-        <h3 class="sb-name">AI Video Infrastructure</h3>
+        <div class="sb-ico"><svg class="icon"><use href="#i-film"/></svg></div>
+        <h3 class="sb-name">One Shoot. Endless Videos.</h3>
         <p class="sb-desc">Consistent video builds trust faster than almost anything else — but filming every week isn't realistic. Record once. We build your AI avatar so it can deliver new scripts and offers indefinitely.</p>
       </article>
 
       <article class="sb reveal rd4">
-        <div class="sb-ico" aria-hidden="true">📱</div>
-        <h3 class="sb-name">Social Infrastructure</h3>
+        <div class="sb-ico"><svg class="icon"><use href="#i-mobile"/></svg></div>
+        <h3 class="sb-name">Trust Before They Call</h3>
         <p class="sb-desc">Homeowners check your Facebook and Instagram before they call. If it's empty or outdated, that's a red flag. We keep your profiles active and building trust before the phone ever rings.</p>
       </article>
 
       <article class="sb wide reveal rd5">
-        <div class="sb-wide-ico" aria-hidden="true">🚀</div>
+        <div class="sb-wide-ico"><svg class="icon"><use href="#i-rocket"/></svg></div>
         <div class="sb-wide-divider"></div>
         <div class="sb-text">
-          <h3 class="sb-name">Website Infrastructure</h3>
+          <h3 class="sb-name">A Site That Sells While You Sleep</h3>
           <p class="sb-desc">A slow, outdated, or confusing website quietly cancels out everything else you invest in marketing. We fix load speed, structure, and conversion paths so visitors turn into calls instead of bouncing.</p>
           <a href="#audit" class="sb-micro">Check where you stand →</a>
         </div>
@@ -694,98 +777,98 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);p
   <div class="wrap">
     <div class="sec-head center reveal">
       <span class="sec-label">The Shift</span>
-      <h2 class="sec-title">Most Marketing Feels Like More Work.<br>This Shouldn't.</h2>
+      <h2 class="sec-title">Marketing Should Create Revenue.<br>Not More Work.</h2>
     </div>
     <div class="shift-grid reveal rd1">
       <div class="shift-col old">
-        <span class="shift-tag">The Old Way</span>
-        <div class="shift-row"><span class="shift-x">✕</span>Generic template website</div>
-        <div class="shift-row"><span class="shift-x">✕</span>Invisible on Google</div>
-        <div class="shift-row"><span class="shift-x">✕</span>No review system</div>
-        <div class="shift-row"><span class="shift-x">✕</span>One-off, manual content</div>
-        <div class="shift-row"><span class="shift-x">✕</span>Filming constantly, at high cost</div>
-        <div class="shift-row"><span class="shift-x">✕</span>You chase every lead yourself</div>
+        <span class="shift-tag">The Problem</span>
+        <div class="shift-row"><svg class="icon shift-x"><use href="#i-pest"/></svg>Generic template website</div>
+        <div class="shift-row"><svg class="icon shift-x"><use href="#i-pest"/></svg>Invisible on Google</div>
+        <div class="shift-row"><svg class="icon shift-x"><use href="#i-pest"/></svg>No review system</div>
+        <div class="shift-row"><svg class="icon shift-x"><use href="#i-pest"/></svg>One-off, manual content</div>
+        <div class="shift-row"><svg class="icon shift-x"><use href="#i-pest"/></svg>Filming constantly, at high cost</div>
+        <div class="shift-row"><svg class="icon shift-x"><use href="#i-pest"/></svg>You chase every lead yourself</div>
       </div>
       <div class="shift-col new">
-        <span class="shift-tag">The HCM Way</span>
-        <div class="shift-row"><span class="shift-check">✓</span>Website built to book jobs</div>
-        <div class="shift-row"><span class="shift-check">✓</span>Ranking for the searches that matter</div>
-        <div class="shift-row"><span class="shift-check">✓</span>Reviews generated automatically</div>
-        <div class="shift-row"><span class="shift-check">✓</span>AI-powered content, always active</div>
-        <div class="shift-row"><span class="shift-check">✓</span>Film once, AI avatar publishes forever</div>
-        <div class="shift-row"><span class="shift-check">✓</span>Leads followed up automatically</div>
+        <span class="shift-tag">The Solution</span>
+        <div class="shift-row"><svg class="icon shift-check"><use href="#i-check"/></svg>Website built to book jobs</div>
+        <div class="shift-row"><svg class="icon shift-check"><use href="#i-check"/></svg>Ranking for the searches that matter</div>
+        <div class="shift-row"><svg class="icon shift-check"><use href="#i-check"/></svg>Reviews generated automatically</div>
+        <div class="shift-row"><svg class="icon shift-check"><use href="#i-check"/></svg>AI-powered content, always active</div>
+        <div class="shift-row"><svg class="icon shift-check"><use href="#i-check"/></svg>Film once, AI avatar publishes forever</div>
+        <div class="shift-row"><svg class="icon shift-check"><use href="#i-check"/></svg>Leads followed up automatically</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ── CASE STUDIES ── -->
-<section id="case-studies" class="sec" style="background:var(--section)">
+<section id="case-studies" class="sec">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="sec-label">Our Work</span>
       <h2 class="sec-title">Built for the trades.<br>Designed to convert.</h2>
-      <p class="sec-sub">We're onboarding our first client partnerships and will publish full case studies as they complete. Here's the strategy behind the deliverables we specialize in.</p>
+      <p class="sec-sub">We're onboarding our first client partnerships and will publish full case studies as they complete. Below is example strategy work — concept builds, not completed client results.</p>
     </div>
     <div class="port-grid">
       <div class="port-card reveal rd1">
-        <div class="port-img bg-n"><span>📈</span></div>
+        <div class="port-img bg-n"><span class="concept-badge">Concept</span><svg class="icon"><use href="#i-trend"/></svg></div>
         <div class="port-overlay"><span>View Strategy</span><span class="port-overlay-arr">→</span></div>
         <div class="port-body">
           <div class="port-tag">SEO Rankings</div>
           <h3 class="port-h">HVAC — Local Search Domination</h3>
           <p class="port-p">Keyword research, on-page optimization, and local SEO strategy targeting high-value service terms across competitive South Florida markets.</p>
-          <span class="port-soon">🔜 Case study in progress</span>
+          <span class="port-soon">Case study in progress</span>
         </div>
       </div>
       <div class="port-card reveal rd2">
-        <div class="port-img bg-r"><span>🎬</span></div>
+        <div class="port-img bg-r"><span class="concept-badge">Concept</span><svg class="icon"><use href="#i-film"/></svg></div>
         <div class="port-overlay"><span>View Strategy</span><span class="port-overlay-arr">→</span></div>
         <div class="port-body">
           <div class="port-tag">AI Avatar Video</div>
           <h3 class="port-h">Plumbing — Brand Video at Scale</h3>
           <p class="port-p">Custom AI avatar spokesperson for seasonal promotions, service announcements, and ad campaigns — no film crew, no scheduling, no studio required.</p>
-          <span class="port-soon">🔜 Case study in progress</span>
+          <span class="port-soon">Case study in progress</span>
         </div>
       </div>
       <div class="port-card reveal rd3">
-        <div class="port-img bg-i"><span>🎯</span></div>
+        <div class="port-img bg-i"><span class="concept-badge">Concept</span><svg class="icon"><use href="#i-target"/></svg></div>
         <div class="port-overlay"><span>View Strategy</span><span class="port-overlay-arr">→</span></div>
         <div class="port-body">
           <div class="port-tag">Google Ads</div>
           <h3 class="port-h">Roofing — Lead Generation Campaign</h3>
           <p class="port-p">Repair and replacement campaigns with audience segmentation, negative keyword lists, and call-only ads — built to eliminate wasted spend and maximize qualified lead flow.</p>
-          <span class="port-soon">🔜 Case study in progress</span>
+          <span class="port-soon">Case study in progress</span>
         </div>
       </div>
       <div class="port-card reveal rd4">
-        <div class="port-img bg-s"><span>✍️</span></div>
+        <div class="port-img bg-s"><span class="concept-badge">Concept</span><svg class="icon"><use href="#i-pen"/></svg></div>
         <div class="port-overlay"><span>View Strategy</span><span class="port-overlay-arr">→</span></div>
         <div class="port-body">
           <div class="port-tag">AI Content</div>
           <h3 class="port-h">Electrical — Monthly Content Library</h3>
           <p class="port-p">A full monthly content calendar including blog articles, Google Business posts, social captions, and email sequences — produced with AI at scale.</p>
-          <span class="port-soon">🔜 Case study in progress</span>
+          <span class="port-soon">Case study in progress</span>
         </div>
       </div>
       <div class="port-card reveal rd5">
-        <div class="port-img bg-m"><span>📱</span></div>
+        <div class="port-img bg-m"><span class="concept-badge">Concept</span><svg class="icon"><use href="#i-mobile"/></svg></div>
         <div class="port-overlay"><span>View Strategy</span><span class="port-overlay-arr">→</span></div>
         <div class="port-body">
           <div class="port-tag">Short-Form Video</div>
           <h3 class="port-h">Contractor — Reels Content Strategy</h3>
           <p class="port-p">Before/after reveals, testimonial edits, and educational content formatted for Instagram Reels and TikTok — built for shares and profile discovery.</p>
-          <span class="port-soon">🔜 Case study in progress</span>
+          <span class="port-soon">Case study in progress</span>
         </div>
       </div>
       <div class="port-card reveal rd6">
-        <div class="port-img bg-g"><span>📍</span></div>
+        <div class="port-img bg-g"><span class="concept-badge">Concept</span><svg class="icon"><use href="#i-pin"/></svg></div>
         <div class="port-overlay"><span>View Strategy</span><span class="port-overlay-arr">→</span></div>
         <div class="port-body">
           <div class="port-tag">Local SEO</div>
           <h3 class="port-h">Multi-Location GBP Management</h3>
           <p class="port-p">Google Business Profile optimization, review generation strategy, and citation building for businesses serving multiple South Florida markets.</p>
-          <span class="port-soon">🔜 Case study in progress</span>
+          <span class="port-soon">Case study in progress</span>
         </div>
       </div>
     </div>
@@ -814,7 +897,7 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);p
       <div class="step reveal rd3">
         <div class="step-circle">3</div>
         <h3 class="step-h">Build</h3>
-        <p class="step-p">Your infrastructure gets built — website, SEO, ads, content, and automation.</p>
+        <p class="step-p">Your growth system gets built — website, SEO, ads, content, and automation.</p>
       </div>
       <div class="step reveal rd4">
         <div class="step-circle">4</div>
@@ -835,44 +918,32 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);p
   </div>
 </section>
 
-<!-- ── STORY ── -->
-<section id="story" class="sec">
-  <div class="wrap" style="max-width:760px">
-    <div class="sec-head reveal">
-      <span class="sec-label">Our Why</span>
-      <h2 class="sec-title">Why We Built Hot Call Marketing</h2>
-    </div>
-    <div class="story-body reveal rd1">
-      <p>Home service businesses keep their communities running — but too often, their marketing still looks and performs like it's stuck in 2015.</p>
-      <p>We built Hot Call Marketing because business owners shouldn't have to become influencers, film content every week, or guess whether their ad budget is actually working.</p>
-      <p>Technology should save you time — not create more of it. Every system we build exists for one reason: more qualified calls, with less manual work, so you can focus on running the business instead of marketing it.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ── COMMITMENT ── -->
-<section id="commitment" class="sec">
-  <div class="comm-bloom" aria-hidden="true"></div>
-  <div class="comm-bloom-2" aria-hidden="true"></div>
+<!-- ── WHY (story + commitment, merged) ── -->
+<section id="why" class="sec">
+  <div class="why-bloom" aria-hidden="true"></div>
+  <div class="why-bloom-2" aria-hidden="true"></div>
   <div class="wrap">
     <div class="sec-head center reveal">
-      <span class="sec-label" style="color:rgba(255,120,120,0.85)">Our Promise</span>
-      <h2 class="sec-title" style="color:#fff">Three things every client<br>can count on from day one.</h2>
-      <p class="sec-sub" style="color:rgba(255,255,255,0.48);margin:0 auto">We're building our reputation on integrity — not fabricated case studies. Here are the non-negotiables behind every engagement we take on.</p>
+      <span class="sec-label" style="color:rgba(255,120,120,0.85)">Our Why</span>
+      <h2 class="sec-title" style="color:#fff">Built On Proof, Not Promises.</h2>
+    </div>
+    <div class="why-intro reveal rd1">
+      <p>Home service businesses keep their communities running — but too often, their marketing still looks and performs like it's stuck in 2015. We built Hot Call Marketing because business owners shouldn't have to become influencers, film content every week, or guess whether their ad budget is working.</p>
+      <p>Every system we build exists for one reason: more qualified calls, with less manual work, so you can focus on running the business instead of marketing it. We're building our reputation on integrity — not fabricated case studies. Here's what every client can count on from day one.</p>
     </div>
     <div class="promise-grid">
-      <div class="promise-card reveal rd1">
-        <div class="promise-ico" aria-hidden="true">📋</div>
+      <div class="promise-card reveal rd2">
+        <svg class="icon promise-ico"><use href="#i-clipboard"/></svg>
         <h3 class="promise-h">Transparent Reporting, Every Month</h3>
         <p class="promise-p">Plain-English monthly reports showing exactly what ran, what the numbers look like, and what's coming next. No vanity metrics, no hidden dashboards.</p>
       </div>
-      <div class="promise-card reveal rd2">
-        <div class="promise-ico" aria-hidden="true">✅</div>
+      <div class="promise-card reveal rd3">
+        <svg class="icon promise-ico"><use href="#i-check"/></svg>
         <h3 class="promise-h">You Own Everything We Create</h3>
         <p class="promise-p">Every ad, piece of content, and video we produce belongs to you — not us. If we ever part ways, you walk away with your complete marketing library.</p>
       </div>
-      <div class="promise-card reveal rd3">
-        <div class="promise-ico" aria-hidden="true">🤝</div>
+      <div class="promise-card reveal rd4">
+        <svg class="icon promise-ico"><use href="#i-handshake"/></svg>
         <h3 class="promise-h">No Long-Term Contracts</h3>
         <p class="promise-p">We earn your business every single month. No 12-month lock-ins, no cancellation fees — just work worth staying for.</p>
       </div>
@@ -941,8 +1012,8 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);p
     </div>
     <div class="faq-wrap">
       <div class="faq-item reveal rd1">
-        <button class="faq-q" aria-expanded="false">Why do you call these "infrastructure" instead of "services"? <i class="faq-icon">+</i></button>
-        <div class="faq-body"><p class="faq-a">Because they work best as one connected system, not six disconnected tasks bought separately. Your website, SEO, ads, and follow-up all feed each other — what converts in your ads informs your SEO, your reviews strengthen your ads, and so on. Infrastructure is what keeps working even when you're not thinking about it.</p></div>
+        <button class="faq-q" aria-expanded="false">Why do you call this "infrastructure" instead of "services"? <i class="faq-icon">+</i></button>
+        <div class="faq-body"><p class="faq-a">Because it works best as one connected system, not six disconnected tasks bought separately. Your website, SEO, ads, and follow-up all feed each other — what converts in your ads informs your SEO, your reviews strengthen your ads, and so on. Infrastructure is what keeps working even when you're not thinking about it.</p></div>
       </div>
       <div class="faq-item reveal rd2">
         <button class="faq-q" aria-expanded="false">How much does this cost? <i class="faq-icon">+</i></button>
@@ -982,9 +1053,53 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);p
   <div class="wrap">
     <div class="cta-inner reveal">
       <div class="scarcity"><span class="s-dot"></span>Now onboarding founding clients — limited spots available</div>
-      <h2 class="cta-final-h">Ready to Build Your Growth Engine?</h2>
-      <p class="cta-final-p">Book a free 30-minute growth audit. We'll show you exactly what's costing you leads and what we'd build to fix it — before you spend a dollar.</p>
-      <a href="mailto:hello@hotcallmarketing.com" class="btn btn-white" style="font-size:1.0625rem;padding:16px 40px">Get Your Free Growth Audit</a>
+      <h2 class="cta-final-h">Ready to Build a Business That Grows Consistently?</h2>
+      <p class="cta-final-p">Tell us a bit about your business. Book your complimentary Growth Audit and discover where your biggest opportunities are — no contracts, no pressure.</p>
+    </div>
+    <form class="cta-form reveal rd1" id="growthAuditForm">
+      <div class="cta-form-row">
+        <div class="cta-form-group">
+          <label class="cta-form-label" for="gaName">Name / Company</label>
+          <input class="cta-form-input" type="text" id="gaName" name="name" required autocomplete="name" maxlength="120" title="Enter your name and/or company name">
+        </div>
+        <div class="cta-form-group">
+          <label class="cta-form-label" for="gaPhone">Phone Number</label>
+          <input class="cta-form-input" type="tel" id="gaPhone" name="phone" required autocomplete="tel" maxlength="20" pattern="[0-9()+\-.\s]{7,20}" title="Enter a valid phone number">
+        </div>
+      </div>
+      <div class="cta-form-row">
+        <div class="cta-form-group">
+          <label class="cta-form-label" for="gaEmail">Email</label>
+          <input class="cta-form-input" type="email" id="gaEmail" name="email" required autocomplete="email" maxlength="150">
+        </div>
+        <div class="cta-form-group">
+          <label class="cta-form-label" for="gaService">Service You're Interested In</label>
+          <select class="cta-form-input" id="gaService" name="service" required>
+            <option value="" disabled selected>Select a service</option>
+            <option>Website Design &amp; Development</option>
+            <option>Local SEO &amp; Google Business Profile</option>
+            <option>Google Ads Management</option>
+            <option>AI Content Creation</option>
+            <option>AI Avatar Video</option>
+            <option>Social Media Management</option>
+            <option>Full Growth System (Everything)</option>
+            <option>Not Sure — Need Guidance</option>
+          </select>
+        </div>
+      </div>
+      <div class="cta-form-group">
+        <label class="cta-form-label" for="gaNotes">Anything else we should know? <span class="cta-form-optional">(optional)</span></label>
+        <textarea class="cta-form-input cta-form-textarea" id="gaNotes" name="notes" rows="3" maxlength="200"></textarea>
+        <span class="cta-form-counter" id="gaNotesCounter">0/200</span>
+      </div>
+      <input class="cta-form-honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <input type="hidden" name="_subject" value="New Growth Audit Request — HotCall Marketing">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <button type="submit" class="btn btn-white cta-form-submit" id="gaSubmitBtn">Get Your Free Growth Audit →</button>
+      <p class="cta-form-status" id="gaStatus" role="status" aria-live="polite"></p>
+    </form>
+    <div class="cta-inner">
       <p class="cta-trust">No contracts &nbsp;·&nbsp; No pressure &nbsp;·&nbsp; 100% free audit &nbsp;·&nbsp; Straight answers</p>
     </div>
   </div>
@@ -1001,29 +1116,29 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);p
         <p>Marketing infrastructure built for home service businesses across South Florida — websites, SEO, Google Ads, AI content, and automation running as one connected system.</p>
       </div>
       <div class="footer-col">
-        <h4>Solutions</h4>
+        <h4>Site</h4>
         <ul>
-          <li><a href="#solutions">Search Infrastructure</a></li>
-          <li><a href="#solutions">Lead Infrastructure</a></li>
-          <li><a href="#solutions">AI Content &amp; Video</a></li>
-          <li><a href="#solutions">Social Infrastructure</a></li>
-          <li><a href="#solutions">Website Infrastructure</a></li>
+          <li><a href="#solutions">Solutions</a></li>
+          <li><a href="#case-studies">Case Studies</a></li>
+          <li><a href="#process">Process</a></li>
           <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#faq">FAQ</a></li>
         </ul>
       </div>
       <div class="footer-col footer-contact">
         <h4>Contact</h4>
-        <a href="mailto:hello@hotcallmarketing.com">✉️ hello@hotcallmarketing.com</a>
+        <a href="mailto:eric@hotcallmarketing.com"><svg class="icon"><use href="#i-mail"/></svg> eric@hotcallmarketing.com</a>
+        <a href="tel:+17544447985"><svg class="icon"><use href="#i-phone"/></svg> (754) 444-7985</a>
         <a href="#cta-final" class="btn btn-primary" style="margin-top:14px;font-size:0.8rem;padding:9px 18px;width:fit-content;animation:none">Get Free Growth Audit</a>
       </div>
     </div>
     <div class="footer-bottom">
       <p class="footer-copy">© <span id="copyYear">2026</span> HotCall Marketing LLC &nbsp;·&nbsp; South Florida &nbsp;·&nbsp; All rights reserved.</p>
       <div class="footer-socials">
-        <a href="#" aria-label="Facebook">f</a>
-        <a href="#" aria-label="Instagram">ig</a>
-        <a href="#" aria-label="LinkedIn">in</a>
-        <a href="#" aria-label="YouTube">▶</a>
+        <a href="#" aria-label="Facebook"><svg class="icon"><use href="#i-fb"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg class="icon"><use href="#i-ig"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg class="icon"><use href="#i-li"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg class="icon"><use href="#i-yt"/></svg></a>
       </div>
     </div>
   </div>
@@ -1150,6 +1265,76 @@ updateCalc();
 // ── AUTO-UPDATE COPYRIGHT YEAR
 document.getElementById('copyYear').textContent = new Date().getFullYear();
 
+// ── GROWTH AUDIT FORM SUBMISSION (with spam hardening)
+const gaForm = document.getElementById('growthAuditForm');
+if (gaForm) {
+  const gaStatus = document.getElementById('gaStatus');
+  const gaSubmitBtn = document.getElementById('gaSubmitBtn');
+  const gaNotes = document.getElementById('gaNotes');
+  const gaNotesCounter = document.getElementById('gaNotesCounter');
+  const gaLoadedAt = Date.now();
+  let gaSubmitting = false;
+
+  // live character counter for the optional notes field
+  if (gaNotes && gaNotesCounter) {
+    gaNotes.addEventListener('input', () => {
+      const len = gaNotes.value.length;
+      gaNotesCounter.textContent = len + '/200';
+      gaNotesCounter.classList.toggle('limit', len >= 200);
+    });
+  }
+
+  // lightweight heuristic spam check — no backend exists to do this server-side,
+  // so this is a best-effort filter, not a security boundary
+  function looksLikeSpam(fd) {
+    const name = (fd.get('name') || '').toString();
+    const notes = (fd.get('notes') || '').toString();
+    const combined = `${name} ${notes}`;
+    if (/https?:\/\//i.test(combined)) return true; // links in free-text fields
+    if (/<[^>]+>/.test(combined)) return true; // raw HTML/script tags
+    if (/(.)\1{7,}/.test(combined)) return true; // 8+ repeated chars in a row
+    return false;
+  }
+
+  gaForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (gaSubmitting) return;
+    if (gaForm.querySelector('[name="_honey"]').value) return; // honeypot: real users never fill this
+    if (Date.now() - gaLoadedAt < 2500) return; // bots submit near-instantly; humans don't
+    const fd = new FormData(gaForm);
+    if (looksLikeSpam(fd)) return; // fail silently so scripted spam doesn't learn why
+
+    gaSubmitting = true;
+    gaSubmitBtn.disabled = true;
+    gaSubmitBtn.textContent = 'Sending...';
+    gaStatus.textContent = '';
+    gaStatus.className = 'cta-form-status';
+    try {
+      const payload = {};
+      fd.forEach((v, k) => { payload[k] = typeof v === 'string' ? v.trim().slice(0, 200) : v; });
+      const res = await fetch('https://formsubmit.co/ajax/eric@hotcallmarketing.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json().catch(() => null);
+      const ok = res.ok && data && (data.success === true || data.success === 'true');
+      if (!ok) throw new Error((data && data.message) || 'Request failed');
+      gaForm.reset();
+      gaForm.querySelectorAll('input, select, textarea, button').forEach(el => el.disabled = true);
+      gaSubmitBtn.textContent = 'Request Sent ✓';
+      gaStatus.textContent = "Thanks — we've got it. We'll reply with your free growth audit within one business day.";
+      gaStatus.className = 'cta-form-status success';
+    } catch (err) {
+      gaStatus.textContent = "Something went wrong sending that. Please email eric@hotcallmarketing.com directly.";
+      gaStatus.className = 'cta-form-status error';
+      gaSubmitBtn.disabled = false;
+      gaSubmitBtn.textContent = "Get Your Free Growth Audit →";
+      gaSubmitting = false;
+    }
+  });
+}
+
 // ── SMOOTH SCROLL (offset for fixed nav)
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
@@ -1162,6 +1347,22 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 });
+
+// ── HERO CINEMATIC PARALLAX (desktop, fine-pointer, motion-safe only)
+const heroStage = document.getElementById('heroStage');
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (heroStage && !prefersReducedMotion && window.matchMedia('(pointer: fine)').matches) {
+  const heroVisual = document.querySelector('.hero-visual');
+  heroVisual.addEventListener('mousemove', (e) => {
+    const rect = heroVisual.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 10;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 10;
+    heroStage.style.transform = `rotateY(${x * 0.4}deg) rotateX(${-y * 0.4}deg) translateZ(0)`;
+  });
+  heroVisual.addEventListener('mouseleave', () => {
+    heroStage.style.transform = '';
+  });
+}
 </script>
 </body>
 </html>
