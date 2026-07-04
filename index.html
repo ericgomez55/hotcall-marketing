@@ -3,8 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="HotCall Marketing — AI-powered SEO, Google Ads, video content, and AI avatar videos built for home service businesses. Book a free strategy call today.">
-<title>HotCall Marketing | AI-Powered Growth for Home Service Businesses</title>
+<meta name="description" content="HotCall Marketing builds the marketing infrastructure that grows home service businesses — websites, SEO, Google Ads, AI content, and automation working as one connected system. Get your free growth audit.">
+<title>HotCall Marketing | Marketing Infrastructure for Home Service Businesses</title>
+<meta property="og:title" content="HotCall Marketing | Marketing Infrastructure for Home Service Businesses">
+<meta property="og:description" content="Websites, Google visibility, AI content, and automation — built as one connected growth system for plumbers, HVAC companies, electricians, roofers, and contractors.">
+<meta property="og:type" content="website">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -12,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"MarketingAgency","name":"HotCall Marketing","description":"AI-powered digital marketing for home service businesses: SEO, Google Ads, AI content, AI avatar videos.","url":"https://hotcallmarketing.com","areaServed":"South Florida","serviceType":["SEO","Google Ads","AI Content Creation","AI Avatar Videos","Social Media Management","Local Business Marketing"]}
+{"@context":"https://schema.org","@type":"MarketingAgency","name":"HotCall Marketing","description":"Marketing infrastructure for home service businesses: websites, SEO, Google Ads, AI content, AI avatar video, and automation built as one connected growth system.","url":"https://hotcallmarketing.com","areaServed":"South Florida","serviceType":["SEO","Google Ads Management","Website Optimization","AI Content Creation","AI Avatar Videos","Social Media Management","Marketing Automation"]}
 </script>
 <style>
 /* ─── RESET ─── */
@@ -22,10 +25,10 @@ img{display:block;max-width:100%}
 ul{list-style:none}
 a{text-decoration:none;color:inherit}
 button{cursor:pointer;border:none;background:none;font-family:inherit}
+input{font-family:inherit}
 
 /* ─── TOKENS ─── */
 :root{
-  /* Structural */
   --navy:#0B1F3A;
   --navy-deep:#071629;
   --white:#FFFFFF;
@@ -35,7 +38,6 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   --muted:#6B7280;
   --border:#E5E7EB;
 
-  /* RED — primary brand: bold, confident, CTA-optimized crimson */
   --red:#D91E18;
   --red-h:#B01515;
   --red-bg:#FEF2F2;
@@ -43,11 +45,9 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   --red-border:rgba(217,30,24,0.20);
   --red-glow:rgba(217,30,24,0.08);
 
-  /* GREEN — reserved exclusively for growth/result indicators */
   --green:#10B981;
   --green-bg:#D1FAE5;
 
-  /* AMBER — urgency/scarcity signals */
   --amber:#F59E0B;
   --amber-bg:#FEF3C7;
 
@@ -82,33 +82,26 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 
 /* ─── BUTTONS ─── */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font);font-weight:600;font-size:0.9375rem;border-radius:var(--r-sm);transition:all 0.18s ease;cursor:pointer;white-space:nowrap;letter-spacing:-0.01em}
-/* Primary — red CTA */
 .btn-primary{background:var(--red);color:#fff;padding:13px 26px;box-shadow:var(--shadow-red)}
 .btn-primary:hover{background:var(--red-h);transform:translateY(-2px);box-shadow:0 6px 24px rgba(217,30,24,0.35)}
-/* Ghost */
 .btn-ghost{color:var(--navy);padding:13px 26px;border:1.5px solid var(--border)}
 .btn-ghost:hover{border-color:var(--red);color:var(--red);background:var(--red-bg)}
-/* White (on dark bg) */
 .btn-white{background:#fff;color:var(--red);padding:14px 34px;font-size:1rem;font-weight:700;letter-spacing:-0.01em}
 .btn-white:hover{background:var(--red-bg);transform:translateY(-2px)}
+.btn:focus-visible,a:focus-visible,.audit-card:focus-visible,.faq-q:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 
 /* ─── NAV ─── */
 #nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:border-color 0.25s,box-shadow 0.25s}
 #nav.scrolled{border-bottom-color:var(--border);box-shadow:0 1px 16px rgba(0,0,0,0.07)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:70px}
 .nav-logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.05rem;color:var(--navy);letter-spacing:-0.02em}
-/* HCM — red pill badge, modern */
-.nav-logo .lm{height:32px;padding:0 11px;background:var(--red);border-radius:7px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:0.68rem;letter-spacing:0.06em;flex-shrink:0}
-/* ─── LOGO IMAGE (replaces HCM badge) ─── */
-/* Nav: navy badge wraps the white logo so it shows on white nav bg */
-/* Nav logo image — logo has light bg, nav is white/frosted = seamless match */
 .nav-logo-img{height:40px;width:auto;object-fit:contain;display:block;border-radius:6px}
-/* Footer logo wrapper — frosted card so white-bg logo sits cleanly on dark navy */
 .footer-logo-wrap{background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.14);border-radius:10px;padding:5px 10px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
 .nav-logo-img-footer{height:36px;width:auto;object-fit:contain;display:block;border-radius:4px}
 .nav-links{display:flex;align-items:center;gap:32px}
-.nav-links a{font-size:0.875rem;font-weight:500;color:var(--muted);transition:color 0.15s}
+.nav-links a{font-size:0.875rem;font-weight:500;color:var(--muted);transition:color 0.15s;position:relative}
 .nav-links a:hover{color:var(--h-color)}
+.nav-links a.active{color:var(--red)}
 .nav-right{display:flex;align-items:center;gap:12px}
 .hamburger{display:none;flex-direction:column;gap:5px;padding:8px}
 .hamburger span{display:block;width:22px;height:2px;background:var(--navy);border-radius:2px;transition:all 0.2s}
@@ -118,26 +111,23 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 .mobile-menu .btn-primary{margin-top:20px;width:100%;justify-content:center;border-bottom:none;padding:14px}
 
 /* ─── HERO ─── */
-#hero{padding:148px 0 100px;background:var(--white);position:relative;overflow:hidden}
-/* Dot grid texture */
+#hero{padding:148px 0 90px;background:var(--white);position:relative;overflow:hidden}
 .hero-dots{position:absolute;inset:0;background-image:radial-gradient(rgba(11,31,58,0.075) 1.5px,transparent 1.5px);background-size:28px 28px;-webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 80%);mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 80%);pointer-events:none}
-/* Color bloom accents */
 .hero-bloom-red{position:absolute;top:-180px;right:-80px;width:680px;height:680px;background:radial-gradient(circle,var(--red-glow) 0%,transparent 65%);pointer-events:none}
 .hero-bloom-navy{position:absolute;bottom:-120px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(11,31,58,0.04) 0%,transparent 65%);pointer-events:none}
 .hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;position:relative;z-index:2}
-/* Badge */
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--red-bg);color:#991B1B;font-size:0.74rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:26px;border:1px solid var(--red-border)}
 .hero-badge .pulse-dot{width:6px;height:6px;background:var(--red);border-radius:50%;animation:blink 2s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.7)}}
-/* Headline: gradient on emphasis */
 .hero-h1{font-size:clamp(2.25rem,4.2vw,3.4rem);font-weight:900;color:var(--h-color);line-height:1.09;letter-spacing:-0.03em;margin-bottom:22px}
 .hero-h1 em{font-style:normal;background:linear-gradient(130deg,var(--red) 0%,#FF4444 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-p{font-size:1.0625rem;color:var(--muted);line-height:1.78;max-width:490px;margin-bottom:38px}
-.hero-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:22px}
-/* Hero primary button: subtle pulse for attention */
+.hero-p{font-size:1.0625rem;color:var(--muted);line-height:1.78;max-width:490px;margin-bottom:34px}
+.hero-actions{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-bottom:24px}
 .hero-cta{animation:ctapulse 3s ease-in-out infinite}
 @keyframes ctapulse{0%,100%{box-shadow:var(--shadow-red)}50%{box-shadow:0 4px 28px rgba(217,30,24,0.45)}}
 .hero-cta:hover{animation:none}
+.hero-secondary-link{font-size:0.875rem;font-weight:600;color:var(--muted);border-bottom:1px solid var(--border);padding-bottom:2px;transition:color 0.15s,border-color 0.15s}
+.hero-secondary-link:hover{color:var(--red);border-color:var(--red)}
 .hero-trust{display:flex;align-items:center;gap:0;flex-wrap:wrap;font-size:0.78rem;color:var(--muted)}
 .hero-trust span{padding:0 12px 0 0;display:flex;align-items:center;gap:5px}
 .hero-trust span:first-child{padding-left:0}
@@ -145,35 +135,29 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 
 /* ─── HERO MOCKUP ─── */
 .hero-visual{position:relative;height:450px}
-/* Floating glow behind cards */
 .hero-visual::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:380px;height:380px;background:radial-gradient(circle,rgba(217,30,24,0.06) 0%,transparent 65%);pointer-events:none}
 .mock-card{background:#fff;border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow-lg);padding:20px 22px}
 .mock-main{position:absolute;top:0;left:0;right:56px;z-index:1}
 .mock-rank{position:absolute;bottom:56px;right:0;width:216px;z-index:3}
 .mock-leads{position:absolute;bottom:0;left:8px;width:172px;z-index:2}
-/* AI pill — navy, red dot */
 .mock-ai{position:absolute;top:-18px;right:18px;z-index:4;background:var(--navy);color:#fff;border-radius:999px;padding:7px 16px;font-size:0.7rem;font-weight:700;display:flex;align-items:center;gap:8px;box-shadow:0 4px 14px rgba(11,31,58,0.3);letter-spacing:0.04em}
-.mock-ai .ai-dot{width:7px;height:7px;background:var(--red);border-radius:50%;animation:blink 1.6s ease-in-out infinite}
+.mock-ai .ai-dot{width:7px;height:7px;background:var(--red);border-radius:50%;animation:blink 2.2s ease-in-out infinite}
 .mock-label{font-size:0.66rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
-/* GREEN: growth result indicator */
 .mock-trend{color:var(--green);font-weight:700;font-size:0.76rem;background:var(--green-bg);padding:2px 8px;border-radius:4px}
-/* Bar chart — green bars = growth results */
 .bar-chart{display:flex;align-items:flex-end;gap:5px;height:68px;margin-top:4px}
 .bar{flex:1;border-radius:4px 4px 0 0;background:var(--border)}
 .bar.active{background:var(--green)}
 .bar.prev{background:#CBD5E1}
 .bar-labels{display:flex;gap:5px;margin-top:5px}
 .bar-labels span{flex:1;font-size:0.56rem;text-align:center;color:var(--muted)}
-/* Rankings — green arrows = result indicators */
 .rank-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border)}
 .rank-row:last-child{border-bottom:none}
 .rank-pos{width:20px;height:20px;background:var(--navy);color:#fff;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:800;flex-shrink:0}
 .rank-kw{color:var(--h-color);font-weight:500;flex:1;font-size:0.7rem}
-.rank-arr{color:var(--green);font-weight:700;font-size:0.68rem} /* GREEN: ranking up = result */
-/* Leads card */
+.rank-arr{color:var(--green);font-weight:700;font-size:0.68rem}
 .leads-icon{font-size:1.75rem;line-height:1;margin:4px 0}
 .leads-sub{display:flex;align-items:center;gap:5px;font-size:0.66rem;color:var(--muted);margin-top:5px}
-.live-dot{width:6px;height:6px;background:var(--red);border-radius:50%;animation:blink 1.3s ease-in-out infinite}
+.live-dot{width:6px;height:6px;background:var(--red);border-radius:50%}
 
 /* ─── CAPABILITY CHIPS ─── */
 #caps{background:var(--section);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
@@ -182,28 +166,53 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 .cap-chip:hover{border-color:var(--red-border);color:var(--red);box-shadow:0 2px 10px var(--red-glow)}
 .cap-chip .cap-ico{font-size:1rem}
 
-/* ─── SERVICES BENTO ─── */
-#services{background:var(--white)}
+/* ─── INDUSTRIES MARQUEE ─── */
+#industries{background:var(--white);padding:36px 0 44px;overflow:hidden}
+.ind-label{text-align:center;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:24px}
+.marquee-wrap{overflow:hidden;position:relative}
+.marquee-wrap::before,.marquee-wrap::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
+.marquee-wrap::before{left:0;background:linear-gradient(to right,var(--white),transparent)}
+.marquee-wrap::after{right:0;background:linear-gradient(to left,var(--white),transparent)}
+.marquee-track{display:flex;gap:12px;animation:marquee 30s linear infinite;width:max-content}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.marquee-wrap:hover .marquee-track{animation-play-state:paused}
+.ind-chip{display:inline-flex;align-items:center;gap:8px;background:var(--section);border:1px solid var(--border);border-radius:999px;padding:9px 18px;font-size:0.84rem;font-weight:600;color:var(--body);white-space:nowrap;transition:all 0.18s;cursor:default}
+.ind-chip:hover{border-color:var(--red-border);color:var(--red);transform:translateY(-1px)}
+
+/* ─── SELF-AUDIT ─── */
+#audit{background:var(--section);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.audit-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:40px}
+.audit-card{background:#fff;border:2px solid var(--border);border-radius:var(--r);padding:24px 14px;text-align:center;cursor:pointer;transition:border-color 0.2s,transform 0.2s;user-select:none}
+.audit-card:hover{transform:translateY(-3px)}
+.audit-icon{font-size:1.6rem;margin-bottom:10px}
+.audit-name{font-size:0.8125rem;font-weight:700;color:var(--h-color);margin-bottom:14px;line-height:1.3}
+.audit-badge{width:32px;height:32px;border-radius:50%;background:var(--section);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto;font-weight:800;font-size:0.95rem;color:var(--muted);transition:all 0.2s}
+.audit-card[data-state="yes"]{border-color:var(--green)}
+.audit-card[data-state="yes"] .audit-badge{background:var(--green-bg);border-color:var(--green);color:var(--green)}
+.audit-card[data-state="no"]{border-color:var(--red-border)}
+.audit-card[data-state="no"] .audit-badge{background:var(--red-bg);border-color:var(--red);color:var(--red)}
+.audit-result{background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:40px;text-align:center;box-shadow:var(--shadow-lg);max-width:600px;margin:0 auto}
+.audit-score{font-size:2.75rem;font-weight:900;color:var(--h-color);margin-bottom:8px;letter-spacing:-0.02em}
+.audit-msg{font-size:0.9375rem;color:var(--muted);margin-bottom:24px;min-height:24px}
+.audit-bar-track{width:100%;max-width:400px;margin:0 auto 28px;height:8px;background:var(--border);border-radius:99px;overflow:hidden}
+.audit-bar-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--red),var(--green));border-radius:99px;transition:width 0.45s ease}
+
+/* ─── SOLUTIONS BENTO ─── */
+#solutions{background:var(--white)}
 .bento{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto auto;gap:20px}
-/* Card base */
 .sb{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:30px 28px;position:relative;overflow:hidden;transition:box-shadow 0.22s,transform 0.22s,border-color 0.22s}
 .sb::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform 0.28s ease;border-radius:3px 3px 0 0}
 .sb:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px);border-color:var(--red-border)}
 .sb:hover::before{transform:scaleX(1)}
-/* Featured tall card — SEO */
 .sb.featured{grid-column:1;grid-row:1/3;display:flex;flex-direction:column}
 .sb.featured .sb-body{flex:1}
-/* Full-width bottom card — Website */
 .sb.wide{grid-column:1/-1;display:flex;align-items:center;gap:36px}
 .sb.wide .sb-text{flex:1}
-.sb.wide .sb-ico{font-size:2.8rem;flex-shrink:0}
-/* Card content */
 .sb-ico{font-size:1.4rem;width:48px;height:48px;background:var(--section);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:20px}
 .sb-wide-ico{font-size:2.4rem;flex-shrink:0;width:60px;height:60px;background:var(--red-bg);border-radius:12px;display:flex;align-items:center;justify-content:center}
 .sb-name{font-size:1.05rem;font-weight:700;color:var(--h-color);margin-bottom:8px}
 .sb-desc{font-size:0.865rem;color:var(--muted);line-height:1.68}
 .sb-tag{display:inline-block;font-size:0.67rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--red);background:var(--red-bg);border-radius:4px;padding:3px 8px;margin-bottom:14px}
-/* Mini ranking preview inside featured SEO card */
 .sb-mini-rank{margin-top:auto;padding-top:20px;border-top:1px solid var(--border)}
 .sb-mini-row{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:0.72rem}
 .smr-pos{width:18px;height:18px;background:var(--navy);color:#fff;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:0.58rem;font-weight:800;flex-shrink:0}
@@ -211,53 +220,56 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 .smr-kw{flex:1;color:var(--h-color);font-weight:500}
 .smr-arr{color:var(--green);font-weight:700}
 .sb-wide-divider{width:1px;height:56px;background:var(--border);flex-shrink:0}
-.sb-wide-link{display:inline-flex;align-items:center;gap:6px;font-size:0.84rem;font-weight:600;color:var(--red);margin-top:14px;transition:gap 0.15s}
-.sb-wide-link:hover{gap:10px}
+.sb-micro{display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:600;color:var(--red);margin-top:14px;transition:gap 0.15s}
+.sb-micro:hover{gap:10px}
+.solutions-note{text-align:center;margin-top:44px;font-size:0.9rem;color:var(--muted)}
+.solutions-note strong{color:var(--h-color)}
 
-/* ─── INDUSTRIES MARQUEE ─── */
-#industries{background:var(--section);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:40px 0;overflow:hidden}
-.ind-label{text-align:center;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:28px}
-.marquee-wrap{overflow:hidden;position:relative}
-/* Fade edges */
-.marquee-wrap::before,.marquee-wrap::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
-.marquee-wrap::before{left:0;background:linear-gradient(to right,var(--section),transparent)}
-.marquee-wrap::after{right:0;background:linear-gradient(to left,var(--section),transparent)}
-.marquee-track{display:flex;gap:12px;animation:marquee 28s linear infinite;width:max-content}
-@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.marquee-wrap:hover .marquee-track{animation-play-state:paused}
-.ind-chip{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--border);border-radius:999px;padding:9px 18px;font-size:0.84rem;font-weight:600;color:var(--body);white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,0.04);transition:all 0.18s;cursor:default}
-.ind-chip:hover{border-color:var(--red-border);color:var(--red);box-shadow:0 2px 12px var(--red-glow);transform:translateY(-1px)}
+/* ─── ROI CALCULATOR ─── */
+#calculator{background:var(--section);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.calc-card{background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--shadow-lg);padding:44px;max-width:600px;margin:0 auto}
+.calc-row{margin-bottom:30px}
+.calc-row-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;font-size:0.9rem;font-weight:600;color:var(--h-color)}
+.calc-val{color:var(--red);font-weight:800;font-size:1rem}
+.calc-slider{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:99px;background:var(--border);outline:none;cursor:pointer}
+.calc-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:24px;height:24px;border-radius:50%;background:var(--red);cursor:pointer;box-shadow:0 2px 8px rgba(217,30,24,0.4);border:3px solid #fff}
+.calc-slider::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--red);cursor:pointer;border:3px solid #fff;box-shadow:0 2px 8px rgba(217,30,24,0.4)}
+.calc-output{background:var(--navy);border-radius:var(--r);padding:28px;text-align:center;margin:8px 0 20px}
+.calc-output-label{font-size:0.78rem;font-weight:600;color:rgba(255,255,255,0.55);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px}
+.calc-output-value{font-size:2.5rem;font-weight:900;color:#fff;letter-spacing:-0.02em;line-height:1}
+.calc-output-sub{font-size:0.85rem;color:rgba(255,255,255,0.5);margin-top:8px;font-weight:600}
+.calc-disclaimer{font-size:0.76rem;color:var(--muted);text-align:center;margin-bottom:22px;line-height:1.6}
 
-/* ─── WHY US ─── */
-#why{background:var(--white)}
-.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-.why-card{background:var(--section);border:1px solid var(--border);border-radius:var(--r);padding:32px 28px;transition:all 0.2s}
-.why-card:hover{border-color:var(--red-border);background:#fff;box-shadow:var(--shadow-lg);transform:translateY(-3px)}
-.why-num{font-size:0.7rem;font-weight:800;letter-spacing:0.12em;color:var(--red);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
-.why-num::after{content:'';flex:1;height:1px;background:var(--red-border)}
-.why-h{font-size:1.0625rem;font-weight:700;color:var(--h-color);margin-bottom:10px}
-.why-p{font-size:0.875rem;color:var(--muted);line-height:1.72}
+/* ─── SHIFT / TRANSFORMATION ─── */
+#transformation{background:var(--white)}
+.shift-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.shift-col{border-radius:var(--r-lg);padding:36px 32px}
+.shift-col.old{background:var(--section);border:1px solid var(--border)}
+.shift-col.new{background:var(--navy);color:#fff}
+.shift-tag{font-size:0.72rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:22px;display:block}
+.shift-col.old .shift-tag{color:var(--muted)}
+.shift-col.new .shift-tag{color:#FF8A8A}
+.shift-row{display:flex;align-items:center;gap:12px;padding:12px 0;font-size:0.9375rem;font-weight:500;border-bottom:1px solid rgba(0,0,0,0.06)}
+.shift-col.new .shift-row{border-bottom-color:rgba(255,255,255,0.1)}
+.shift-row:last-child{border-bottom:none}
+.shift-x{color:#B91C1C;font-weight:800;flex-shrink:0;width:20px}
+.shift-check{color:var(--green);font-weight:800;flex-shrink:0;width:20px}
 
-/* ─── HOW IT WORKS ─── */
-#how{background:var(--section)}
-.steps-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
-.steps-row::before{content:'';position:absolute;top:28px;left:calc(12.5% + 14px);right:calc(12.5% + 14px);height:2px;background:linear-gradient(to right,var(--border),var(--border));z-index:0}
-.step{text-align:center;padding:0 20px;position:relative;z-index:1}
-/* Decorative bg number */
-.step-bg-num{position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:6.5rem;font-weight:900;color:rgba(217,30,24,0.05);line-height:1;letter-spacing:-0.04em;pointer-events:none;z-index:0}
-.step-inner{position:relative;z-index:1}
-.step-circle{width:56px;height:56px;border-radius:50%;background:var(--white);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:0.9rem;font-weight:800;color:var(--navy);margin:0 auto 22px;transition:all 0.22s;position:relative;z-index:2}
-.step:hover .step-circle{background:var(--red);color:#fff;border-color:var(--red);box-shadow:0 0 0 6px var(--red-bg)}
+/* ─── PROCESS ─── */
+#process{background:var(--section)}
+.steps-row{display:grid;grid-template-columns:repeat(3,1fr);gap:36px 28px}
+.step{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:28px 26px;transition:border-color 0.2s,transform 0.2s}
+.step:hover{border-color:var(--red-border);transform:translateY(-3px)}
+.step-circle{width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.95rem;font-weight:800;margin-bottom:18px}
 .step-h{font-size:1rem;font-weight:700;color:var(--h-color);margin-bottom:8px}
-.step-p{font-size:0.8125rem;color:var(--muted);line-height:1.68}
+.step-p{font-size:0.8425rem;color:var(--muted);line-height:1.68}
 
-/* ─── PORTFOLIO ─── */
-#portfolio{background:var(--white)}
+/* ─── PORTFOLIO / CASE STUDIES ─── */
+#case-studies{background:var(--white)}
 .port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .port-card{background:#fff;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:all 0.22s;position:relative}
 .port-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px);border-color:var(--red-border)}
 .port-img{height:168px;display:flex;align-items:center;justify-content:center;font-size:2.75rem;position:relative;overflow:hidden}
-/* Hover overlay — slides up from bottom */
 .port-overlay{position:absolute;bottom:-72px;left:0;right:0;padding:16px 20px;background:linear-gradient(to top,rgba(7,22,41,0.97) 0%,transparent 100%);color:#fff;transition:bottom 0.28s ease;display:flex;align-items:center;justify-content:space-between;gap:8px}
 .port-card:hover .port-overlay{bottom:0}
 .port-overlay span{font-size:0.8rem;font-weight:600}
@@ -267,7 +279,6 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 .port-h{font-size:0.9375rem;font-weight:700;color:var(--h-color);margin-bottom:7px}
 .port-p{font-size:0.8rem;color:var(--muted);line-height:1.55}
 .port-soon{display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-size:0.7rem;font-weight:600;color:var(--muted)}
-/* Portfolio card bg gradients */
 .bg-n{background:linear-gradient(140deg,#0B1F3A 50%,#1a3560)}
 .bg-r{background:linear-gradient(140deg,#7f1010 50%,#D91E18)}
 .bg-i{background:linear-gradient(140deg,#1e2060 50%,#2d3280)}
@@ -275,13 +286,17 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 .bg-m{background:linear-gradient(140deg,#0a0a2e 50%,#1a1a50)}
 .bg-g{background:linear-gradient(140deg,#374151 50%,#4b5563)}
 
-/* ─── COMMITMENT (navy dark section) ─── */
+/* ─── STORY ─── */
+#story{background:var(--section)}
+.story-body{font-size:1.0625rem;color:var(--body);line-height:1.85}
+.story-body p{margin-bottom:20px}
+.story-body p:last-child{margin-bottom:0}
+
+/* ─── COMMITMENT ─── */
 #commitment{background:var(--navy);position:relative;overflow:hidden}
-/* Red glow bloom in corner */
 .comm-bloom{position:absolute;top:-150px;right:-150px;width:500px;height:500px;background:radial-gradient(circle,rgba(217,30,24,0.12) 0%,transparent 65%);pointer-events:none}
 .comm-bloom-2{position:absolute;bottom:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(11,31,58,0.5) 0%,transparent 65%);pointer-events:none}
 .promise-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;position:relative;z-index:1}
-/* Glassmorphism cards */
 .promise-card{background:rgba(255,255,255,0.05);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.1);border-radius:var(--r);padding:32px 28px;transition:all 0.25s}
 .promise-card:hover{background:rgba(217,30,24,0.1);border-color:rgba(217,30,24,0.35)}
 .promise-ico{font-size:1.75rem;margin-bottom:18px}
@@ -290,10 +305,23 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 .promise-divider{border-top:1px solid rgba(255,255,255,0.08);margin-top:56px;padding-top:48px;text-align:center;position:relative;z-index:1}
 .promise-note{font-size:0.875rem;color:rgba(255,255,255,0.38);margin-bottom:24px;line-height:1.7}
 
+/* ─── PRICING ─── */
+#pricing{background:var(--white)}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start}
+.price-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--r-lg);padding:36px 30px;transition:all 0.2s;position:relative}
+.price-card.featured{border-color:var(--red);box-shadow:var(--shadow-lg);transform:scale(1.03)}
+.price-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-size:0.68rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:5px 14px;border-radius:999px;white-space:nowrap}
+.price-name{font-size:1.25rem;font-weight:800;color:var(--h-color);margin-bottom:8px}
+.price-tagline{font-size:0.875rem;color:var(--muted);margin-bottom:24px;line-height:1.6;min-height:42px}
+.price-features{margin-bottom:28px}
+.price-features li{position:relative;padding-left:26px;font-size:0.875rem;color:var(--body);margin-bottom:12px;line-height:1.5}
+.price-features li::before{content:'✓';position:absolute;left:0;color:var(--green);font-weight:800}
+.pricing-note{text-align:center;margin-top:36px;font-size:0.875rem;color:var(--muted);max-width:560px;margin-left:auto;margin-right:auto;line-height:1.7}
+
 /* ─── FAQ ─── */
-#faq{background:var(--white)}
+#faq{background:var(--section)}
 .faq-wrap{max-width:760px;margin:0 auto}
-.faq-item{border:1px solid var(--border);border-radius:var(--r);margin-bottom:10px;overflow:hidden;transition:border-color 0.2s}
+.faq-item{border:1px solid var(--border);border-radius:var(--r);margin-bottom:10px;overflow:hidden;transition:border-color 0.2s;background:#fff}
 .faq-item.open{border-color:var(--red-border)}
 .faq-q{width:100%;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 24px;background:#fff;font-size:1rem;font-weight:600;color:var(--h-color);cursor:pointer;transition:background 0.15s}
 .faq-q:hover{background:var(--red-bg)}
@@ -305,16 +333,14 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 
 /* ─── FINAL CTA ─── */
 #cta-final{background:var(--navy);padding:100px 0;position:relative;overflow:hidden}
-/* Geometric accent lines */
 #cta-final::before{content:'';position:absolute;top:50%;left:-10%;width:120%;height:1px;background:linear-gradient(to right,transparent,rgba(217,30,24,0.2),transparent);pointer-events:none}
 .cta-bloom{position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(217,30,24,0.12) 0%,transparent 65%);pointer-events:none}
 .cta-inner{max-width:700px;margin:0 auto;text-align:center;position:relative;z-index:2}
 .cta-final-h{font-size:clamp(2.1rem,4.5vw,3.25rem);font-weight:900;color:#fff;line-height:1.08;margin-bottom:18px;letter-spacing:-0.02em}
 .cta-final-p{font-size:1rem;color:rgba(255,255,255,0.58);line-height:1.76;margin-bottom:40px}
 .cta-trust{font-size:0.78rem;color:rgba(255,255,255,0.32);margin-top:20px;letter-spacing:0.01em}
-/* Scarcity badge */
 .scarcity{display:inline-flex;align-items:center;gap:7px;background:var(--amber-bg);color:#78350F;font-size:0.74rem;font-weight:700;padding:6px 14px;border-radius:7px;border:1px solid rgba(245,158,11,0.22);margin-bottom:30px}
-.s-dot{width:6px;height:6px;background:var(--amber);border-radius:50%}
+.s-dot{width:6px;height:6px;background:var(--amber);border-radius:50%;animation:blink 2s ease-in-out infinite}
 
 /* ─── FOOTER ─── */
 footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);padding:60px 0 32px}
@@ -346,6 +372,10 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);p
   .promise-grid{grid-template-columns:repeat(2,1fr)}
   .footer-grid{grid-template-columns:1fr 1fr}
   .footer-brand{grid-column:1/-1}
+  .steps-row{grid-template-columns:repeat(2,1fr)}
+  .pricing-grid{grid-template-columns:1fr;max-width:440px;margin:0 auto}
+  .price-card.featured{transform:none}
+  .audit-grid{grid-template-columns:repeat(3,1fr)}
 }
 @media(max-width:768px){
   .hero-inner{grid-template-columns:1fr}
@@ -354,16 +384,17 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);p
   .hamburger{display:flex}
   .bento{grid-template-columns:1fr}
   .sb.featured,.sb.wide{grid-row:auto;grid-column:auto;flex-direction:column;align-items:flex-start;gap:16px}
-  .why-grid,.promise-grid,.port-grid{grid-template-columns:1fr}
-  .steps-row{grid-template-columns:1fr;gap:36px}
-  .steps-row::before{display:none}
-  .step{text-align:left;display:flex;align-items:flex-start;gap:16px;padding:0}
-  .step-circle{margin:0;flex-shrink:0}
-  .step-bg-num{display:none}
+  .promise-grid,.port-grid{grid-template-columns:1fr}
+  .steps-row{grid-template-columns:1fr}
+  .shift-grid{grid-template-columns:1fr}
   .caps-inner{gap:10px}
   .footer-grid{grid-template-columns:1fr}
   .mobile-cta-bar{display:block}
   body{padding-bottom:80px}
+  .audit-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .audit-card{padding:18px 8px}
+  .calc-card{padding:30px 22px}
+  .sec{padding:72px 0}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition-duration:0.01ms!important}
@@ -381,29 +412,26 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);p
       HotCall Marketing
     </a>
     <div class="nav-links">
-      <a href="#services">Services</a>
-      <a href="#how">How It Works</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#faq">FAQ</a>
-      <a href="#cta-final">Contact</a>
+      <a href="#solutions">Solutions</a>
+      <a href="#case-studies">Case Studies</a>
+      <a href="#process">Process</a>
+      <a href="#pricing">Pricing</a>
     </div>
     <div class="nav-right">
-      <a href="#portfolio" class="btn btn-ghost" style="padding:9px 20px;font-size:0.875rem">View Our Work</a>
-      <a href="#cta-final" class="btn btn-primary" style="padding:9px 20px;font-size:0.875rem">Book Free Strategy Call</a>
+      <a href="#cta-final" class="btn btn-primary" style="padding:9px 20px;font-size:0.875rem">Get Free Growth Audit</a>
     </div>
-    <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#services" class="mob-link">Services</a>
-  <a href="#how" class="mob-link">How It Works</a>
-  <a href="#portfolio" class="mob-link">Portfolio</a>
-  <a href="#faq" class="mob-link">FAQ</a>
-  <a href="#cta-final" class="mob-link">Contact</a>
-  <a href="#cta-final" class="btn btn-primary">Book Free Strategy Call</a>
+  <a href="#solutions" class="mob-link">Solutions</a>
+  <a href="#case-studies" class="mob-link">Case Studies</a>
+  <a href="#process" class="mob-link">Process</a>
+  <a href="#pricing" class="mob-link">Pricing</a>
+  <a href="#cta-final" class="btn btn-primary mob-link">Get Free Growth Audit</a>
 </div>
 
 <main>
@@ -415,29 +443,26 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);p
   <div class="hero-bloom-navy" aria-hidden="true"></div>
   <div class="wrap hero-inner">
 
-    <!-- Copy -->
     <div class="reveal">
       <div class="hero-badge">
         <span class="pulse-dot"></span>
-        AI-Powered · Built for Home Services
+        Marketing Infrastructure · Built for Home Services
       </div>
-      <h1 class="hero-h1">We Help Home Service Businesses <em>Dominate Google</em> and Generate More Qualified Leads.</h1>
-      <p class="hero-p">Professional SEO, Google Ads, AI-powered content, and unlimited AI avatar videos — built specifically for plumbers, HVAC companies, electricians, roofers, and contractors.</p>
+      <h1 class="hero-h1">The Marketing Infrastructure That <em>Grows Your Business</em>.</h1>
+      <p class="hero-p">One connected system for your website, Google visibility, AI-powered content, and lead follow-up — built for plumbers, HVAC companies, electricians, roofers, and contractors who want more booked jobs, not more busywork.</p>
       <div class="hero-actions">
-        <a href="#cta-final" class="btn btn-primary hero-cta">📞 Book Free Strategy Call</a>
-        <a href="#portfolio" class="btn btn-ghost">View Our Work →</a>
+        <a href="#cta-final" class="btn btn-primary hero-cta">Get Your Free Growth Audit →</a>
+        <a href="#solutions" class="hero-secondary-link">See how it works ↓</a>
       </div>
       <div class="hero-trust">
         <span><span class="trust-check">✓</span> No contracts</span>
-        <span><span class="trust-check">✓</span> Free call</span>
-        <span><span class="trust-check">✓</span> Cancel anytime</span>
-        <span><span class="trust-check">✓</span> Own your content</span>
+        <span><span class="trust-check">✓</span> Free audit, zero pressure</span>
+        <span><span class="trust-check">✓</span> You own everything we build</span>
       </div>
     </div>
 
-    <!-- Mockup Dashboard -->
     <div class="hero-visual reveal rd2" aria-hidden="true">
-      <div class="mock-ai"><span class="ai-dot"></span>AI CONTENT · ACTIVE</div>
+      <div class="mock-ai"><span class="ai-dot"></span>GROWTH ENGINE · ACTIVE</div>
 
       <div class="mock-card mock-main">
         <div class="mock-label">Organic Traffic <span class="mock-trend">↑ Growing</span></div>
@@ -472,200 +497,235 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);p
   </div>
 </section>
 
+<!-- ── INDUSTRIES MARQUEE ── -->
+<section id="industries">
+  <div class="ind-label">Built Specifically For</div>
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <div class="ind-chip">🔧 Plumbing</div>
+      <div class="ind-chip">❄️ HVAC &amp; AC</div>
+      <div class="ind-chip">⚡ Electrical</div>
+      <div class="ind-chip">🏠 Roofing</div>
+      <div class="ind-chip">🎨 Painting</div>
+      <div class="ind-chip">🌿 Landscaping</div>
+      <div class="ind-chip">💦 Pressure Washing</div>
+      <div class="ind-chip">🚪 Garage Doors</div>
+      <div class="ind-chip">💧 Restoration</div>
+      <div class="ind-chip">🐛 Pest Control</div>
+      <div class="ind-chip">🏊 Pool Companies</div>
+      <div class="ind-chip">🏗️ General Contractors</div>
+      <div class="ind-chip">🔧 Plumbing</div>
+      <div class="ind-chip">❄️ HVAC &amp; AC</div>
+      <div class="ind-chip">⚡ Electrical</div>
+      <div class="ind-chip">🏠 Roofing</div>
+      <div class="ind-chip">🎨 Painting</div>
+      <div class="ind-chip">🌿 Landscaping</div>
+      <div class="ind-chip">💦 Pressure Washing</div>
+      <div class="ind-chip">🚪 Garage Doors</div>
+      <div class="ind-chip">💧 Restoration</div>
+      <div class="ind-chip">🐛 Pest Control</div>
+      <div class="ind-chip">🏊 Pool Companies</div>
+      <div class="ind-chip">🏗️ General Contractors</div>
+    </div>
+  </div>
+</section>
+
 <!-- ── CAPABILITY CHIPS ── -->
 <div id="caps">
   <div class="wrap">
     <div class="caps-inner">
-      <div class="cap-chip"><span class="cap-ico">🎯</span>Trades-Only Agency</div>
-      <div class="cap-chip"><span class="cap-ico">🤖</span>AI-Powered Workflows</div>
-      <div class="cap-chip"><span class="cap-ico">📋</span>6 Core Services</div>
+      <div class="cap-chip"><span class="cap-ico">🧩</span>One Connected System</div>
+      <div class="cap-chip"><span class="cap-ico">🤖</span>AI-Powered Efficiency</div>
+      <div class="cap-chip"><span class="cap-ico">🎯</span>Home Services Only</div>
       <div class="cap-chip"><span class="cap-ico">📍</span>South Florida Specialists</div>
       <div class="cap-chip"><span class="cap-ico">🤝</span>No Long-Term Contracts</div>
-      <div class="cap-chip"><span class="cap-ico">✅</span>You Own All Content</div>
+      <div class="cap-chip"><span class="cap-ico">✅</span>You Own Everything</div>
     </div>
   </div>
 </div>
 
-<!-- ── SERVICES BENTO ── -->
-<section id="services" class="sec">
+<!-- ── SELF-AUDIT ── -->
+<section id="audit" class="sec">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="sec-label">60-Second Self-Check</span>
+      <h2 class="sec-title">Is Your Business Built To Grow?</h2>
+      <p class="sec-sub" style="margin:0 auto">Click each one honestly. Most home service businesses we talk to are missing more of these than they realize.</p>
+    </div>
+    <div class="audit-grid reveal rd1" id="auditGrid">
+      <div class="audit-card" data-state="neutral" tabindex="0" role="button" aria-pressed="false">
+        <div class="audit-icon" aria-hidden="true">🌐</div>
+        <div class="audit-name">Website</div>
+        <div class="audit-badge">?</div>
+      </div>
+      <div class="audit-card" data-state="neutral" tabindex="0" role="button" aria-pressed="false">
+        <div class="audit-icon" aria-hidden="true">🔍</div>
+        <div class="audit-name">Google Visibility</div>
+        <div class="audit-badge">?</div>
+      </div>
+      <div class="audit-card" data-state="neutral" tabindex="0" role="button" aria-pressed="false">
+        <div class="audit-icon" aria-hidden="true">⭐</div>
+        <div class="audit-name">Review System</div>
+        <div class="audit-badge">?</div>
+      </div>
+      <div class="audit-card" data-state="neutral" tabindex="0" role="button" aria-pressed="false">
+        <div class="audit-icon" aria-hidden="true">📥</div>
+        <div class="audit-name">Lead Capture</div>
+        <div class="audit-badge">?</div>
+      </div>
+      <div class="audit-card" data-state="neutral" tabindex="0" role="button" aria-pressed="false">
+        <div class="audit-icon" aria-hidden="true">⚡</div>
+        <div class="audit-name">Fast Follow-Up</div>
+        <div class="audit-badge">?</div>
+      </div>
+      <div class="audit-card" data-state="neutral" tabindex="0" role="button" aria-pressed="false">
+        <div class="audit-icon" aria-hidden="true">🤖</div>
+        <div class="audit-name">Automation</div>
+        <div class="audit-badge">?</div>
+      </div>
+    </div>
+    <div class="audit-result reveal rd2">
+      <div class="audit-score"><span id="auditScoreNum">0</span>/6</div>
+      <p class="audit-msg" id="auditMsg">Click each card above to see where your business stands.</p>
+      <div class="audit-bar-track"><div class="audit-bar-fill" id="auditBarFill"></div></div>
+      <a href="#cta-final" class="btn btn-primary">Get Your Free Growth Audit →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── SOLUTIONS (INFRASTRUCTURE) ── -->
+<section id="solutions" class="sec">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-label">What We Do</span>
-      <h2 class="sec-title">Every service your business needs<br>to win online — under one roof.</h2>
-      <p class="sec-sub">We don't sell retainers with vague deliverables. Each service drives one outcome: more qualified calls and jobs booked for your business.</p>
+      <span class="sec-label">How It Works</span>
+      <h2 class="sec-title">One Growth System.<br>Six Connected Parts.</h2>
+      <p class="sec-sub">We don't sell a menu of services. We build the HCM Growth Engine — a connected system where your website, Google visibility, content, and follow-up all work together instead of operating in silos.</p>
     </div>
     <div class="bento">
-      <!-- Featured: SEO (tall, with mini-rank preview) -->
       <article class="sb featured reveal">
         <div class="sb-tag">Most Impactful</div>
-        <div class="sb-ico">📈</div>
+        <div class="sb-ico" aria-hidden="true">📈</div>
         <div class="sb-body">
-          <h3 class="sb-name">Search Engine Optimization</h3>
-          <p class="sb-desc">Rank at the top when homeowners search for your services. We handle technical SEO, content, local citations, and full Google Business Profile management — the entire stack.</p>
+          <h3 class="sb-name">Search Infrastructure</h3>
+          <p class="sb-desc">If you're not showing up when homeowners search for your service, you don't exist to them. We build the technical SEO, content, and local signals that get you found — and keep you there.</p>
         </div>
         <div class="sb-mini-rank">
-          <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--muted);margin-bottom:8px">What SEO looks like</p>
+          <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--muted);margin-bottom:8px">What movement looks like</p>
           <div class="sb-mini-row"><div class="smr-pos t1">1</div><div class="smr-kw">HVAC repair near me</div><div class="smr-arr">↑</div></div>
           <div class="sb-mini-row"><div class="smr-pos">2</div><div class="smr-kw">plumber Broward County</div><div class="smr-arr">↑</div></div>
           <div class="sb-mini-row"><div class="smr-pos">3</div><div class="smr-kw">roofer Coral Springs FL</div><div class="smr-arr">↑</div></div>
         </div>
+        <a href="#case-studies" class="sb-micro">See it in action →</a>
       </article>
 
-      <!-- Google Ads -->
       <article class="sb reveal rd1">
-        <div class="sb-ico">🎯</div>
-        <h3 class="sb-name">Google Ads Management</h3>
-        <p class="sb-desc">Capture high-intent leads the moment they're ready to hire. We build, manage, and optimize campaigns that reduce wasted spend and maximize calls — starting from day one.</p>
+        <div class="sb-ico" aria-hidden="true">🎯</div>
+        <h3 class="sb-name">Lead Infrastructure</h3>
+        <p class="sb-desc">Every day without the right campaign is a day your competitor gets the call instead of you. We build and manage Google Ads engineered to convert search intent into booked jobs — not just clicks.</p>
+        <a href="#calculator" class="sb-micro">Calculate what it's costing you →</a>
       </article>
 
-      <!-- AI Content -->
       <article class="sb reveal rd2">
-        <div class="sb-ico">✨</div>
-        <h3 class="sb-name">AI Content Creation</h3>
-        <p class="sb-desc">Blog posts, social captions, email sequences, and Google Business updates — produced with AI at a volume and speed traditional agencies can't match, without sacrificing quality.</p>
+        <div class="sb-ico" aria-hidden="true">✨</div>
+        <h3 class="sb-name">AI Content Infrastructure</h3>
+        <p class="sb-desc">Staying visible takes constant content — and most owners don't have ten hours a week for it. Our AI-powered content engine keeps your blog, Google Business Profile, and email active without eating into your week.</p>
       </article>
 
-      <!-- AI Video -->
       <article class="sb reveal rd3">
-        <div class="sb-ico">🎬</div>
-        <h3 class="sb-name">AI Avatar Videos</h3>
-        <p class="sb-desc">Record yourself once. We build a digital twin that speaks your scripts in any language for any offer, season, or campaign — no film crew, no scheduling, no studio ever again.</p>
+        <div class="sb-ico" aria-hidden="true">🎬</div>
+        <h3 class="sb-name">AI Video Infrastructure</h3>
+        <p class="sb-desc">Consistent video builds trust faster than almost anything else — but filming every week isn't realistic. Record once. We build your AI avatar so it can deliver new scripts and offers indefinitely.</p>
       </article>
 
-      <!-- Social -->
       <article class="sb reveal rd4">
-        <div class="sb-ico">📱</div>
-        <h3 class="sb-name">Social Media Management</h3>
-        <p class="sb-desc">We create, schedule, and publish to Facebook, Instagram, and TikTok without you lifting a finger — building trust with homeowners long before they need to pick up the phone.</p>
+        <div class="sb-ico" aria-hidden="true">📱</div>
+        <h3 class="sb-name">Social Infrastructure</h3>
+        <p class="sb-desc">Homeowners check your Facebook and Instagram before they call. If it's empty or outdated, that's a red flag. We keep your profiles active and building trust before the phone ever rings.</p>
       </article>
 
-      <!-- Website: full width -->
       <article class="sb wide reveal rd5">
-        <div class="sb-wide-ico">🚀</div>
+        <div class="sb-wide-ico" aria-hidden="true">🚀</div>
         <div class="sb-wide-divider"></div>
         <div class="sb-text">
-          <h3 class="sb-name">Website Optimization</h3>
-          <p class="sb-desc">A slow, outdated, or low-converting website quietly kills every dollar you spend on ads and SEO. We fix landing pages, improve load speed, and build high-converting pages that turn visitors into callers.</p>
-          <span class="sb-wide-link">Improve your conversion rate →</span>
+          <h3 class="sb-name">Website Infrastructure</h3>
+          <p class="sb-desc">A slow, outdated, or confusing website quietly cancels out everything else you invest in marketing. We fix load speed, structure, and conversion paths so visitors turn into calls instead of bouncing.</p>
+          <a href="#audit" class="sb-micro">Check where you stand →</a>
         </div>
       </article>
     </div>
+    <p class="solutions-note">All six run through <strong>one system</strong> — not six separate vendors, invoices, or logins.</p>
   </div>
 </section>
 
-<!-- ── INDUSTRIES MARQUEE ── -->
-<section id="industries">
-  <div class="ind-label">Industries We Serve</div>
-  <div class="marquee-wrap">
-    <div class="marquee-track">
-      <div class="ind-chip">🔧 Plumbing</div>
-      <div class="ind-chip">❄️ HVAC / AC</div>
-      <div class="ind-chip">⚡ Electrical</div>
-      <div class="ind-chip">🏠 Roofing</div>
-      <div class="ind-chip">🌿 Landscaping</div>
-      <div class="ind-chip">🏊 Pool Service</div>
-      <div class="ind-chip">🐛 Pest Control</div>
-      <div class="ind-chip">🪟 Windows & Doors</div>
-      <div class="ind-chip">🔒 Security Systems</div>
-      <div class="ind-chip">🏗️ General Contractors</div>
-      <div class="ind-chip">💧 Restoration</div>
-      <div class="ind-chip">🔥 Fire Protection</div>
-      <!-- duplicate for seamless loop -->
-      <div class="ind-chip">🔧 Plumbing</div>
-      <div class="ind-chip">❄️ HVAC / AC</div>
-      <div class="ind-chip">⚡ Electrical</div>
-      <div class="ind-chip">🏠 Roofing</div>
-      <div class="ind-chip">🌿 Landscaping</div>
-      <div class="ind-chip">🏊 Pool Service</div>
-      <div class="ind-chip">🐛 Pest Control</div>
-      <div class="ind-chip">🪟 Windows & Doors</div>
-      <div class="ind-chip">🔒 Security Systems</div>
-      <div class="ind-chip">🏗️ General Contractors</div>
-      <div class="ind-chip">💧 Restoration</div>
-      <div class="ind-chip">🔥 Fire Protection</div>
-    </div>
-  </div>
-</section>
-
-<!-- ── WHY US ── -->
-<section id="why" class="sec">
+<!-- ── ROI CALCULATOR ── -->
+<section id="calculator" class="sec">
   <div class="wrap">
     <div class="sec-head center reveal">
-      <span class="sec-label">Why HotCall</span>
-      <h2 class="sec-title">Built for trades. Powered by AI.<br>Accountable to your results.</h2>
-      <p class="sec-sub">Most agencies serve everyone. We serve home service businesses — and built our entire process around what actually moves the needle in your industry.</p>
+      <span class="sec-label">Do The Math</span>
+      <h2 class="sec-title">What Are Missed Calls Costing You?</h2>
+      <p class="sec-sub" style="margin:0 auto">Move the sliders to match your business.</p>
     </div>
-    <div class="why-grid">
-      <div class="why-card reveal rd1">
-        <div class="why-num">01 — Revenue First</div>
-        <h3 class="why-h">We Focus on ROI, Not Vanity Metrics</h3>
-        <p class="why-p">Impressions don't pay your crew. Every campaign tracks against the metrics that matter — qualified calls, booked jobs, and revenue. We report in plain English, every month, no jargon.</p>
+    <div class="calc-card reveal rd1">
+      <div class="calc-row">
+        <div class="calc-row-head"><span>Missed calls per month</span><span class="calc-val" id="calcCallsOut">10</span></div>
+        <input type="range" min="1" max="40" value="10" step="1" class="calc-slider" id="calcCalls" aria-label="Missed calls per month">
       </div>
-      <div class="why-card reveal rd2">
-        <div class="why-num">02 — AI Advantage</div>
-        <h3 class="why-h">More Output, Faster, at a Lower Cost</h3>
-        <p class="why-p">AI tools let us produce content and creative at a volume and speed traditional agencies simply can't touch — giving your business constant visibility without constant budget increases.</p>
+      <div class="calc-row">
+        <div class="calc-row-head"><span>Average job value</span><span class="calc-val" id="calcValueOut">$850</span></div>
+        <input type="range" min="100" max="5000" value="850" step="50" class="calc-slider" id="calcValue" aria-label="Average job value in dollars">
       </div>
-      <div class="why-card reveal rd3">
-        <div class="why-num">03 — No Surprises</div>
-        <h3 class="why-h">Full Transparency, Every Step</h3>
-        <p class="why-p">You'll always know exactly where your budget is going and what it's producing. No hidden dashboards, no buried numbers. A direct monthly conversation about what's working and what's next.</p>
+      <div class="calc-row">
+        <div class="calc-row-head"><span>Your close rate</span><span class="calc-val" id="calcRateOut">60%</span></div>
+        <input type="range" min="10" max="100" value="60" step="5" class="calc-slider" id="calcRate" aria-label="Close rate percentage">
       </div>
+      <div class="calc-output">
+        <p class="calc-output-label">You may be losing</p>
+        <div class="calc-output-value" id="calcMonthly">$5,100</div>
+        <p class="calc-output-sub"><span id="calcYearly">$61,200</span> per year</p>
+      </div>
+      <p class="calc-disclaimer">Estimate based on the numbers you enter — actual results depend on your market, service area, and follow-up process.</p>
+      <a href="#cta-final" class="btn btn-primary" style="width:100%">Stop Losing Calls — Get Your Free Audit</a>
     </div>
   </div>
 </section>
 
-<!-- ── HOW IT WORKS ── -->
-<section id="how" class="sec">
+<!-- ── TRANSFORMATION ── -->
+<section id="transformation" class="sec">
   <div class="wrap">
     <div class="sec-head center reveal">
-      <span class="sec-label">The Process</span>
-      <h2 class="sec-title">From first call to qualified leads<br>in under 30 days.</h2>
+      <span class="sec-label">The Shift</span>
+      <h2 class="sec-title">Most Marketing Feels Like More Work.<br>This Shouldn't.</h2>
     </div>
-    <div class="steps-row">
-      <div class="step reveal rd1">
-        <div class="step-bg-num">01</div>
-        <div class="step-inner">
-          <div class="step-circle">1</div>
-          <h3 class="step-h">Free Strategy Call</h3>
-          <p class="step-p">We audit your digital presence, review your competitors, and map out exactly what it will take to generate more leads in your market — at zero cost and zero commitment.</p>
-        </div>
+    <div class="shift-grid reveal rd1">
+      <div class="shift-col old">
+        <span class="shift-tag">The Old Way</span>
+        <div class="shift-row"><span class="shift-x">✕</span>Generic template website</div>
+        <div class="shift-row"><span class="shift-x">✕</span>Invisible on Google</div>
+        <div class="shift-row"><span class="shift-x">✕</span>No review system</div>
+        <div class="shift-row"><span class="shift-x">✕</span>One-off, manual content</div>
+        <div class="shift-row"><span class="shift-x">✕</span>Filming constantly, at high cost</div>
+        <div class="shift-row"><span class="shift-x">✕</span>You chase every lead yourself</div>
       </div>
-      <div class="step reveal rd2">
-        <div class="step-bg-num">02</div>
-        <div class="step-inner">
-          <div class="step-circle">2</div>
-          <h3 class="step-h">Market Analysis</h3>
-          <p class="step-p">We research your service area, identify competitor weaknesses, uncover keyword opportunities, and build a targeting strategy specific to your region and trade.</p>
-        </div>
-      </div>
-      <div class="step reveal rd3">
-        <div class="step-bg-num">03</div>
-        <div class="step-inner">
-          <div class="step-circle">3</div>
-          <h3 class="step-h">Campaign Launch</h3>
-          <p class="step-p">Within 5–10 business days, your campaigns go live. You approve everything first. We handle copy, creative, setup, and targeting end to end.</p>
-        </div>
-      </div>
-      <div class="step reveal rd4">
-        <div class="step-bg-num">04</div>
-        <div class="step-inner">
-          <div class="step-circle">4</div>
-          <h3 class="step-h">Leads Come In</h3>
-          <p class="step-p">Qualified calls and form submissions start arriving. We monitor, optimize, and scale weekly — and report back monthly on what your investment is actually producing.</p>
-        </div>
+      <div class="shift-col new">
+        <span class="shift-tag">The HCM Way</span>
+        <div class="shift-row"><span class="shift-check">✓</span>Website built to book jobs</div>
+        <div class="shift-row"><span class="shift-check">✓</span>Ranking for the searches that matter</div>
+        <div class="shift-row"><span class="shift-check">✓</span>Reviews generated automatically</div>
+        <div class="shift-row"><span class="shift-check">✓</span>AI-powered content, always active</div>
+        <div class="shift-row"><span class="shift-check">✓</span>Film once, AI avatar publishes forever</div>
+        <div class="shift-row"><span class="shift-check">✓</span>Leads followed up automatically</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── PORTFOLIO ── -->
-<section id="portfolio" class="sec" style="background:var(--section)">
+<!-- ── CASE STUDIES ── -->
+<section id="case-studies" class="sec" style="background:var(--section)">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="sec-label">Our Work</span>
       <h2 class="sec-title">Built for the trades.<br>Designed to convert.</h2>
-      <p class="sec-sub">We're launching our first client partnerships and will publish full case studies as our portfolio grows. Here's a preview of the deliverables and strategies we specialize in.</p>
+      <p class="sec-sub">We're onboarding our first client partnerships and will publish full case studies as they complete. Here's the strategy behind the deliverables we specialize in.</p>
     </div>
     <div class="port-grid">
       <div class="port-card reveal rd1">
@@ -732,37 +792,142 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);p
   </div>
 </section>
 
-<!-- ── OUR COMMITMENT ── -->
+<!-- ── PROCESS ── -->
+<section id="process" class="sec">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="sec-label">How We Work</span>
+      <h2 class="sec-title">From First Call To Booked Jobs.</h2>
+      <p class="sec-sub" style="margin:0 auto">Six steps. No guesswork about what happens next.</p>
+    </div>
+    <div class="steps-row">
+      <div class="step reveal rd1">
+        <div class="step-circle">1</div>
+        <h3 class="step-h">Discover</h3>
+        <p class="step-p">A quick call to understand your market, goals, and what's currently working — or not.</p>
+      </div>
+      <div class="step reveal rd2">
+        <div class="step-circle">2</div>
+        <h3 class="step-h">Audit</h3>
+        <p class="step-p">We map exactly what's helping your business and what's quietly costing you leads.</p>
+      </div>
+      <div class="step reveal rd3">
+        <div class="step-circle">3</div>
+        <h3 class="step-h">Build</h3>
+        <p class="step-p">Your infrastructure gets built — website, SEO, ads, content, and automation.</p>
+      </div>
+      <div class="step reveal rd4">
+        <div class="step-circle">4</div>
+        <h3 class="step-h">Launch</h3>
+        <p class="step-p">Everything goes live. You approve every piece before it's ever public.</p>
+      </div>
+      <div class="step reveal rd5">
+        <div class="step-circle">5</div>
+        <h3 class="step-h">Automate</h3>
+        <p class="step-p">Repetitive work gets systemized, so growth doesn't require more of your time.</p>
+      </div>
+      <div class="step reveal rd6">
+        <div class="step-circle">6</div>
+        <h3 class="step-h">Scale</h3>
+        <p class="step-p">We reinvest into whichever channel is producing your best return.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STORY ── -->
+<section id="story" class="sec">
+  <div class="wrap" style="max-width:760px">
+    <div class="sec-head reveal">
+      <span class="sec-label">Our Why</span>
+      <h2 class="sec-title">Why We Built Hot Call Marketing</h2>
+    </div>
+    <div class="story-body reveal rd1">
+      <p>Home service businesses keep their communities running — but too often, their marketing still looks and performs like it's stuck in 2015.</p>
+      <p>We built Hot Call Marketing because business owners shouldn't have to become influencers, film content every week, or guess whether their ad budget is actually working.</p>
+      <p>Technology should save you time — not create more of it. Every system we build exists for one reason: more qualified calls, with less manual work, so you can focus on running the business instead of marketing it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── COMMITMENT ── -->
 <section id="commitment" class="sec">
   <div class="comm-bloom" aria-hidden="true"></div>
   <div class="comm-bloom-2" aria-hidden="true"></div>
   <div class="wrap">
     <div class="sec-head center reveal">
       <span class="sec-label" style="color:rgba(255,120,120,0.85)">Our Promise</span>
-      <h2 class="sec-title" style="color:#fff">Three things every HotCall client<br>can count on from day one.</h2>
+      <h2 class="sec-title" style="color:#fff">Three things every client<br>can count on from day one.</h2>
       <p class="sec-sub" style="color:rgba(255,255,255,0.48);margin:0 auto">We're building our reputation on integrity — not fabricated case studies. Here are the non-negotiables behind every engagement we take on.</p>
     </div>
     <div class="promise-grid">
       <div class="promise-card reveal rd1">
-        <div class="promise-ico">📋</div>
+        <div class="promise-ico" aria-hidden="true">📋</div>
         <h3 class="promise-h">Transparent Reporting, Every Month</h3>
-        <p class="promise-p">Plain-English monthly reports showing exactly what ran, what the numbers look like, and what's coming next. No vanity metrics, no hidden dashboards, no ambiguity.</p>
+        <p class="promise-p">Plain-English monthly reports showing exactly what ran, what the numbers look like, and what's coming next. No vanity metrics, no hidden dashboards.</p>
       </div>
       <div class="promise-card reveal rd2">
-        <div class="promise-ico">✅</div>
+        <div class="promise-ico" aria-hidden="true">✅</div>
         <h3 class="promise-h">You Own Everything We Create</h3>
-        <p class="promise-p">Every ad, piece of content, and video we produce belongs to you — not us. If we ever part ways, you walk away with your complete marketing library. No exceptions, ever.</p>
+        <p class="promise-p">Every ad, piece of content, and video we produce belongs to you — not us. If we ever part ways, you walk away with your complete marketing library.</p>
       </div>
       <div class="promise-card reveal rd3">
-        <div class="promise-ico">🤝</div>
+        <div class="promise-ico" aria-hidden="true">🤝</div>
         <h3 class="promise-h">No Long-Term Contracts</h3>
-        <p class="promise-p">We earn your business every single month. No 12-month lock-ins, no cancellation fees. Our client retention comes from the quality of our work — not from paperwork trapping you.</p>
+        <p class="promise-p">We earn your business every single month. No 12-month lock-ins, no cancellation fees — just work worth staying for.</p>
       </div>
     </div>
     <div class="promise-divider reveal">
       <p class="promise-note">We're selectively onboarding our first clients — and those early partnerships receive our deepest attention and most hands-on service.</p>
       <a href="#cta-final" class="btn btn-white">Apply to Be a Founding Client →</a>
     </div>
+  </div>
+</section>
+
+<!-- ── PRICING ── -->
+<section id="pricing" class="sec">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="sec-label">Investment</span>
+      <h2 class="sec-title">Choose Your Growth Stage</h2>
+      <p class="sec-sub" style="margin:0 auto">Every plan builds toward the same connected system. Start where your business is today.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card reveal rd1">
+        <h3 class="price-name">Foundation</h3>
+        <p class="price-tagline">Establish a real online presence.</p>
+        <ul class="price-features">
+          <li>Conversion-focused website</li>
+          <li>Google Business Profile optimization</li>
+          <li>Local SEO foundation</li>
+        </ul>
+        <a href="#cta-final" class="btn btn-ghost" style="width:100%">Get Custom Pricing</a>
+      </div>
+      <div class="price-card featured reveal rd2">
+        <div class="price-badge">Most Popular</div>
+        <h3 class="price-name">Growth</h3>
+        <p class="price-tagline">Generate consistent, qualified leads.</p>
+        <ul class="price-features">
+          <li>Everything in Foundation</li>
+          <li>Google Ads management</li>
+          <li>Automated review generation</li>
+          <li>Ongoing SEO &amp; content</li>
+        </ul>
+        <a href="#cta-final" class="btn btn-primary" style="width:100%">Get Custom Pricing</a>
+      </div>
+      <div class="price-card reveal rd3">
+        <h3 class="price-name">Dominate</h3>
+        <p class="price-tagline">Run on full marketing automation.</p>
+        <ul class="price-features">
+          <li>Everything in Growth</li>
+          <li>AI content engine</li>
+          <li>AI avatar video</li>
+          <li>Social media management</li>
+        </ul>
+        <a href="#cta-final" class="btn btn-ghost" style="width:100%">Get Custom Pricing</a>
+      </div>
+    </div>
+    <p class="pricing-note reveal">Every quote is built around your market, goals, and current setup — never a cookie-cutter package. You'll get exact numbers on your free strategy call, before you spend anything.</p>
   </div>
 </section>
 
@@ -776,28 +941,36 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);p
     </div>
     <div class="faq-wrap">
       <div class="faq-item reveal rd1">
+        <button class="faq-q" aria-expanded="false">Why do you call these "infrastructure" instead of "services"? <i class="faq-icon">+</i></button>
+        <div class="faq-body"><p class="faq-a">Because they work best as one connected system, not six disconnected tasks bought separately. Your website, SEO, ads, and follow-up all feed each other — what converts in your ads informs your SEO, your reviews strengthen your ads, and so on. Infrastructure is what keeps working even when you're not thinking about it.</p></div>
+      </div>
+      <div class="faq-item reveal rd2">
+        <button class="faq-q" aria-expanded="false">How much does this cost? <i class="faq-icon">+</i></button>
+        <div class="faq-body"><p class="faq-a">It depends on your market, current setup, and goals — we don't believe in cookie-cutter packages. You'll get an exact quote on your free strategy call, with everything explained clearly before you spend a dollar.</p></div>
+      </div>
+      <div class="faq-item reveal rd3">
         <button class="faq-q" aria-expanded="false">How long does SEO take to produce real results? <i class="faq-icon">+</i></button>
         <div class="faq-body"><p class="faq-a">Honest answer: meaningful SEO results typically take 3–6 months, sometimes longer in competitive markets. That's not a strategy problem — that's how Google works. This is why we recommend combining SEO with Google Ads: Ads generate qualified leads from day one while SEO builds long-term organic momentum. We'll give you a realistic, market-specific timeline on our first call.</p></div>
       </div>
-      <div class="faq-item reveal rd2">
-        <button class="faq-q" aria-expanded="false">I've been burned by marketing agencies before. What's different here? <i class="faq-icon">+</i></button>
-        <div class="faq-body"><p class="faq-a">That's one of the first things most trade business owners tell us — and it's a completely fair concern. Our answer: no long-term contracts, transparent monthly reporting, and a free strategy call where we show you exactly what we'd do before you spend anything. We're a new agency building our name one client at a time — which means your experience matters to us more than it ever would to an agency with 200 clients.</p></div>
-      </div>
-      <div class="faq-item reveal rd3">
-        <button class="faq-q" aria-expanded="false">Do I own the ads, content, and videos you create? <i class="faq-icon">+</i></button>
-        <div class="faq-body"><p class="faq-a">Yes — 100%, without exception. Every piece of content, every ad creative, every video, and every campaign we build is yours. If we ever part ways, you walk away with everything intact. No locked platforms, no held-hostage campaigns. We believe lasting client relationships are built on trust, not dependency.</p></div>
-      </div>
       <div class="faq-item reveal rd4">
-        <button class="faq-q" aria-expanded="false">Can you manage our Google Ads and SEO at the same time? <i class="faq-icon">+</i></button>
-        <div class="faq-body"><p class="faq-a">Yes, and we recommend it. Running both channels from one agency gives us a unified view of your lead pipeline and allows us to shift budget intelligently based on real performance data. What converts in your Ads informs your SEO keyword strategy — and vice versa. The two are meaningfully stronger together than either one alone.</p></div>
+        <button class="faq-q" aria-expanded="false">I've been burned by marketing agencies before. What's different here? <i class="faq-icon">+</i></button>
+        <div class="faq-body"><p class="faq-a">That's one of the first things most trade business owners tell us — and it's a completely fair concern. Our answer: no long-term contracts, transparent monthly reporting, and a free strategy call where we show you exactly what we'd do before you spend anything. We're a new agency building our name one client at a time, which means your experience matters to us more than it ever would to an agency with 200 clients.</p></div>
       </div>
       <div class="faq-item reveal rd5">
+        <button class="faq-q" aria-expanded="false">Do I own the ads, content, and videos you create? <i class="faq-icon">+</i></button>
+        <div class="faq-body"><p class="faq-a">Yes — 100%, without exception. Every piece of content, every ad creative, every video, and every campaign we build is yours. If we ever part ways, you walk away with everything intact. No locked platforms, no held-hostage campaigns.</p></div>
+      </div>
+      <div class="faq-item reveal rd6">
+        <button class="faq-q" aria-expanded="false">Can you manage our Google Ads and SEO at the same time? <i class="faq-icon">+</i></button>
+        <div class="faq-body"><p class="faq-a">Yes, and we recommend it. Running both channels from one system gives us a unified view of your lead pipeline and lets us shift budget intelligently based on real performance data. The two are meaningfully stronger together than either one alone.</p></div>
+      </div>
+      <div class="faq-item reveal rd1">
         <button class="faq-q" aria-expanded="false">What size business do you work best with? <i class="faq-icon">+</i></button>
         <div class="faq-body"><p class="faq-a">We work best with established home service businesses generating between $500K and $20M annually. If you're just getting started, the economics of paid marketing may not work in your favor yet — and we'll tell you that honestly. If you're in that range and already running some marketing, there's almost certainly meaningful room to improve both efficiency and lead volume.</p></div>
       </div>
-      <div class="faq-item reveal rd6">
+      <div class="faq-item reveal rd2">
         <button class="faq-q" aria-expanded="false">What industries do you specialize in? <i class="faq-icon">+</i></button>
-        <div class="faq-body"><p class="faq-a">We focus entirely on home service businesses: HVAC, plumbing, electrical, roofing, general contracting, restoration, landscaping, pool service, pest control, and related trades. We don't work with restaurants, salons, or ecommerce. Our content templates, ad frameworks, and keyword strategies are all built around your industry — which is why our approach is more targeted than what a generalist agency can offer.</p></div>
+        <div class="faq-body"><p class="faq-a">We focus entirely on home service businesses: HVAC, plumbing, electrical, roofing, painting, landscaping, pressure washing, garage doors, restoration, pest control, pool companies, and general contractors. Our content templates, ad frameworks, and keyword strategies are all built around your industry — which is why our approach is more targeted than what a generalist agency can offer.</p></div>
       </div>
     </div>
   </div>
@@ -808,11 +981,11 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);p
   <div class="cta-bloom" aria-hidden="true"></div>
   <div class="wrap">
     <div class="cta-inner reveal">
-      <div class="scarcity"><span class="s-dot"></span>Now accepting new clients — limited spots available</div>
-      <h2 class="cta-final-h">Ready to Grow Your Business?</h2>
-      <p class="cta-final-p">Let's build a marketing system that consistently brings you qualified customers. Book a free 30-minute strategy call — we'll audit your digital presence, review your market, and show you exactly what we'd do for your business before you spend a dollar.</p>
-      <a href="mailto:hello@hotcallmarketing.com" class="btn btn-white" style="font-size:1.0625rem;padding:16px 40px">📞 Book My Free Strategy Call</a>
-      <p class="cta-trust">No contracts &nbsp;·&nbsp; No commitment &nbsp;·&nbsp; 100% free strategy call &nbsp;·&nbsp; Honest, results-focused marketing</p>
+      <div class="scarcity"><span class="s-dot"></span>Now onboarding founding clients — limited spots available</div>
+      <h2 class="cta-final-h">Ready to Build Your Growth Engine?</h2>
+      <p class="cta-final-p">Book a free 30-minute growth audit. We'll show you exactly what's costing you leads and what we'd build to fix it — before you spend a dollar.</p>
+      <a href="mailto:hello@hotcallmarketing.com" class="btn btn-white" style="font-size:1.0625rem;padding:16px 40px">Get Your Free Growth Audit</a>
+      <p class="cta-trust">No contracts &nbsp;·&nbsp; No pressure &nbsp;·&nbsp; 100% free audit &nbsp;·&nbsp; Straight answers</p>
     </div>
   </div>
 </section>
@@ -825,28 +998,27 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);p
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="nav-logo" style="margin-bottom:16px"><div class="footer-logo-wrap"><img src="/logo.png" alt="HotCall Marketing Logo" class="nav-logo-img-footer"></div>HotCall Marketing</div>
-        <p>AI-powered digital marketing built for home service businesses across South Florida. SEO, Google Ads, AI content, AI video — all from one agency that knows your industry.</p>
+        <p>Marketing infrastructure built for home service businesses across South Florida — websites, SEO, Google Ads, AI content, and automation running as one connected system.</p>
       </div>
       <div class="footer-col">
-        <h4>Services</h4>
+        <h4>Solutions</h4>
         <ul>
-          <li><a href="#services">SEO</a></li>
-          <li><a href="#services">Google Ads</a></li>
-          <li><a href="#services">AI Content</a></li>
-          <li><a href="#services">AI Avatar Videos</a></li>
-          <li><a href="#services">Social Media</a></li>
-          <li><a href="#services">Website Optimization</a></li>
+          <li><a href="#solutions">Search Infrastructure</a></li>
+          <li><a href="#solutions">Lead Infrastructure</a></li>
+          <li><a href="#solutions">AI Content &amp; Video</a></li>
+          <li><a href="#solutions">Social Infrastructure</a></li>
+          <li><a href="#solutions">Website Infrastructure</a></li>
+          <li><a href="#pricing">Pricing</a></li>
         </ul>
       </div>
       <div class="footer-col footer-contact">
         <h4>Contact</h4>
         <a href="mailto:hello@hotcallmarketing.com">✉️ hello@hotcallmarketing.com</a>
-        <a href="tel:+15555555555">📞 (555) 555-5555</a>
-        <a href="#cta-final" class="btn btn-primary" style="margin-top:14px;font-size:0.8rem;padding:9px 18px;width:fit-content;animation:none">Book Free Strategy Call</a>
+        <a href="#cta-final" class="btn btn-primary" style="margin-top:14px;font-size:0.8rem;padding:9px 18px;width:fit-content;animation:none">Get Free Growth Audit</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="footer-copy">© 2025 HotCall Marketing LLC &nbsp;·&nbsp; South Florida &nbsp;·&nbsp; All rights reserved.</p>
+      <p class="footer-copy">© <span id="copyYear">2026</span> HotCall Marketing LLC &nbsp;·&nbsp; South Florida &nbsp;·&nbsp; All rights reserved.</p>
       <div class="footer-socials">
         <a href="#" aria-label="Facebook">f</a>
         <a href="#" aria-label="Instagram">ig</a>
@@ -858,7 +1030,7 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);p
 </footer>
 
 <div class="mobile-cta-bar">
-  <a href="#cta-final" class="btn btn-primary">📞 Book Free Strategy Call</a>
+  <a href="#cta-final" class="btn btn-primary">Get Free Growth Audit</a>
 </div>
 
 <script>
@@ -881,7 +1053,7 @@ document.querySelectorAll('.mob-link').forEach(l => {
   l.addEventListener('click', () => { menuOpen = false; mobileMenu.classList.remove('open'); });
 });
 
-// ── SCROLL REVEAL (Intersection Observer)
+// ── SCROLL REVEAL
 const reveals = document.querySelectorAll('.reveal');
 const revealObs = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -892,6 +1064,20 @@ const revealObs = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 reveals.forEach(el => revealObs.observe(el));
+
+// ── NAV SCROLL-SPY
+const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+const spySections = Array.from(navLinks).map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const spyObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const match = document.querySelector('.nav-links a[href="#' + entry.target.id + '"]');
+      if (match) match.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px' });
+spySections.forEach(s => spyObs.observe(s));
 
 // ── FAQ ACCORDION
 document.querySelectorAll('.faq-q').forEach(btn => {
@@ -908,6 +1094,61 @@ document.querySelectorAll('.faq-q').forEach(btn => {
     }
   });
 });
+
+// ── SELF-AUDIT
+const auditCards = document.querySelectorAll('.audit-card');
+const auditMsgEl = document.getElementById('auditMsg');
+const auditScoreEl = document.getElementById('auditScoreNum');
+const auditBarEl = document.getElementById('auditBarFill');
+function updateAuditScore(){
+  let yes = 0;
+  auditCards.forEach(c => { if (c.dataset.state === 'yes') yes++; });
+  auditScoreEl.textContent = yes;
+  auditBarEl.style.width = (yes / auditCards.length * 100) + '%';
+  if (yes === 0) {
+    auditMsgEl.textContent = "Click each card above to see where your business stands.";
+  } else if (yes <= 2) {
+    auditMsgEl.textContent = "That gap is likely costing you real, bookable jobs every month.";
+  } else if (yes <= 4) {
+    auditMsgEl.textContent = "You've got a foundation — but the remaining gaps are still costing you leads.";
+  } else {
+    auditMsgEl.textContent = "You're ahead of most local businesses — let's make sure it's fully optimized.";
+  }
+}
+function toggleAuditCard(card){
+  card.dataset.state = card.dataset.state === 'yes' ? 'no' : 'yes';
+  card.setAttribute('aria-pressed', card.dataset.state === 'yes' ? 'true' : 'false');
+  updateAuditScore();
+}
+auditCards.forEach(card => {
+  card.addEventListener('click', () => toggleAuditCard(card));
+  card.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleAuditCard(card); }
+  });
+});
+
+// ── ROI CALCULATOR
+const calcCalls = document.getElementById('calcCalls');
+const calcValue = document.getElementById('calcValue');
+const calcRate = document.getElementById('calcRate');
+function fmtMoney(n){ return '$' + Math.round(n).toLocaleString('en-US'); }
+function updateCalc(){
+  const calls = parseFloat(calcCalls.value);
+  const value = parseFloat(calcValue.value);
+  const rate = parseFloat(calcRate.value) / 100;
+  const monthly = calls * value * rate;
+  const yearly = monthly * 12;
+  document.getElementById('calcCallsOut').textContent = calls;
+  document.getElementById('calcValueOut').textContent = fmtMoney(value);
+  document.getElementById('calcRateOut').textContent = Math.round(rate * 100) + '%';
+  document.getElementById('calcMonthly').textContent = fmtMoney(monthly);
+  document.getElementById('calcYearly').textContent = fmtMoney(yearly);
+}
+[calcCalls, calcValue, calcRate].forEach(el => el.addEventListener('input', updateCalc));
+updateCalc();
+
+// ── AUTO-UPDATE COPYRIGHT YEAR
+document.getElementById('copyYear').textContent = new Date().getFullYear();
 
 // ── SMOOTH SCROLL (offset for fixed nav)
 document.querySelectorAll('a[href^="#"]').forEach(a => {
