@@ -9,7 +9,8 @@
 <meta property="og:description" content="Websites, Google visibility, AI content, and automation — built as one connected growth system for plumbers, HVAC companies, electricians, roofers, and contractors.">
 <meta property="og:type" content="website">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
@@ -344,7 +345,6 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 .faq-icon{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.9rem;flex-shrink:0;transition:all 0.22s;font-style:normal;font-weight:700}
 .faq-item.open .faq-icon{background:var(--red);border-color:var(--red);color:#fff;transform:rotate(45deg)}
 .faq-body{max-height:0;overflow:hidden;transition:max-height 0.34s ease}
-.faq-item.open .faq-body{max-height:320px}
 .faq-a{padding:16px 24px 22px;font-size:0.9rem;color:var(--muted);line-height:1.78;border-top:1px solid var(--border);background:#fff}
 
 /* ─── FINAL CTA ─── */
@@ -395,6 +395,9 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);p
 .footer-socials a{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;font-size:0.88rem;color:rgba(255,255,255,0.38);transition:all 0.18s;border:1px solid rgba(255,255,255,0.08)}
 .footer-socials a .icon{width:16px;height:16px}
 .footer-socials a:hover{background:var(--red);color:#fff;border-color:var(--red)}
+.footer-legal-links{display:flex;align-items:center;gap:8px;font-size:0.78rem;color:rgba(255,255,255,0.26)}
+.footer-legal-links a{color:rgba(255,255,255,0.42);transition:color 0.15s}
+.footer-legal-links a:hover{color:#fff}
 
 /* ─── MOBILE STICKY ─── */
 .mobile-cta-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:998;padding:12px 16px;background:#fff;border-top:1px solid var(--border);box-shadow:0 -4px 24px rgba(0,0,0,0.09)}
@@ -520,7 +523,7 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);p
     <div class="reveal">
       <div class="hero-badge">
         <span class="pulse-dot"></span>
-        For Home Service Businesses · $10K–$20M/yr
+        For Home Service Businesses · $500K–$20M/yr
       </div>
       <h1 class="hero-h1">Your Next Customer Is Looking Right Now. <em>Will They Find You First?</em></h1>
       <p class="hero-p">Every day, people search for businesses like yours. We build the websites, Google presence, advertising, and automation that help them find you first, trust you faster, and choose you with confidence.</p>
@@ -1135,11 +1138,15 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);p
     </div>
     <div class="footer-bottom">
       <p class="footer-copy">© <span id="copyYear">2026</span> HotCall Marketing LLC &nbsp;·&nbsp; South Florida &nbsp;·&nbsp; All rights reserved.</p>
-      <div class="footer-socials">
-        <a href="#" aria-label="Facebook"><svg class="icon"><use href="#i-fb"/></svg></a>
-        <a href="#" aria-label="Instagram"><svg class="icon"><use href="#i-ig"/></svg></a>
-        <a href="#" aria-label="LinkedIn"><svg class="icon"><use href="#i-li"/></svg></a>
-        <a href="#" aria-label="YouTube"><svg class="icon"><use href="#i-yt"/></svg></a>
+      <!-- Social row intentionally removed: a dead href="#" link is worse than no link at all.
+           Re-add real profile URLs here when live (see ASSETS_NEEDED.md), e.g.:
+           <div class="footer-socials">
+             <a href="https://facebook.com/REAL_HANDLE" aria-label="Facebook"><svg class="icon"><use href="#i-fb"/></svg></a>
+           </div> -->
+      <div class="footer-legal-links">
+        <a href="/privacy.html">Privacy</a>
+        <span aria-hidden="true">·</span>
+        <a href="/terms.html">Terms</a>
       </div>
     </div>
   </div>
@@ -1195,20 +1202,31 @@ const spyObs = new IntersectionObserver((entries) => {
 }, { rootMargin: '-45% 0px -50% 0px' });
 spySections.forEach(s => spyObs.observe(s));
 
-// ── FAQ ACCORDION
+// ── FAQ ACCORDION (dynamically measured height — never clips, any content length or font size)
+function closeFaqItem(el) {
+  const body = el.querySelector('.faq-body');
+  el.classList.remove('open');
+  el.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+  body.style.maxHeight = '0px';
+}
+function openFaqItem(el) {
+  const body = el.querySelector('.faq-body');
+  el.classList.add('open');
+  el.querySelector('.faq-q').setAttribute('aria-expanded', 'true');
+  body.style.maxHeight = body.scrollHeight + 'px';
+}
 document.querySelectorAll('.faq-q').forEach(btn => {
   btn.addEventListener('click', () => {
     const item = btn.closest('.faq-item');
     const wasOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(el => {
-      el.classList.remove('open');
-      el.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
-    });
-    if (!wasOpen) {
-      item.classList.add('open');
-      btn.setAttribute('aria-expanded', 'true');
-    }
+    document.querySelectorAll('.faq-item.open').forEach(closeFaqItem);
+    if (!wasOpen) openFaqItem(item);
   });
+});
+// re-measure the open item if viewport/font-size changes reflow its content
+window.addEventListener('resize', () => {
+  const openItem = document.querySelector('.faq-item.open');
+  if (openItem) openItem.querySelector('.faq-body').style.maxHeight = openItem.querySelector('.faq-body').scrollHeight + 'px';
 });
 
 // ── SELF-AUDIT
