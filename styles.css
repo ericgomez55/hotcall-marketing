@@ -95,6 +95,13 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 .btn-white:hover{background:var(--red-bg);transform:translateY(-2px)}
 .btn:focus-visible,a:focus-visible,.audit-card:focus-visible,.faq-q:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 
+/* ─── CURSOR RING (fine pointers + GSAP only; injected by main.js) ───
+   Accompanies — never replaces — the native cursor; grows over
+   interactive elements. */
+.cursor-ring{position:fixed;top:-14px;left:-14px;width:28px;height:28px;border:1.5px solid rgba(217,30,24,0.4);border-radius:50%;pointer-events:none;z-index:2000;opacity:0;transition:width 0.18s var(--ease-bounce),height 0.18s var(--ease-bounce),border-color 0.18s,opacity 0.25s,margin 0.18s var(--ease-bounce);will-change:transform}
+.cursor-ring.show{opacity:1}
+.cursor-ring.on{width:42px;height:42px;margin:-7px 0 0 -7px;border-color:rgba(217,30,24,0.8)}
+
 /* ─── NAV ─── */
 #nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:border-color 0.25s,box-shadow 0.25s}
 #nav.scrolled{border-bottom-color:var(--border);box-shadow:0 1px 16px rgba(0,0,0,0.07)}
@@ -211,7 +218,7 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 .audit-card[data-state="no"] .audit-badge{background:var(--red-bg);border-color:var(--red)}
 @keyframes auditPulse{0%{transform:scale(1)}45%{transform:scale(1.05)}100%{transform:scale(1)}}
 .audit-card.pulsing{animation:auditPulse 0.2s var(--ease-bounce)}
-.audit-result{background:var(--section);border:1px solid var(--border);border-radius:var(--r-lg);padding:40px;text-align:center;box-shadow:var(--shadow-lg);max-width:600px;margin:0 auto}
+.audit-result{background:var(--section);border:1px solid var(--border);border-radius:var(--r);padding:40px;text-align:center;box-shadow:var(--shadow-lg);max-width:600px;margin:0 auto}
 .audit-score{font-family:var(--font-display);font-size:2.75rem;font-weight:700;color:var(--h-color);margin-bottom:8px;letter-spacing:-0.02em}
 .audit-msg{font-size:0.9375rem;color:var(--muted);margin-bottom:24px;min-height:24px}
 .audit-bar-track{width:100%;max-width:400px;margin:0 auto 28px;height:8px;background:var(--border);border-radius:99px;overflow:hidden}
@@ -255,7 +262,7 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 
 /* ─── ROI CALCULATOR ─── */
 #calculator{background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.calc-card{background:var(--section);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--shadow-lg);padding:44px;max-width:600px;margin:0 auto}
+.calc-card{background:var(--section);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow-lg);padding:44px;max-width:600px;margin:0 auto}
 .calc-row{margin-bottom:30px}
 .calc-row-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;font-size:0.9rem;font-weight:600;color:var(--h-color)}
 .calc-val{color:var(--red);font-weight:800;font-size:1rem}
@@ -333,7 +340,8 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 #why::after,#cta-final::after{content:'';position:absolute;inset:0;opacity:0.4;background-image:radial-gradient(rgba(255,255,255,0.045) 1px,transparent 1px);background-size:3px 3px;mix-blend-mode:overlay;pointer-events:none;z-index:0}
 
 /* ─── WHY (story + commitment merged) ─── */
-#why{background:var(--navy);position:relative;overflow:hidden}
+#why{background:var(--navy);position:relative;overflow:hidden;padding-top:150px}
+.why-curve{position:absolute;top:0;left:0;width:100%;height:80px;display:block;z-index:0}
 .why-bloom{position:absolute;top:-150px;right:-150px;width:500px;height:500px;background:radial-gradient(circle,rgba(217,30,24,0.12) 0%,transparent 65%);pointer-events:none}
 .why-bloom-2{position:absolute;bottom:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(11,31,58,0.5) 0%,transparent 65%);pointer-events:none}
 .why-intro{max-width:720px;margin:0 auto 56px;text-align:center;position:relative;z-index:1}
@@ -365,7 +373,7 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 /* ─── PRICING ─── */
 #pricing{background:var(--white)}
 .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start}
-.price-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--r-lg);padding:36px 30px;transition:all 0.2s;position:relative}
+.price-card{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:36px 30px;transition:all 0.2s;position:relative}
 .price-card.featured{border-color:var(--red);box-shadow:var(--shadow-lg);transform:scale(1.03)}
 .price-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-size:0.68rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:5px 14px;border-radius:999px;white-space:nowrap}
 .price-name{font-family:var(--font-display);font-size:1.25rem;font-weight:700;color:var(--h-color);margin-bottom:8px}
@@ -400,7 +408,7 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 .s-dot{width:6px;height:6px;background:var(--amber);border-radius:50%;animation:blink 2s ease-in-out infinite}
 
 /* ─── GROWTH AUDIT FORM ─── */
-.cta-form{max-width:580px;margin:8px auto 0;text-align:left;background:rgba(255,255,255,0.06);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.14);border-radius:var(--r-lg);padding:32px;position:relative;z-index:2}
+.cta-form{max-width:580px;margin:8px auto 0;text-align:left;background:rgba(255,255,255,0.06);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.14);border-radius:var(--r);padding:32px;position:relative;z-index:2}
 .cta-form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .cta-form-group{margin-bottom:18px}
 .cta-form-group:last-of-type{margin-bottom:0}

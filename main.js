@@ -214,10 +214,19 @@ const auditCards = document.querySelectorAll('.audit-card');
 const auditMsgEl = document.getElementById('auditMsg');
 const auditScoreEl = document.getElementById('auditScoreNum');
 const auditBarEl = document.getElementById('auditBarFill');
+const auditScoreState = { n: 0 };
 function updateAuditScore(){
   let yes = 0;
   auditCards.forEach(c => { if (c.dataset.state === 'yes') yes++; });
-  auditScoreEl.textContent = yes;
+  if (HAS_GSAP && !REDUCED_MOTION) {
+    gsap.to(auditScoreState, {
+      n: yes, duration: 0.4, ease: 'power2.out', overwrite: 'auto',
+      onUpdate: () => { auditScoreEl.textContent = Math.round(auditScoreState.n); }
+    });
+  } else {
+    auditScoreState.n = yes;
+    auditScoreEl.textContent = yes;
+  }
   auditBarEl.style.width = (yes / auditCards.length * 100) + '%';
   if (yes === 0) {
     auditMsgEl.textContent = "Click each card above to see where your business stands.";
@@ -250,6 +259,21 @@ const calcCalls = document.getElementById('calcCalls');
 const calcValue = document.getElementById('calcValue');
 const calcRate = document.getElementById('calcRate');
 function fmtMoney(n){ return '$' + Math.round(n).toLocaleString('en-US'); }
+
+// money outputs count up/down to their new value instead of snapping per tick;
+// slider labels stay instant (they're direct input echoes)
+const countUpState = { monthly: 0, yearly: 0 };
+function tweenMoney(key, el, target) {
+  if (HAS_GSAP && !REDUCED_MOTION) {
+    gsap.to(countUpState, {
+      [key]: target, duration: 0.5, ease: 'power2.out', overwrite: 'auto',
+      onUpdate: () => { el.textContent = fmtMoney(countUpState[key]); }
+    });
+  } else {
+    countUpState[key] = target;
+    el.textContent = fmtMoney(target);
+  }
+}
 function updateCalc(){
   const calls = parseFloat(calcCalls.value);
   const value = parseFloat(calcValue.value);
@@ -259,8 +283,8 @@ function updateCalc(){
   document.getElementById('calcCallsOut').textContent = calls;
   document.getElementById('calcValueOut').textContent = fmtMoney(value);
   document.getElementById('calcRateOut').textContent = Math.round(rate * 100) + '%';
-  document.getElementById('calcMonthly').textContent = fmtMoney(monthly);
-  document.getElementById('calcYearly').textContent = fmtMoney(yearly);
+  tweenMoney('monthly', document.getElementById('calcMonthly'), monthly);
+  tweenMoney('yearly', document.getElementById('calcYearly'), yearly);
 }
 [calcCalls, calcValue, calcRate].forEach(el => el.addEventListener('input', updateCalc));
 updateCalc();
@@ -298,6 +322,43 @@ if (heroCalcSlider) {
 
 // ── AUTO-UPDATE COPYRIGHT YEAR
 document.getElementById('copyYear').textContent = new Date().getFullYear();
+
+// ── POLISH LAYER (GSAP + fine pointer only; never under reduced motion)
+if (GSAP_ON && window.matchMedia('(pointer: fine)').matches) {
+
+  // magnetic primary CTAs: drift a few px toward the cursor, spring back on leave
+  document.querySelectorAll('.btn-primary').forEach(btn => {
+    const xTo = gsap.quickTo(btn, 'x', { duration: 0.35, ease: 'power3.out' });
+    const yTo = gsap.quickTo(btn, 'y', { duration: 0.35, ease: 'power3.out' });
+    btn.addEventListener('mousemove', e => {
+      const r = btn.getBoundingClientRect();
+      xTo(((e.clientX - (r.left + r.width / 2)) / (r.width / 2)) * 6);
+      yTo(((e.clientY - (r.top + r.height / 2)) / (r.height / 2)) * 5);
+    });
+    btn.addEventListener('mouseleave', () => {
+      gsap.to(btn, { x: 0, y: 0, duration: 0.55, ease: 'elastic.out(1, 0.45)' });
+    });
+  });
+
+  // cursor ring: a quiet companion to the native cursor (never replaces it)
+  // that grows over anything interactive
+  const ring = document.createElement('div');
+  ring.className = 'cursor-ring';
+  ring.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(ring);
+  const ringX = gsap.quickTo(ring, 'x', { duration: 0.18, ease: 'power3.out' });
+  const ringY = gsap.quickTo(ring, 'y', { duration: 0.18, ease: 'power3.out' });
+  const INTERACTIVE = 'a, button, .audit-card, .faq-q, input[type="range"], .sb, .port-card';
+  let ringShown = false;
+  document.addEventListener('mousemove', e => {
+    if (!ringShown) { ring.classList.add('show'); ringShown = true; }
+    ringX(e.clientX);
+    ringY(e.clientY);
+    ring.classList.toggle('on', !!(e.target.closest && e.target.closest(INTERACTIVE)));
+  }, { passive: true });
+  document.addEventListener('mouseleave', () => { ring.classList.remove('show'); ringShown = false; });
+}
+
 
 // ── GROWTH AUDIT FORM SUBMISSION (with spam hardening)
 const gaForm = document.getElementById('growthAuditForm');
