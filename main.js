@@ -66,18 +66,58 @@ if (GSAP_ON) {
     if (el.closest('#hero')) return; // the hero runs its own entrance timeline below
     const rd = [...el.classList].find(c => /^rd[1-6]$/.test(c));
     const delay = rd ? parseInt(rd[2], 10) * 0.08 : 0;
-    gsap.from(el, {
-      opacity: 0, y: 28,
-      duration: MOTION.DUR_MD, ease: 'expo.out', delay,
+    const isHeader = el.classList.contains('sec-head');
+    // entrance varies by element type — not one effect copy-pasted everywhere
+    const from = { opacity: 0, duration: isHeader ? MOTION.DUR_LG : MOTION.DUR_MD, ease: 'expo.out', delay };
+    switch (el.dataset.reveal) {
+      case 'scale': Object.assign(from, { scale: 0.97, y: 20 }); break;
+      case 'slide': Object.assign(from, { x: -36, y: 0 }); break;
+      default: Object.assign(from, { y: isHeader ? 34 : 28 });
+    }
+    gsap.from(el, Object.assign(from, {
       scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+    }));
+  });
+
+  // The Shift: each problem row resolves into its fix, scrubbed to scroll position
+  gsap.utils.toArray('.shift-pair').forEach(pair => {
+    const oldSide = pair.querySelector('.sp-old');
+    const newSide = pair.querySelector('.sp-new');
+    const arrow = pair.querySelector('.sp-arrow');
+    gsap.timeline({
+      scrollTrigger: { trigger: pair, start: 'top 80%', end: 'top 48%', scrub: true }
+    })
+      .fromTo(newSide, { opacity: 0.3, x: 18 }, { opacity: 1, x: 0, ease: 'none' }, 0)
+      .fromTo(oldSide, { opacity: 1 }, { opacity: 0.55, ease: 'none' }, 0)
+      .fromTo(arrow, { color: '#6B7280' }, { color: '#D91E18', ease: 'none' }, 0);
+    // the strike-through draws itself once the row crosses the resolve point
+    ScrollTrigger.create({
+      trigger: pair, start: 'top 55%',
+      onEnter: () => oldSide.classList.add('resolved'),
+      onLeaveBack: () => oldSide.classList.remove('resolved')
     });
   });
+
+  // "Why" headline gets the page's second (and last) word-stagger reveal
+  const whyH2 = document.getElementById('whyH2');
+  if (whyH2) {
+    splitWords(whyH2);
+    gsap.from('#whyH2 .hw', {
+      y: 26, opacity: 0, duration: MOTION.DUR_LG, ease: 'expo.out', stagger: 0.07,
+      scrollTrigger: { trigger: '#whyH2', start: 'top 85%', once: true }
+    });
+  }
 } else {
   const reveals = document.querySelectorAll('.reveal');
   const revealObs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
+        // no scrub available — resolve shift rows as they enter view instead
+        if (entry.target.classList.contains('shift-pair')) {
+          const oldSide = entry.target.querySelector('.sp-old');
+          if (oldSide) oldSide.classList.add('resolved');
+        }
         revealObs.unobserve(entry.target);
       }
     });
@@ -85,30 +125,32 @@ if (GSAP_ON) {
   reveals.forEach(el => revealObs.observe(el));
 }
 
+// splits an element's text into inline-block word spans (.hw) for staggered
+// reveals, preserving nested markup like the hero's <em>. Hoisted — used by
+// both the hero and the "Why" headline above.
+function splitWords(node) {
+  [...node.childNodes].forEach(child => {
+    if (child.nodeType === 3) {
+      const frag = document.createDocumentFragment();
+      child.textContent.split(/(\s+)/).forEach(part => {
+        if (!part) return;
+        if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+        const s = document.createElement('span');
+        s.className = 'hw';
+        s.textContent = part;
+        frag.appendChild(s);
+      });
+      node.replaceChild(frag, child);
+    } else if (child.nodeType === 1) {
+      splitWords(child);
+    }
+  });
+}
+
 // ── HERO ENTRANCE + SCROLL-SCRUBBED EXIT (GSAP only; fallback is the CSS reveal)
 if (GSAP_ON) {
-  // split the H1 into word spans for a staggered, line-aware reveal
   const heroH1 = document.getElementById('heroH1');
-  if (heroH1) {
-    (function splitWords(node) {
-      [...node.childNodes].forEach(child => {
-        if (child.nodeType === 3) {
-          const frag = document.createDocumentFragment();
-          child.textContent.split(/(\s+)/).forEach(part => {
-            if (!part) return;
-            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
-            const s = document.createElement('span');
-            s.className = 'hw';
-            s.textContent = part;
-            frag.appendChild(s);
-          });
-          node.replaceChild(frag, child);
-        } else if (child.nodeType === 1) {
-          splitWords(child);
-        }
-      });
-    })(heroH1);
-  }
+  if (heroH1) splitWords(heroH1);
 
   const heroTl = gsap.timeline({ defaults: { ease: 'expo.out' } });
   heroTl
@@ -190,6 +232,10 @@ function updateAuditScore(){
 function toggleAuditCard(card){
   card.dataset.state = card.dataset.state === 'yes' ? 'no' : 'yes';
   card.setAttribute('aria-pressed', card.dataset.state === 'yes' ? 'true' : 'false');
+  // compact tactile pulse on toggle (CSS keyframe — works with or without GSAP)
+  card.classList.remove('pulsing');
+  void card.offsetWidth; // restart the animation if re-toggled quickly
+  card.classList.add('pulsing');
   updateAuditScore();
 }
 auditCards.forEach(card => {
