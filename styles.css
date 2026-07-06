@@ -71,11 +71,18 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 .sec-head.center{text-align:center}
 .sec-head.center .sec-sub{margin:0 auto}
 
-/* ─── SCROLL REVEAL ─── */
+/* ─── SCROLL REVEAL (CSS/IntersectionObserver fallback path) ───
+   When GSAP+ScrollTrigger load successfully, main.js adds .gsap-on to <html>
+   and takes full ownership of entrances — these CSS reveals switch off so the
+   two systems never double-animate the same element. */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity 0.55s ease,transform 0.55s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
 .rd1{transition-delay:0.08s}.rd2{transition-delay:0.16s}.rd3{transition-delay:0.24s}
 .rd4{transition-delay:0.32s}.rd5{transition-delay:0.40s}.rd6{transition-delay:0.48s}
+.gsap-on .reveal{opacity:1;transform:none;transition:none}
+/* word-level hero headline stagger (spans injected by main.js only under .gsap-on) */
+.hero-h1 .hw{display:inline-block}
+.hero-h1 em .hw{background:linear-gradient(130deg,var(--red) 0%,#FF4444 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
 /* ─── BUTTONS ─── */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font);font-weight:600;font-size:0.9375rem;border-radius:var(--r-sm);transition:all 0.18s ease;cursor:pointer;white-space:nowrap;letter-spacing:-0.01em}
@@ -130,41 +137,33 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 .hero-trust span:first-child{padding-left:0}
 .hero-trust .trust-check{color:var(--green)}
 
-/* ─── HERO CINEMATIC VISUAL ─── */
-.hero-visual{position:relative;height:460px;perspective:1000px}
-.hero-cinema{position:absolute;inset:0;border-radius:24px;overflow:hidden;background:radial-gradient(120% 130% at 20% 0%,#16305a 0%,var(--navy) 46%,var(--navy-deep) 100%);box-shadow:0 24px 60px -12px rgba(7,22,41,0.45)}
-.hero-cinema-grain{position:absolute;inset:0;opacity:0.5;background-image:radial-gradient(rgba(255,255,255,0.05) 1px,transparent 1px);background-size:3px 3px;mix-blend-mode:overlay;pointer-events:none}
-.hero-cinema-lines{position:absolute;inset:0;width:100%;height:100%}
+/* ─── HERO SIGNATURE VISUAL: LIVE MISSED-CALL ESTIMATE ───
+   The one element on the page that keeps the 24px signature radius.
+   Replaces the old mocked analytics dashboard: nothing here resembles
+   client data — the only number shown is computed from the visitor's
+   own slider input. */
+.hero-visual{position:relative}
+.hero-engine{position:relative;border-radius:24px;overflow:hidden;background:radial-gradient(120% 130% at 20% 0%,#16305a 0%,var(--navy) 46%,var(--navy-deep) 100%);box-shadow:0 24px 60px -12px rgba(7,22,41,0.45);padding:56px 44px;min-height:460px;display:flex;align-items:center;justify-content:center}
+.hero-engine-grain{position:absolute;inset:0;opacity:0.5;background-image:radial-gradient(rgba(255,255,255,0.05) 1px,transparent 1px);background-size:3px 3px;mix-blend-mode:overlay;pointer-events:none}
+.hero-engine-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .cine-path{fill:none;stroke-width:1.4;stroke-linecap:round}
 .cine-path.p1{stroke:rgba(217,30,24,0.85);stroke-dasharray:6 10;animation:flow 5s linear infinite}
 .cine-path.p2{stroke:rgba(255,255,255,0.18);stroke-dasharray:3 9;animation:flow 8s linear infinite}
 .cine-path.p3{stroke:rgba(255,255,255,0.10);stroke-dasharray:2 12;animation:flow 11s linear infinite reverse}
 @keyframes flow{to{stroke-dashoffset:-160}}
 .cine-node{fill:#FF6B5E;filter:drop-shadow(0 0 6px rgba(217,30,24,0.8))}
-.hero-cinema-glow{position:absolute;top:-20%;right:-10%;width:70%;height:70%;background:radial-gradient(circle,rgba(217,30,24,0.20) 0%,transparent 70%);pointer-events:none}
-.hero-stage{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
-.mock-card{background:rgba(255,255,255,0.97);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.6);border-radius:var(--r);box-shadow:0 16px 40px rgba(0,0,0,0.35);padding:20px 22px}
-.mock-main{position:absolute;top:24px;left:24px;right:80px;z-index:1}
-.mock-rank{position:absolute;bottom:72px;right:20px;width:214px;z-index:3}
-.mock-leads{position:absolute;bottom:24px;left:28px;width:170px;z-index:2}
-.mock-ai{position:absolute;top:-14px;right:36px;z-index:4;background:var(--red);color:#fff;border-radius:999px;padding:7px 16px;font-size:0.7rem;font-weight:700;display:flex;align-items:center;gap:8px;box-shadow:0 4px 14px rgba(217,30,24,0.45);letter-spacing:0.04em}
-.mock-ai .ai-dot{width:7px;height:7px;background:#fff;border-radius:50%;animation:blink 2.2s ease-in-out infinite}
-.mock-label{font-size:0.66rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
-.mock-trend{color:var(--green);font-weight:700;font-size:0.76rem;background:var(--green-bg);padding:2px 8px;border-radius:4px}
-.bar-chart{display:flex;align-items:flex-end;gap:5px;height:68px;margin-top:4px}
-.bar{flex:1;border-radius:4px 4px 0 0;background:var(--border)}
-.bar.active{background:var(--green)}
-.bar.prev{background:#CBD5E1}
-.bar-labels{display:flex;gap:5px;margin-top:5px}
-.bar-labels span{flex:1;font-size:0.56rem;text-align:center;color:var(--muted)}
-.rank-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border)}
-.rank-row:last-child{border-bottom:none}
-.rank-pos{width:20px;height:20px;background:var(--navy);color:#fff;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:800;flex-shrink:0}
-.rank-kw{color:var(--h-color);font-weight:500;flex:1;font-size:0.7rem}
-.rank-arr{color:var(--green);font-weight:700;font-size:0.68rem}
-.leads-icon{font-size:1.6rem;color:var(--red);line-height:1;margin:4px 0}
-.leads-sub{display:flex;align-items:center;gap:5px;font-size:0.66rem;color:var(--muted);margin-top:5px}
-.live-dot{width:6px;height:6px;background:var(--red);border-radius:50%}
+.hero-engine-glow{position:absolute;top:-20%;right:-10%;width:70%;height:70%;background:radial-gradient(circle,rgba(217,30,24,0.20) 0%,transparent 70%);pointer-events:none}
+.hero-calc{position:relative;z-index:2;width:100%;max-width:340px;background:rgba(255,255,255,0.06);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.14);border-radius:var(--r);padding:28px 26px;text-align:center}
+.hero-calc-label{font-family:var(--font-display);font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:14px}
+.hero-calc-num{font-family:var(--font-display);font-size:3rem;font-weight:700;color:#fff;letter-spacing:-0.02em;line-height:1;font-variant-numeric:tabular-nums}
+.hero-calc-per{font-size:0.8rem;color:rgba(255,255,255,0.5);margin:8px 0 24px}
+.hero-calc-slider-row{margin-bottom:16px}
+.hero-calc-slider-row .calc-slider{background:rgba(255,255,255,0.18)}
+.hero-calc-slider-meta{font-size:0.8rem;color:rgba(255,255,255,0.65);margin-top:10px}
+.hero-calc-slider-meta strong{color:#fff;font-variant-numeric:tabular-nums}
+.hero-calc-note{font-size:0.7rem;color:rgba(255,255,255,0.38);line-height:1.6;margin-bottom:16px}
+.hero-calc-link{display:inline-flex;align-items:center;gap:6px;font-size:0.85rem;font-weight:600;color:#FF8A8A;transition:color 0.15s,gap 0.15s}
+.hero-calc-link:hover{color:#fff;gap:10px}
 
 /* ─── PROOF (industries + trust chips, merged) ─── */
 #proof{background:var(--section);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:44px 0 40px}
@@ -408,8 +407,11 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);p
   .audit-grid{grid-template-columns:repeat(3,1fr)}
 }
 @media(max-width:768px){
-  .hero-inner{grid-template-columns:1fr}
-  .hero-visual{display:none}
+  .hero-inner{grid-template-columns:1fr;gap:44px}
+  /* compact — but never hidden — hero calculator on mobile */
+  .hero-engine{min-height:0;padding:40px 22px}
+  .hero-calc{max-width:100%;padding:24px 20px}
+  .hero-calc-num{font-size:2.5rem}
   .nav-links,.nav-right{display:none}
   .hamburger{display:flex}
   .bento{grid-template-columns:1fr}

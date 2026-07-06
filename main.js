@@ -33,6 +33,11 @@ if (HAS_LENIS && !REDUCED_MOTION) {
   }
 }
 
+// GSAP owns every entrance/scroll animation when fully loaded and motion is allowed;
+// .gsap-on switches the CSS-reveal fallback off so nothing double-animates.
+const GSAP_ON = HAS_GSAP && HAS_SCROLLTRIGGER && !REDUCED_MOTION;
+if (GSAP_ON) document.documentElement.classList.add('gsap-on');
+
 // ── NAV SCROLL SHADOW
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
@@ -53,16 +58,73 @@ document.querySelectorAll('.mob-link').forEach(l => {
 });
 
 // ── SCROLL REVEAL
-const reveals = document.querySelectorAll('.reveal');
-const revealObs = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      revealObs.unobserve(entry.target);
-    }
+// GSAP path: per-element ScrollTrigger entrances using the MOTION tokens,
+// honoring the rd1–rd6 stagger tiers the markup already declares.
+// Fallback path: the original IntersectionObserver + CSS transitions.
+if (GSAP_ON) {
+  gsap.utils.toArray('.reveal').forEach(el => {
+    if (el.closest('#hero')) return; // the hero runs its own entrance timeline below
+    const rd = [...el.classList].find(c => /^rd[1-6]$/.test(c));
+    const delay = rd ? parseInt(rd[2], 10) * 0.08 : 0;
+    gsap.from(el, {
+      opacity: 0, y: 28,
+      duration: MOTION.DUR_MD, ease: 'expo.out', delay,
+      scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+    });
   });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-reveals.forEach(el => revealObs.observe(el));
+} else {
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => revealObs.observe(el));
+}
+
+// ── HERO ENTRANCE + SCROLL-SCRUBBED EXIT (GSAP only; fallback is the CSS reveal)
+if (GSAP_ON) {
+  // split the H1 into word spans for a staggered, line-aware reveal
+  const heroH1 = document.getElementById('heroH1');
+  if (heroH1) {
+    (function splitWords(node) {
+      [...node.childNodes].forEach(child => {
+        if (child.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          child.textContent.split(/(\s+)/).forEach(part => {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+            const s = document.createElement('span');
+            s.className = 'hw';
+            s.textContent = part;
+            frag.appendChild(s);
+          });
+          node.replaceChild(frag, child);
+        } else if (child.nodeType === 1) {
+          splitWords(child);
+        }
+      });
+    })(heroH1);
+  }
+
+  const heroTl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+  heroTl
+    .from('.hero-badge', { y: 14, opacity: 0, duration: MOTION.DUR_SM })
+    .from('.hero-h1 .hw', { y: 34, opacity: 0, duration: MOTION.DUR_LG, stagger: 0.055 }, '-=0.15')
+    .from('.hero-p', { y: 20, opacity: 0, duration: MOTION.DUR_MD }, '-=0.5')
+    .from('.hero-actions', { y: 16, opacity: 0, duration: MOTION.DUR_MD }, '-=0.4')
+    .from('.hero-trust', { opacity: 0, duration: MOTION.DUR_SM }, '-=0.3')
+    .from('.hero-visual', { y: 44, opacity: 0, scale: 0.97, duration: MOTION.DUR_LG }, 0.3);
+
+  // hero exit is scrubbed to the user's own scrolling, not merely triggered
+  gsap.to('.hero-inner', {
+    y: -56, opacity: 0.35, ease: 'none',
+    scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
+  });
+}
 
 // ── NAV SCROLL-SPY
 const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
@@ -157,6 +219,37 @@ function updateCalc(){
 [calcCalls, calcValue, calcRate].forEach(el => el.addEventListener('input', updateCalc));
 updateCalc();
 
+// ── HERO MINI-CALCULATOR (signature moment — one slider, live count-up figure)
+// Uses the same default assumptions as the full calculator ($850 avg job, 60%
+// close rate) and keeps the full calculator's slider in sync, so "See your full
+// number" lands on a calculator that already reflects what the visitor set here.
+const heroCalcSlider = document.getElementById('heroCalcCalls');
+if (heroCalcSlider) {
+  const heroCalcOut = document.getElementById('heroCalcOut');
+  const heroCalcCallsOut = document.getElementById('heroCalcCallsOut');
+  const HERO_AVG_JOB = 850;
+  const HERO_CLOSE_RATE = 0.6;
+  const heroCalcState = { value: parseInt(heroCalcSlider.value, 10) * HERO_AVG_JOB * HERO_CLOSE_RATE };
+  heroCalcSlider.addEventListener('input', () => {
+    const calls = parseInt(heroCalcSlider.value, 10);
+    heroCalcCallsOut.textContent = calls;
+    const target = calls * HERO_AVG_JOB * HERO_CLOSE_RATE;
+    if (HAS_GSAP && !REDUCED_MOTION) {
+      gsap.to(heroCalcState, {
+        value: target, duration: 0.5, ease: 'power2.out', overwrite: true,
+        onUpdate: () => { heroCalcOut.textContent = fmtMoney(heroCalcState.value); }
+      });
+    } else {
+      heroCalcState.value = target;
+      heroCalcOut.textContent = fmtMoney(target);
+    }
+    if (calcCalls) {
+      calcCalls.value = String(calls);
+      updateCalc();
+    }
+  });
+}
+
 // ── AUTO-UPDATE COPYRIGHT YEAR
 document.getElementById('copyYear').textContent = new Date().getFullYear();
 
@@ -249,18 +342,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-// ── HERO CINEMATIC PARALLAX (desktop, fine-pointer, motion-safe only)
-const heroStage = document.getElementById('heroStage');
-const prefersReducedMotion = REDUCED_MOTION;
-if (heroStage && !prefersReducedMotion && window.matchMedia('(pointer: fine)').matches) {
-  const heroVisual = document.querySelector('.hero-visual');
-  heroVisual.addEventListener('mousemove', (e) => {
-    const rect = heroVisual.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 10;
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 10;
-    heroStage.style.transform = `rotateY(${x * 0.4}deg) rotateX(${-y * 0.4}deg) translateZ(0)`;
-  });
-  heroVisual.addEventListener('mouseleave', () => {
-    heroStage.style.transform = '';
-  });
-}
+// (The old hero mousemove parallax was removed with the mocked dashboard it
+// animated — the hero visual is now a real interactive tool, and a 3D tilt
+// under a slider the user is actively dragging would fight the interaction.)

@@ -108,8 +108,8 @@
         <span class="pulse-dot"></span>
         For Home Service Businesses · $500K–$20M/yr
       </div>
-      <h1 class="hero-h1">Your Next Customer Is Looking Right Now. <em>Will They Find You First?</em></h1>
-      <p class="hero-p">Every day, people search for businesses like yours. We build the websites, Google presence, advertising, and automation that help them find you first, trust you faster, and choose you with confidence.</p>
+      <h1 class="hero-h1" id="heroH1">Every Missed Call Is <em>Someone Else's Job.</em></h1>
+      <p class="hero-p">We build the websites, Google visibility, ads, and follow-up systems that turn that search into a booked job — not just a click.</p>
       <div class="hero-actions">
         <a href="#cta-final" class="btn btn-primary hero-cta">Get Your Free Growth Audit →</a>
         <a href="#solutions" class="hero-secondary-link">See how it works ↓</a>
@@ -121,49 +121,29 @@
       </div>
     </div>
 
-    <div class="hero-visual reveal rd2" aria-hidden="true">
-      <div class="hero-stage" id="heroStage">
-        <div class="hero-cinema">
-          <svg class="hero-cinema-lines" viewBox="0 0 480 460" preserveAspectRatio="none">
-            <path class="cine-path p3" d="M-20,380 C120,340 180,420 300,360 S460,300 500,320"/>
-            <path class="cine-path p2" d="M-20,60 C100,110 160,40 260,90 S420,150 500,110"/>
-            <path class="cine-path p1" d="M-20,220 C110,160 190,260 300,190 S440,120 500,160"/>
-            <circle class="cine-node" cx="300" cy="190" r="3.5"/>
-            <circle class="cine-node" cx="120" cy="240" r="2.5" opacity="0.7"/>
-          </svg>
-          <div class="hero-cinema-glow" aria-hidden="true"></div>
-          <div class="hero-cinema-grain" aria-hidden="true"></div>
-        </div>
-
-        <div class="mock-ai"><span class="ai-dot"></span>GROWTH ENGINE · ACTIVE</div>
-
-        <div class="mock-card mock-main">
-          <div class="mock-label">Organic Traffic <span class="mock-trend">↑ Growing</span></div>
-          <div class="bar-chart">
-            <div class="bar prev" style="height:26%"></div>
-            <div class="bar prev" style="height:38%"></div>
-            <div class="bar prev" style="height:32%"></div>
-            <div class="bar prev" style="height:50%"></div>
-            <div class="bar prev" style="height:58%"></div>
-            <div class="bar active" style="height:78%"></div>
-            <div class="bar active" style="height:100%"></div>
+    <!-- Signature hero moment: a live, working slice of the missed-call calculator.
+         No fake rankings, no fabricated charts — the visitor supplies the number. -->
+    <div class="hero-visual reveal rd2">
+      <div class="hero-engine">
+        <svg class="hero-engine-lines" viewBox="0 0 480 460" preserveAspectRatio="none" aria-hidden="true">
+          <path class="cine-path p3" d="M-20,380 C120,340 180,420 300,360 S460,300 500,320"/>
+          <path class="cine-path p2" d="M-20,60 C100,110 160,40 260,90 S420,150 500,110"/>
+          <path class="cine-path p1" d="M-20,220 C110,160 190,260 300,190 S440,120 500,160"/>
+          <circle class="cine-node" cx="300" cy="190" r="3.5"/>
+          <circle class="cine-node" cx="120" cy="240" r="2.5" opacity="0.7"/>
+        </svg>
+        <div class="hero-engine-glow" aria-hidden="true"></div>
+        <div class="hero-engine-grain" aria-hidden="true"></div>
+        <div class="hero-calc">
+          <div class="hero-calc-label">Missed-Call Cost · Live Estimate</div>
+          <div class="hero-calc-num" id="heroCalcOut" aria-live="polite">$5,100</div>
+          <div class="hero-calc-per">potentially walking away every month</div>
+          <div class="hero-calc-slider-row">
+            <input type="range" min="1" max="40" value="10" step="1" class="calc-slider" id="heroCalcCalls" aria-label="Missed calls per month">
+            <div class="hero-calc-slider-meta"><strong id="heroCalcCallsOut">10</strong> missed calls / month</div>
           </div>
-          <div class="bar-labels">
-            <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span>
-          </div>
-        </div>
-
-        <div class="mock-card mock-rank">
-          <div class="mock-label">Google Rankings</div>
-          <div class="rank-row"><div class="rank-pos" style="background:var(--red)">1</div><div class="rank-kw">HVAC repair near me</div><div class="rank-arr">↑4</div></div>
-          <div class="rank-row"><div class="rank-pos">2</div><div class="rank-kw">plumber near me</div><div class="rank-arr">↑3</div></div>
-          <div class="rank-row"><div class="rank-pos" style="background:#374151">3</div><div class="rank-kw">electrician Coral Springs</div><div class="rank-arr">↑6</div></div>
-        </div>
-
-        <div class="mock-card mock-leads">
-          <div class="mock-label">Qualified Leads</div>
-          <svg class="icon leads-icon"><use href="#i-mail"/></svg>
-          <div class="leads-sub"><span class="live-dot"></span>Tracked daily</div>
+          <p class="hero-calc-note">Assumes an $850 average job and 60% close rate — tune every number in the full calculator.</p>
+          <a href="#calculator" class="hero-calc-link">See your full number →</a>
         </div>
       </div>
     </div>
