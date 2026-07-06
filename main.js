@@ -346,17 +346,41 @@ if (GSAP_ON && window.matchMedia('(pointer: fine)').matches) {
   ring.className = 'cursor-ring';
   ring.setAttribute('aria-hidden', 'true');
   document.body.appendChild(ring);
+
+  // spotlight text-reveal: a neon-red duplicate of the page, clipped to a
+  // circle that tracks the cursor at the ring's own radius, so only the
+  // letters currently "inside the lens" appear to glow. One-time clone —
+  // scripts and ids are stripped so nothing re-executes or collides; it's
+  // decorative only (inert + pointer-events:none) and won't reflect later
+  // state changes like a FAQ opening, which is an acceptable tradeoff for
+  // a hover flourish.
+  const glow = document.body.cloneNode(true);
+  glow.className = 'cursor-glow-overlay';
+  glow.setAttribute('aria-hidden', 'true');
+  glow.setAttribute('inert', '');
+  glow.querySelectorAll('script, .cursor-ring').forEach(el => el.remove());
+  glow.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+  document.body.appendChild(glow);
+
   const ringX = gsap.quickTo(ring, 'x', { duration: 0.18, ease: 'power3.out' });
   const ringY = gsap.quickTo(ring, 'y', { duration: 0.18, ease: 'power3.out' });
   const INTERACTIVE = 'a, button, .audit-card, .faq-q, input[type="range"], .sb, .port-card';
   let ringShown = false;
   document.addEventListener('mousemove', e => {
-    if (!ringShown) { ring.classList.add('show'); ringShown = true; }
+    if (!ringShown) { ring.classList.add('show'); glow.classList.add('show'); ringShown = true; }
     ringX(e.clientX);
     ringY(e.clientY);
-    ring.classList.toggle('on', !!(e.target.closest && e.target.closest(INTERACTIVE)));
+    const on = !!(e.target.closest && e.target.closest(INTERACTIVE));
+    ring.classList.toggle('on', on);
+    glow.style.setProperty('--glow-x', (e.clientX + window.scrollX) + 'px');
+    glow.style.setProperty('--glow-y', (e.clientY + window.scrollY) + 'px');
+    glow.style.setProperty('--glow-r', (on ? 21 : 14) + 'px');
   }, { passive: true });
-  document.addEventListener('mouseleave', () => { ring.classList.remove('show'); ringShown = false; });
+  document.addEventListener('mouseleave', () => {
+    ring.classList.remove('show');
+    glow.classList.remove('show');
+    ringShown = false;
+  });
 }
 
 
@@ -433,6 +457,7 @@ if (gaForm) {
 // ── SMOOTH SCROLL (offset for fixed nav; routed through Lenis when active so
 //    programmatic scrolls and wheel smoothing never fight over scroll position)
 document.querySelectorAll('a[href^="#"]').forEach(a => {
+  if (a.closest('.cursor-glow-overlay')) return; // skip the inert clone's duplicated links
   a.addEventListener('click', e => {
     const id = a.getAttribute('href');
     const target = id === '#' ? document.body : document.querySelector(id);

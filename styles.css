@@ -97,10 +97,21 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 
 /* ─── CURSOR RING (fine pointers + GSAP only; injected by main.js) ───
    Accompanies — never replaces — the native cursor; grows over
-   interactive elements. */
-.cursor-ring{position:fixed;top:-14px;left:-14px;width:28px;height:28px;border:1.5px solid rgba(217,30,24,0.4);border-radius:50%;pointer-events:none;z-index:2000;opacity:0;transition:width 0.18s var(--ease-bounce),height 0.18s var(--ease-bounce),border-color 0.18s,opacity 0.25s,margin 0.18s var(--ease-bounce);will-change:transform}
+   interactive elements. Tinted inside so it reads as a lens, not a
+   bare outline. */
+.cursor-ring{position:fixed;top:-14px;left:-14px;width:28px;height:28px;border:1.5px solid rgba(217,30,24,0.4);border-radius:50%;background:radial-gradient(circle,rgba(217,30,24,0.14) 0%,rgba(217,30,24,0.05) 55%,transparent 75%);pointer-events:none;z-index:2000;opacity:0;transition:width 0.18s var(--ease-bounce),height 0.18s var(--ease-bounce),border-color 0.18s,opacity 0.25s,margin 0.18s var(--ease-bounce);will-change:transform}
 .cursor-ring.show{opacity:1}
-.cursor-ring.on{width:42px;height:42px;margin:-7px 0 0 -7px;border-color:rgba(217,30,24,0.8)}
+.cursor-ring.on{width:42px;height:42px;margin:-7px 0 0 -7px;border-color:rgba(217,30,24,0.8);background:radial-gradient(circle,rgba(217,30,24,0.22) 0%,rgba(217,30,24,0.08) 55%,transparent 75%)}
+
+/* ─── CURSOR SPOTLIGHT TEXT-REVEAL ───
+   A neon-red duplicate of the page (main.js clones <body> once, strips
+   scripts/ids so nothing re-executes or collides), clipped to a circle
+   that tracks the cursor at the same radius as the ring above. Letters
+   under the circle appear to glow red; everything else stays invisible. */
+.cursor-glow-overlay{position:absolute;top:0;left:0;width:100%;z-index:1999;pointer-events:none;opacity:0;transition:opacity 0.2s;clip-path:circle(var(--glow-r,14px) at var(--glow-x,-999px) var(--glow-y,-999px))}
+.cursor-glow-overlay.show{opacity:1}
+.cursor-glow-overlay,.cursor-glow-overlay *{background:transparent!important;box-shadow:none!important;border-color:transparent!important}
+.cursor-glow-overlay,.cursor-glow-overlay *{color:#ff1a1a!important;-webkit-text-fill-color:#ff1a1a!important;text-shadow:0 0 6px rgba(255,26,26,0.9),0 0 18px rgba(255,26,26,0.55)!important}
 
 /* ─── NAV ─── */
 #nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:border-color 0.25s,box-shadow 0.25s}
