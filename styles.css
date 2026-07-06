@@ -349,6 +349,19 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 .promise-divider{border-top:1px solid rgba(255,255,255,0.08);margin-top:56px;padding-top:48px;text-align:center;position:relative;z-index:1}
 .promise-note{font-size:0.875rem;color:rgba(255,255,255,0.38);margin-bottom:24px;line-height:1.7}
 
+/* ─── FOUNDER BLOCK (real-asset slot — never a stock/AI face) ─── */
+.founder-block{display:grid;grid-template-columns:220px 1fr;gap:36px;align-items:center;max-width:760px;margin:0 auto 56px;position:relative;z-index:1;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:32px}
+.founder-photo-slot{aspect-ratio:4/5;border:2px dashed rgba(255,255,255,0.25);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;color:rgba(255,255,255,0.45);padding:16px}
+.founder-slot-icon{width:28px;height:28px;opacity:0.7}
+.founder-slot-label{font-size:0.7rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;line-height:1.7}
+.founder-draft-chip{display:inline-block;background:var(--amber-bg);color:#78350F;font-size:0.66rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;padding:4px 10px;border-radius:5px;margin-bottom:16px;border:1px solid rgba(245,158,11,0.3)}
+.founder-quote{font-size:1rem;color:rgba(255,255,255,0.75);line-height:1.8;margin-bottom:16px;font-style:italic}
+.founder-name{font-family:var(--font-display);font-size:0.85rem;font-weight:600;color:#fff;letter-spacing:0.02em}
+@media(max-width:640px){
+  .founder-block{grid-template-columns:1fr;gap:24px;padding:24px}
+  .founder-photo-slot{max-width:200px;margin:0 auto}
+}
+
 /* ─── PRICING ─── */
 #pricing{background:var(--white)}
 .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start}
