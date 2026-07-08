@@ -448,7 +448,7 @@ if (gaForm) {
       gaStatus.textContent = "Something went wrong sending that. Please email eric@hotcallmarketing.com directly.";
       gaStatus.className = 'cta-form-status error';
       gaSubmitBtn.disabled = false;
-      gaSubmitBtn.textContent = "Get Your Free Growth Audit →";
+      gaSubmitBtn.textContent = "Request My Free Growth Audit →";
       gaSubmitting = false;
     }
   });
