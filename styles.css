@@ -431,6 +431,12 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 .cta-form-title{font-family:var(--font-display);font-size:1.35rem;font-weight:700;color:#fff;margin-bottom:6px;letter-spacing:-0.01em}
 .cta-form-desc{font-size:0.875rem;color:rgba(255,255,255,0.55);line-height:1.6}
 .cta-form-textarea::placeholder{color:rgba(17,24,39,0.38);font-size:0.85rem}
+.cta-form-consent{margin-top:18px}
+.cta-form-consent label{display:flex;align-items:flex-start;gap:10px;cursor:pointer}
+.cta-form-consent input[type="checkbox"]{margin-top:3px;width:16px;height:16px;flex-shrink:0;accent-color:var(--red);cursor:pointer}
+.cta-form-consent span{font-size:0.72rem;color:rgba(255,255,255,0.48);line-height:1.6}
+.cta-form-consent a{color:rgba(255,255,255,0.75);text-decoration:underline;text-underline-offset:2px}
+.cta-form-consent a:hover{color:#fff}
 .cta-form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .cta-form-group{margin-bottom:18px}
 .cta-form-group:last-of-type{margin-bottom:0}

@@ -431,6 +431,14 @@ if (gaForm) {
     try {
       const payload = {};
       fd.forEach((v, k) => { payload[k] = typeof v === 'string' ? v.trim().slice(0, 200) : v; });
+      // consent evidence trail: every submission records what was agreed to,
+      // when, and on which page — the record arrives in the notification email
+      // and should be retained (TCPA/CAN-SPAM defense)
+      if (payload.consent === 'yes') {
+        payload.consent_statement = 'Agreed to contact by phone/email/text re: request; texts not condition of purchase; STOP to opt out; Privacy Policy + Terms linked (v2026-07-07)';
+        payload.consent_timestamp_utc = new Date().toISOString();
+        payload.consent_page = window.location.href;
+      }
       const res = await fetch('https://formsubmit.co/ajax/eric@hotcallmarketing.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
