@@ -6,6 +6,11 @@ const HAS_GSAP = typeof window.gsap !== 'undefined';
 const HAS_SCROLLTRIGGER = HAS_GSAP && typeof window.ScrollTrigger !== 'undefined';
 const HAS_LENIS = typeof window.Lenis !== 'undefined';
 const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ── SITE CONFIG
+// Booking page for the Growth Audit (Cal.com). Used by the form success
+// state and the direct-booking links in the markup.
+const CALENDAR_URL = 'https://cal.com/hotcallmarketing';
 const MOTION = {
   EASE_IN: 'cubic-bezier(0.16,1,0.3,1)',      // entrances / reveals
   EASE_BOUNCE: 'cubic-bezier(0.34,1.56,0.64,1)', // hover / press micro-interactions
@@ -450,8 +455,17 @@ if (gaForm) {
       gaForm.reset();
       gaForm.querySelectorAll('input, select, textarea, button').forEach(el => el.disabled = true);
       gaSubmitBtn.textContent = 'Request Sent ✓';
-      gaStatus.textContent = "Thanks — we've got it. We'll reply with your free growth audit within one business day.";
+      gaStatus.textContent = 'Request received — lock in your audit call now, or we’ll email you within one business day.';
       gaStatus.className = 'cta-form-status success';
+      // immediate next step: booking beats waiting (speed-to-lead, applied to ourselves)
+      const bookBtn = document.createElement('a');
+      bookBtn.href = CALENDAR_URL;
+      bookBtn.target = '_blank';
+      bookBtn.rel = 'noopener';
+      bookBtn.className = 'btn btn-primary cta-book-btn';
+      bookBtn.setAttribute('data-track', 'calendar-click-post-submit');
+      bookBtn.textContent = 'Choose a Time for Your Growth Audit →';
+      gaStatus.insertAdjacentElement('afterend', bookBtn);
     } catch (err) {
       gaStatus.textContent = "Something went wrong sending that. Please email eric@hotcallmarketing.com directly.";
       gaStatus.className = 'cta-form-status error';

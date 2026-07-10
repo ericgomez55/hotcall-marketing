@@ -18,8 +18,7 @@ the site measurably stronger the day it lands.
 4. **Additional social profiles** → Facebook + Instagram are live in the
    footer. LinkedIn/YouTube icons exist in the sprite and can be re-added
    the day those profiles are real.
-5. **Calendar booking URL** (optional) → if you adopt one (Calendly, etc.),
-   the form success message is the natural place to offer it.
+5. **Calendar booking URL** ✅ DONE — https://cal.com/hotcallmarketing wired into the form success state and direct-booking link (CALENDAR_URL in main.js).
 6. **Legal review of privacy.html and terms.html** → both are drafts with
    owner-review banners and must be reviewed (ideally by an attorney) before
    being treated as published policy.

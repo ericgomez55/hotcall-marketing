@@ -434,6 +434,10 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 .cta-form-consent span{font-size:0.72rem;color:rgba(255,255,255,0.48);line-height:1.6}
 .cta-form-consent a{color:rgba(255,255,255,0.75);text-decoration:underline;text-underline-offset:2px}
 .cta-form-consent a:hover{color:#fff}
+.cta-book-btn{margin:18px auto 0;display:flex;max-width:360px}
+.cta-book-direct{font-size:0.82rem;color:rgba(255,255,255,0.4);margin-top:14px}
+.cta-book-direct a{color:rgba(255,255,255,0.75);font-weight:600;text-decoration:underline;text-underline-offset:3px;transition:color 0.15s}
+.cta-book-direct a:hover{color:#fff}
 .cta-form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .cta-form-group{margin-bottom:18px}
 .cta-form-group:last-of-type{margin-bottom:0}
