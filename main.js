@@ -440,7 +440,7 @@ if (gaForm) {
       // when, and on which page — the record arrives in the notification email
       // and should be retained (TCPA/CAN-SPAM defense)
       if (payload.consent === 'yes') {
-        payload.consent_statement = 'Agreed to contact by phone/email/text re: request; texts not condition of purchase; STOP to opt out; Privacy Policy + Terms linked (v2026-07-07)';
+        payload.consent_statement = 'Agreed to contact by phone/email/text re: request, audit, services, follow-up; texts not condition of purchase; STOP opts out of texts; unsubscribe link opts out of marketing email; Privacy Policy + Terms linked (v2026-07-10)';
         payload.consent_timestamp_utc = new Date().toISOString();
         payload.consent_page = window.location.href;
       }
