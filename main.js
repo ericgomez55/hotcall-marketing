@@ -371,16 +371,29 @@ if (GSAP_ON && window.matchMedia('(pointer: fine)').matches) {
   const ringY = gsap.quickTo(ring, 'y', { duration: 0.18, ease: 'power3.out' });
   const INTERACTIVE = 'a, button, .audit-card, .faq-q, input[type="range"], .sb, .port-card';
   let ringShown = false;
+  let lastClientX = 0, lastClientY = 0, lastOn = false;
+  function positionGlow() {
+    glow.style.setProperty('--glow-x', (lastClientX + window.scrollX) + 'px');
+    glow.style.setProperty('--glow-y', (lastClientY + window.scrollY) + 'px');
+    glow.style.setProperty('--glow-r', (lastOn ? 21 : 14) + 'px');
+  }
   document.addEventListener('mousemove', e => {
     if (!ringShown) { ring.classList.add('show'); glow.classList.add('show'); ringShown = true; }
     ringX(e.clientX);
     ringY(e.clientY);
-    const on = !!(e.target.closest && e.target.closest(INTERACTIVE));
-    ring.classList.toggle('on', on);
-    glow.style.setProperty('--glow-x', (e.clientX + window.scrollX) + 'px');
-    glow.style.setProperty('--glow-y', (e.clientY + window.scrollY) + 'px');
-    glow.style.setProperty('--glow-r', (on ? 21 : 14) + 'px');
+    lastClientX = e.clientX;
+    lastClientY = e.clientY;
+    lastOn = !!(e.target.closest && e.target.closest(INTERACTIVE));
+    ring.classList.toggle('on', lastOn);
+    positionGlow();
   }, { passive: true });
+  // the glow overlay scrolls with the page (by design — it must stay pixel-
+  // aligned with the real content it's revealing) but only repositions on
+  // mousemove; without this, scrolling via wheel/trackpad without moving the
+  // mouse leaves it stranded over whatever content is now underneath the old
+  // page-relative coordinate. Re-derive from the last known viewport position
+  // on every scroll so it always tracks where the cursor visually is.
+  window.addEventListener('scroll', () => { if (ringShown) positionGlow(); }, { passive: true });
   document.addEventListener('mouseleave', () => {
     ring.classList.remove('show');
     glow.classList.remove('show');
@@ -466,6 +479,11 @@ if (gaForm) {
       bookBtn.setAttribute('data-track', 'calendar-click-post-submit');
       bookBtn.textContent = 'Choose a Time for Your Growth Audit →';
       gaStatus.insertAdjacentElement('afterend', bookBtn);
+      // the "skip the form" path no longer makes sense once it's been submitted
+      const divider = gaForm.querySelector('.cta-form-divider');
+      const directBook = gaForm.querySelector('.cta-form-book-direct');
+      if (divider) divider.style.display = 'none';
+      if (directBook) directBook.style.display = 'none';
     } catch (err) {
       gaStatus.textContent = "Something went wrong sending that. Please email eric@hotcallmarketing.com directly.";
       gaStatus.className = 'cta-form-status error';
