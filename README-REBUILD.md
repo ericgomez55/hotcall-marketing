@@ -1,4 +1,4 @@
-# HotCall Marketing — redesign-v2 rebuild notes
+# Hot Call Marketing — redesign-v2 rebuild notes
 
 Redesign executed against the brutal-audit build spec (July 2026). Static site,
 no build step: Cloudflare Pages serves these files exactly as committed.
@@ -32,7 +32,7 @@ all content visible.
 
 ### Add the founder photo
 Search `index.html` for `FOUNDER BLOCK`. Replace the `.founder-photo-slot`
-div with a real `<img src="/assets/founder.jpg" alt="Eric, founder of HotCall
+div with a real `<img src="/assets/founder.jpg" alt="Eric, founder of Hot Call
 Marketing">`. Review/edit the bio text and delete the `.founder-draft-chip`
 span. **Never use a stock photo or AI-generated face here.**
 
