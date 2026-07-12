@@ -259,56 +259,26 @@ auditCards.forEach(card => {
   });
 });
 
-// ── ROI CALCULATOR
-const calcCalls = document.getElementById('calcCalls');
-const calcValue = document.getElementById('calcValue');
-const calcRate = document.getElementById('calcRate');
+// ── HERO MISSED-CALL CALCULATOR (the only calculator on the page — the
+// signature interactive moment. Two sliders, a fixed 60% close-rate
+// assumption stated in the disclaimer, yearly cost as the headline number.)
 function fmtMoney(n){ return '$' + Math.round(n).toLocaleString('en-US'); }
 
-// money outputs count up/down to their new value instead of snapping per tick;
-// slider labels stay instant (they're direct input echoes)
-const countUpState = { monthly: 0, yearly: 0 };
-function tweenMoney(key, el, target) {
-  if (HAS_GSAP && !REDUCED_MOTION) {
-    gsap.to(countUpState, {
-      [key]: target, duration: 0.5, ease: 'power2.out', overwrite: 'auto',
-      onUpdate: () => { el.textContent = fmtMoney(countUpState[key]); }
-    });
-  } else {
-    countUpState[key] = target;
-    el.textContent = fmtMoney(target);
-  }
-}
-function updateCalc(){
-  const calls = parseFloat(calcCalls.value);
-  const value = parseFloat(calcValue.value);
-  const rate = parseFloat(calcRate.value) / 100;
-  const monthly = calls * value * rate;
-  const yearly = monthly * 12;
-  document.getElementById('calcCallsOut').textContent = calls;
-  document.getElementById('calcValueOut').textContent = fmtMoney(value);
-  document.getElementById('calcRateOut').textContent = Math.round(rate * 100) + '%';
-  tweenMoney('monthly', document.getElementById('calcMonthly'), monthly);
-  tweenMoney('yearly', document.getElementById('calcYearly'), yearly);
-}
-[calcCalls, calcValue, calcRate].forEach(el => el.addEventListener('input', updateCalc));
-updateCalc();
-
-// ── HERO MINI-CALCULATOR (signature moment — one slider, live count-up figure)
-// Uses the same default assumptions as the full calculator ($850 avg job, 60%
-// close rate) and keeps the full calculator's slider in sync, so "See your full
-// number" lands on a calculator that already reflects what the visitor set here.
-const heroCalcSlider = document.getElementById('heroCalcCalls');
-if (heroCalcSlider) {
+const heroCalcCalls = document.getElementById('heroCalcCalls');
+const heroCalcValue = document.getElementById('heroCalcValue');
+if (heroCalcCalls && heroCalcValue) {
   const heroCalcOut = document.getElementById('heroCalcOut');
   const heroCalcCallsOut = document.getElementById('heroCalcCallsOut');
-  const HERO_AVG_JOB = 850;
-  const HERO_CLOSE_RATE = 0.6;
-  const heroCalcState = { value: parseInt(heroCalcSlider.value, 10) * HERO_AVG_JOB * HERO_CLOSE_RATE };
-  heroCalcSlider.addEventListener('input', () => {
-    const calls = parseInt(heroCalcSlider.value, 10);
+  const heroCalcValueOut = document.getElementById('heroCalcValueOut');
+  const CLOSE_RATE = 0.6;
+  const heroCalcState = { value: parseInt(heroCalcCalls.value, 10) * parseFloat(heroCalcValue.value) * CLOSE_RATE * 12 };
+
+  function updateHeroCalc(){
+    const calls = parseInt(heroCalcCalls.value, 10);
+    const jobValue = parseFloat(heroCalcValue.value);
     heroCalcCallsOut.textContent = calls;
-    const target = calls * HERO_AVG_JOB * HERO_CLOSE_RATE;
+    heroCalcValueOut.textContent = fmtMoney(jobValue);
+    const target = calls * jobValue * CLOSE_RATE * 12;
     if (HAS_GSAP && !REDUCED_MOTION) {
       gsap.to(heroCalcState, {
         value: target, duration: 0.5, ease: 'power2.out', overwrite: true,
@@ -318,11 +288,8 @@ if (heroCalcSlider) {
       heroCalcState.value = target;
       heroCalcOut.textContent = fmtMoney(target);
     }
-    if (calcCalls) {
-      calcCalls.value = String(calls);
-      updateCalc();
-    }
-  });
+  }
+  [heroCalcCalls, heroCalcValue].forEach(el => el.addEventListener('input', updateHeroCalc));
 }
 
 // ── AUTO-UPDATE COPYRIGHT YEAR

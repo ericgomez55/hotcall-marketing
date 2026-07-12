@@ -273,23 +273,14 @@ body{font-family:var(--font);color:var(--body);background:var(--white);line-heig
 .solutions-note{text-align:center;margin-top:44px;font-size:0.9rem;color:var(--muted)}
 .solutions-note strong{color:var(--h-color)}
 
-/* ─── ROI CALCULATOR ─── */
-#calculator{background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.calc-card{background:var(--section);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow-lg);padding:44px;max-width:600px;margin:0 auto}
-.calc-row{margin-bottom:30px}
-.calc-row-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;font-size:0.9rem;font-weight:600;color:var(--h-color)}
-.calc-val{color:var(--red);font-weight:800;font-size:1rem}
-/* padding enlarges the native slider's hit area toward the 44px touch-target
-   guideline without changing the thin track's visual weight (the track
-   renders centered within the input's box in every major browser) */
+/* ─── CALCULATOR SLIDER (shared by the hero missed-call calculator) ───
+   padding enlarges the native slider's hit area toward the 44px
+   touch-target guideline without changing the thin track's visual weight
+   (the track renders centered within the input's box in every major
+   browser) */
 .calc-slider{-webkit-appearance:none;appearance:none;width:100%;height:6px;padding-block:15px;background-clip:content-box;border-radius:99px;background:var(--border);outline:none;cursor:pointer;touch-action:manipulation}
 .calc-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:28px;height:28px;border-radius:50%;background:var(--red);cursor:pointer;box-shadow:0 2px 8px rgba(217,30,24,0.4);border:3px solid #fff}
 .calc-slider::-moz-range-thumb{width:28px;height:28px;border-radius:50%;background:var(--red);cursor:pointer;border:3px solid #fff;box-shadow:0 2px 8px rgba(217,30,24,0.4)}
-.calc-output{background:var(--navy);border-radius:var(--r);padding:28px;text-align:center;margin:8px 0 20px}
-.calc-output-label{font-size:0.78rem;font-weight:600;color:rgba(255,255,255,0.55);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px}
-.calc-output-value{font-family:var(--font-display);font-size:2.5rem;font-weight:700;color:#fff;letter-spacing:-0.02em;line-height:1}
-.calc-output-sub{font-size:0.85rem;color:rgba(255,255,255,0.5);margin-top:8px;font-weight:600}
-.calc-disclaimer{font-size:0.76rem;color:var(--muted);text-align:center;margin-bottom:22px;line-height:1.6}
 
 /* ─── SHIFT / TRANSFORMATION (row-by-row problem→solution) ─── */
 #transformation{background:var(--section)}
@@ -521,7 +512,6 @@ footer{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.07);p
   body{padding-bottom:80px}
   .audit-grid{grid-template-columns:repeat(2,1fr);gap:10px}
   .audit-card{padding:18px 8px}
-  .calc-card{padding:30px 22px}
   .sec{padding:72px 0}
 }
 @media(prefers-reduced-motion:reduce){
