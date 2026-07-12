@@ -470,7 +470,11 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     const target = id === '#' ? document.body : document.querySelector(id);
     if (target) {
       e.preventDefault();
-      const top = id === '#' ? 0 : target.offsetTop - 78;
+      // getBoundingClientRect (not offsetTop) so this is correct even when the
+      // target sits inside a position:relative ancestor (e.g. #cta-final,
+      // which is positioned for its decorative bloom) — offsetTop there would
+      // measure from that ancestor instead of the page
+      const top = id === '#' ? 0 : target.getBoundingClientRect().top + window.scrollY - 78;
       if (lenis) {
         lenis.scrollTo(top);
       } else {
