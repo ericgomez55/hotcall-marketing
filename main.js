@@ -400,6 +400,49 @@ if (gaForm) {
     return false;
   }
 
+  // speed-to-lead: the cloud Worker replies to the prospect within seconds and
+  // notifies Eric; ANY Worker failure (non-200, bad JSON, network error, timeout)
+  // falls back to the exact FormSubmit call that ran before — "Worker down"
+  // degrades to the previous behavior, never worse.
+  const WORKER_ENDPOINT = 'https://hcm-instant-reply.aged-sun-df58.workers.dev/api/growth-audit';
+  const WORKER_TIMEOUT_MS = 4000;
+
+  async function postJson(url, payload, timeoutMs) {
+    const controller = timeoutMs ? new AbortController() : null;
+    const timer = timeoutMs ? setTimeout(() => controller.abort(), timeoutMs) : null;
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload),
+        signal: controller ? controller.signal : undefined,
+      });
+      const data = await res.json().catch(() => null);
+      return { res, data };
+    } finally {
+      if (timer) clearTimeout(timer);
+    }
+  }
+
+  async function fetchWithFallback(payload) {
+    let ok = false;
+    let data = null;
+    try {
+      const worker = await postJson(WORKER_ENDPOINT, payload, WORKER_TIMEOUT_MS);
+      ok = worker.res.ok && worker.data && worker.data.success === true;
+      data = worker.data;
+    } catch (workerErr) {
+      ok = false;
+    }
+    if (!ok) {
+      const formsubmit = await postJson('https://formsubmit.co/ajax/eric@hotcallmarketing.com', payload, null);
+      ok = formsubmit.res.ok && formsubmit.data && (formsubmit.data.success === true || formsubmit.data.success === 'true');
+      data = formsubmit.data;
+    }
+    if (!ok) throw new Error((data && data.message) || 'Request failed');
+    return data;
+  }
+
   gaForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (gaSubmitting) return;
@@ -424,14 +467,7 @@ if (gaForm) {
         payload.consent_timestamp_utc = new Date().toISOString();
         payload.consent_page = window.location.href;
       }
-      const res = await fetch('https://formsubmit.co/ajax/eric@hotcallmarketing.com', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      const data = await res.json().catch(() => null);
-      const ok = res.ok && data && (data.success === true || data.success === 'true');
-      if (!ok) throw new Error((data && data.message) || 'Request failed');
+      await fetchWithFallback(payload);
       gaForm.reset();
       gaForm.querySelectorAll('input, select, textarea, button').forEach(el => el.disabled = true);
       gaSubmitBtn.textContent = 'Request Sent ✓';
