@@ -221,8 +221,11 @@ const auditScoreEl = document.getElementById('auditScoreNum');
 const auditBarEl = document.getElementById('auditBarFill');
 const auditScoreState = { n: 0 };
 function updateAuditScore(){
-  let yes = 0;
-  auditCards.forEach(c => { if (c.dataset.state === 'yes') yes++; });
+  let yes = 0, answered = 0;
+  auditCards.forEach(c => {
+    if (c.dataset.state === 'yes') yes++;
+    if (c.dataset.state !== 'neutral') answered++;
+  });
   if (HAS_GSAP && !REDUCED_MOTION) {
     gsap.to(auditScoreState, {
       n: yes, duration: 0.4, ease: 'power2.out', overwrite: 'auto',
@@ -233,8 +236,10 @@ function updateAuditScore(){
     auditScoreEl.textContent = yes;
   }
   auditBarEl.style.width = (yes / auditCards.length * 100) + '%';
-  if (yes === 0) {
+  if (answered === 0) {
     auditMsgEl.textContent = "Click each card above to see where your business stands.";
+  } else if (yes === 0) {
+    auditMsgEl.textContent = "Gaps in every system — each one is a place calls are leaking right now.";
   } else if (yes <= 2) {
     auditMsgEl.textContent = "That gap is likely costing you real, bookable jobs every month.";
   } else if (yes <= 4) {
@@ -491,7 +496,7 @@ if (gaForm) {
       gaStatus.textContent = "Something went wrong sending that. Please email eric@hotcallmarketing.com directly.";
       gaStatus.className = 'cta-form-status error';
       gaSubmitBtn.disabled = false;
-      gaSubmitBtn.textContent = "Request My Free Growth Audit →";
+      gaSubmitBtn.textContent = "Request a Growth Audit →";
       gaSubmitting = false;
     }
   });
