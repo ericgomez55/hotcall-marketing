@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>hudson-controls — Onboarding Intake | Hot Call Marketing</title>
+<style>
+  :root { --navy:#0B1F3A; --navy-deep:#071629; --red:#D91E18; --red-hover:#B01515; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, Segoe UI, Roboto, sans-serif; background: var(--navy-deep); color: #fff; margin: 0; padding: 2rem 1rem; }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  h1 { color: #fff; font-size: 1.6rem; margin-bottom: 0.25rem; }
+  .sub { color: #b8c2d6; margin-bottom: 2rem; }
+  fieldset { border: 1px solid #24365c; border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1.25rem; background: var(--navy); }
+  legend { padding: 0 0.5rem; color: var(--red); font-weight: 600; }
+  .field { display: block; margin-bottom: 1rem; }
+  .field-label { display: block; margin-bottom: 0.35rem; font-size: 0.95rem; }
+  .req { color: var(--red); }
+  .opt { color: #8a97b3; font-size: 0.85rem; }
+  textarea { width: 100%; padding: 0.6rem; border-radius: 6px; border: 1px solid #33477a; background: #0f2144; color: #fff; font-family: inherit; font-size: 0.95rem; }
+  textarea:focus { outline: 2px solid var(--red); }
+  button { background: var(--red); color: #fff; border: none; padding: 0.85rem 1.5rem; border-radius: 6px; font-size: 1rem; cursor: pointer; }
+  button:hover { background: var(--red-hover); }
+  button:disabled { opacity: 0.6; cursor: not-allowed; }
+  .status { margin-top: 1rem; font-size: 0.95rem; }
+  .status.success { color: #10B981; }
+  .status.error { color: var(--red); }
+  .honey { position: absolute; left: -9999px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>hudson-controls — Onboarding Intake</h1>
+  <p class="sub"><strong>Lead Engine</strong> — Turn high-intent demand into measurable calls and opportunities.</p>
+  <p class="sub">Fields marked * are required to build your engine — the rest help us personalize it. Nothing here is stored anywhere but your own client file.</p>
+  <form id="intakeForm">
+    <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <input type="hidden" name="client_slug" value="hudson-controls">
+    <input type="hidden" name="tier" value="lead-engine">
+    <input type="hidden" name="token" value="23fff1898c394134">
+    <fieldset>
+        <legend>Business identity &amp; operations</legend>
+        
+        <label class="field">
+          <span class="field-label">Legal business name + DBA <span class="req">*</span></span>
+          <textarea name="legal_name_dba" rows="2" required></textarea>
+        </label>
+
+        <label class="field">
+          <span class="field-label">Owner name + cell (alert routing) <span class="req">*</span></span>
+          <textarea name="owner_contact" rows="2" required></textarea>
+        </label>
+
+        <label class="field">
+          <span class="field-label">Who answers the phone, during what hours; what happens after hours today <span class="req">*</span></span>
+          <textarea name="phone_coverage" rows="2" required></textarea>
+        </label>
+
+        <label class="field">
+          <span class="field-label">Service area: cities/zips or radius from shop <span class="req">*</span></span>
+          <textarea name="service_area" rows="2" required></textarea>
+        </label>
+
+        <label class="field">
+          <span class="field-label">Services ranked by profitability — top 3 moneymakers + avg job value each <span class="req">*</span></span>
+          <textarea name="moneymakers" rows="2" required></textarea>
+        </label>
+
+        <label class="field">
+          <span class="field-label">How many MORE jobs/week could you take on <span class="req">*</span></span>
+          <textarea name="capacity" rows="2" required></textarea>
+        </label>
+
+        <label class="field">
+          <span class="field-label">License number(s), years in business, crew size <span class="req">*</span></span>
+          <textarea name="license_crew" rows="2" required></textarea>
+        </label>
+
+        <label class="field">
+          <span class="field-label">Certifications, awards, guarantees (real ones only) <span class="opt">(optional)</span></span>
+          <textarea name="certs_awards" rows="2" ></textarea>
+        </label>
+      </fieldset>
+<fieldset>
+        <legend>Digital assets &amp; access</legend>
+        
+        <label class="field">
+          <span class="field-label">Domain registrar · website host/CMS (or none) · existing business phone (can it take forwarded calls?) · every review profile you know of <span class="req">*</span></span>
+          <textarea name="asset_inventory" rows="2" required></textarea>
+        </label>
+
+        <label class="field">
+          <span class="field-label">Google Ads + Analytics accounts (or none yet) · EIN + business address for texting registration · billing card on your ad account <span class="req">*</span></span>
+          <textarea name="ads_accounts" rows="2" required></textarea>
+        </label>
+
+        <label class="field">
+          <span class="field-label">Logo/brand files + real photo library (trucks, crew, jobs — no stock, no AI faces) <span class="opt">(optional)</span></span>
+          <textarea name="brand_files" rows="2" ></textarea>
+        </label>
+      </fieldset>
+<fieldset>
+        <legend>Baseline numbers (the 'before' picture — verified where possible, never guessed)</legend>
+        
+        <label class="field">
+          <span class="field-label">Calls/week today · leads by source (your estimate) · review count per profile <span class="req">*</span></span>
+          <textarea name="baseline_volume" rows="2" required></textarea>
+        </label>
+
+        <label class="field">
+          <span class="field-label">Current ad spend + cost-per-lead if known · close rate estimate <span class="req">*</span></span>
+          <textarea name="baseline_ads" rows="2" required></textarea>
+        </label>
+
+        <label class="field">
+          <span class="field-label">Revenue band + 12-month goal <span class="opt">(optional)</span></span>
+          <textarea name="revenue_goal" rows="2" ></textarea>
+        </label>
+      </fieldset>
+<fieldset>
+        <legend>Preferences &amp; standing decisions</legend>
+        
+        <label class="field">
+          <span class="field-label">Brand voice do/don'ts · review-reply tone sign-off <span class="req">*</span></span>
+          <textarea name="brand_voice" rows="2" required></textarea>
+        </label>
+
+        <label class="field">
+          <span class="field-label">SMS quiet-hours confirmation (default 8am-9pm) · consent line added to your intake forms <span class="req">*</span></span>
+          <textarea name="sms_consent_quiet" rows="2" required></textarea>
+        </label>
+
+        <label class="field">
+          <span class="field-label">Which number/email gets 'you missed a lead' pings <span class="req">*</span></span>
+          <textarea name="alert_routing" rows="2" required></textarea>
+        </label>
+
+        <label class="field">
+          <span class="field-label">Blackout dates, seasonal windows <span class="opt">(optional)</span></span>
+          <textarea name="blackout_seasonal" rows="2" ></textarea>
+        </label>
+      </fieldset>
+    <button type="submit" id="submitBtn">Submit</button>
+    <div class="status" id="statusMsg"></div>
+  </form>
+</div>
+<script>
+(function () {
+  var form = document.getElementById('intakeForm');
+  var btn = document.getElementById('submitBtn');
+  var status = document.getElementById('statusMsg');
+  var loadedAt = Date.now();
+  var submitting = false;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (submitting) return;
+    if (form.querySelector('[name="_honey"]').value) return;
+    if (Date.now() - loadedAt < 2500) return;
+    submitting = true;
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    var fd = new FormData(form);
+    var payload = {};
+    fd.forEach(function (v, k) { payload[k] = typeof v === 'string' ? v.trim() : v; });
+    fetch('https://hcm-instant-reply.aged-sun-df58.workers.dev/api/intake', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function (res) { return res.json().catch(function () { return null; }); })
+      .then(function (data) {
+        if (!data || (data.success !== true && data.success !== 'true')) throw new Error('Request failed');
+        form.reset();
+        Array.prototype.forEach.call(form.querySelectorAll('input, textarea, button'), function (el) { el.disabled = true; });
+        status.textContent = 'Thanks — this has been sent to Eric and will show up in your file shortly.';
+        status.className = 'status success';
+      })
+      .catch(function () {
+        status.textContent = 'Something went wrong sending that. Please email eric@hotcallmarketing.com directly.';
+        status.className = 'status error';
+        btn.disabled = false;
+        btn.textContent = 'Submit';
+        submitting = false;
+      });
+  });
+})();
+</script>
+</body>
+</html>
